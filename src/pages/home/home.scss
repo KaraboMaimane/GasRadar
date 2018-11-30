@@ -11,8 +11,120 @@ page-home {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
+    display: none;
   }
   #map {
-    height: 80%;
+    height: 100%;
+  }
+
+  ion-searchbar{
+    background: #12498A !important;
+  }
+
+  .listflex{
+      background: rgba(white, .9);
+      border-radius: .5rem;
+      display: flex;
+      flex-flow: column;
+      padding: .2rem;
+      box-shadow: 2px 3px 5px rgba(black, .5);
+      width: 6rem;
+      position: fixed;
+      top: 6.5rem;
+      animation: .3s ease all;
+      right: 0;
+      opacity: 1;
+      animation-direction: reverse;
+      animation: slide .5s ease;
+      height: 60%;
+      flex: 0 0 auto;
+      .one{
+          // background: red;
+          flex: 1 0 0;
+      }
+      .two{
+          // background: blue;
+          flex: 1 0 0;
+      }
+      .three{
+          // background: green;
+          flex: 1 0 0;
+      }
+      .four{
+          // background: green;
+          flex: 1 0 0;
+      }
+      .five{
+          opacity: 0;
+          flex: 0 1 0;
+      }
+      .six{
+          flex: 1 0 0;
+      }
+  }
+
+  .cardcontainer{
+    // background: red;
+    height: 12rem;
+    width: 100%;
+    position: fixed;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;    
+  
+    .card{
+      flex: 0 0 20rem;
+      background: rgba(whitesmoke, .8);
+      margin-right: 1rem;
+      border-radius: 2rem;
+      box-shadow: 2px 4px 15px rgba(black, .5);
+      margin-bottom: 2rem;
+      .cardimageholder{
+        // background: yellow;
+        // padding: 0 10px 0 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .cardtextholder{
+        text-align: center;
+        font-weight: bold;
+      }
+      .cardiconholder{
+        background-color: #12498A;
+        height: 30px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        padding: 5px 10px 5px 25px;
+        text-align: center;
+      }
+      .icon{
+        color: whitesmoke;
+        margin: -2px 8px 0 19px;
+        font-size: 2.5rem;
+    
+      }
+
+      &:first-child{
+        margin-left: 10rem;
+        margin-right: 2rem;
+      }
+      &:not(:first-child){
+        margin-right: 2rem;
+      }
+    }
+  }
+
+  .alert:nth-child(1){
+    // color: $color-fourth-light-1 !important;
+  }
+  .alert:nth-child(2){
+    color: #f53d3d !important;
+  }
+  .alert:nth-child(3){
+    // color: $color-sixth-light-1 !important;
   }
 }

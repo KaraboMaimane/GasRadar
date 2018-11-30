@@ -1,6 +1,12 @@
 
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>GasRadar</ion-title>
+    </ion-navbar>
+    <ion-searchbar placeholder="Search"></ion-searchbar>
+  </ion-header>
 <ion-content>
-  <div id="floating-panel">
+  <!-- <div id="floating-panel">
     <b>Start: </b>
     <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
       <option value="chicago, il">Chicago</option>
@@ -31,7 +37,18 @@
       <option value="san bernardino, ca">San Bernardino</option>
       <option value="los angeles, ca">Los Angeles</option>
     </select>
-    </div>
+    </div> -->
     <div #map id="map"></div>
     <button ion-button (click)="nextPage('MoreInfoPage')">Info Page</button>
+
+    <div class="listflex">
+        <button ion-button color="danger" class="one">LPG</button>
+        <button ion-button color="fourth" class="three">95</button>
+        <button ion-button color="tertiary" class="three">93</button>
+        <button ion-button color="dark" class="four">Die</button>
+        <button ion-button color="primary" class="five">sear</button>
+        <button ion-button color="primary" class="six">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </div>
 </ion-content>
