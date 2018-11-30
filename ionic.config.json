@@ -1,0 +1,7 @@
+{
+  "name": "ionicSeed",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
