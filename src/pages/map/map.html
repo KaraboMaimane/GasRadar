@@ -2,7 +2,8 @@
   <div class="searchcontainer">
     <div class="combo">
         <img src="../../assets/imgs/Untitled-1.png" class="image" alt="" />
-         <ion-item class="item2" >
+
+         <!-- <ion-item class="item2" >
           <ion-label>Gaming</ion-label>
           <ion-select [(ngModel)]="gaming">
             <ion-option value="nes">NES</ion-option>
@@ -11,8 +12,11 @@
             <ion-option value="genesis">Sega Genesis</ion-option>
             <ion-option value="saturn">Sega Saturn</ion-option>
             <ion-option value="snes">SNES</ion-option>
-          </ion-select>
-      </ion-item>
+          </ion-select> -->
+          <div class="logo">
+              <i><h1 class="text" >GasRadar</h1></i>
+          </div>
+   
     </div>
    
     <div class="barcontainer">
@@ -21,20 +25,17 @@
       ngModel
       name="search"
       type="text"
-      placeholder="Search Query"
+      placeholder="Location"
       required
     
       class="input search"
     />
     <ion-item class = "item1" >
-        <ion-label>Location</ion-label>
+        <ion-label>Fuel Type</ion-label>
         <ion-select [(ngModel)]="gaming">
-          <ion-option value="nes">NES</ion-option>
-          <ion-option value="n64">Nintendo64</ion-option>
-          <ion-option value="ps">PlayStation</ion-option>
-          <ion-option value="genesis">Sega Genesis</ion-option>
-          <ion-option value="saturn">Sega Saturn</ion-option>
-          <ion-option value="snes">SNES</ion-option>
+            <ion-option value="ps">Gas</ion-option>
+          <ion-option value="nes">Petrol</ion-option>
+          <ion-option value="n64">Deisel</ion-option>
         </ion-select>
       </ion-item>
     </div>
