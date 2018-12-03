@@ -25,11 +25,11 @@ page-map {
           background: rgba($primary-color-text, .95);
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .4);
           transform: translateY(7rem);
-          
      }
 
      .input{
           box-shadow: 0px 0px 1.5rem rgba(black, .5);
+          background: $primary-color-text;
           &:focus:invalid{
                border-bottom: none;
                box-shadow: none;
@@ -37,7 +37,7 @@ page-map {
           &:focus{
                outline: none;  
                box-shadow: 0 1rem 2rem rgba($accent-color, .3) !important;
-               border-bottom: .3rem solid $accent-color;
+               border-bottom: .3rem solid $accent-color !important;
                transition: .2s ease-in-out all;
           }
      }
@@ -55,7 +55,6 @@ page-map {
                height: 100%;
                img{
                     margin-top: 1rem;
-                    
                }
           }
 

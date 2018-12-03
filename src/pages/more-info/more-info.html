@@ -1,25 +1,94 @@
-<!--
-  Generated template for the MoreInfoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>more-info</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
+<ion-content>
+  <div class="headercontainer">
+    <div class="heading">{{businessName}}</div>
+    <ion-fab color="secondary">
+      <button ion-fab mini class="fab" color="secondary">
+        <ion-icon name="navigate"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
   <div #map id="map"></div>
-  {{businessName}}
+  <!-- {{businessName}}
   {{businessEmail}}
   {{businessTel}}
   {{businessOwner}}
   {{diesel}}
   {{p93}}
-  {{p95}}
+  {{p95}} -->
+  <div class="segcontainer">
+    <ion-segment color class="md segment segment-md" [(ngModel)]="action">
+      <ion-segment-button class="segbtn" value="info">
+        Information
+      </ion-segment-button>
+      <ion-segment-button class="segbtn" value="gallery">
+        Gallery
+      </ion-segment-button>
+      <ion-segment-button class="segbtn" value="comment">
+        Comment
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="action">
+    <div class="productcontainer" *ngSwitchCase="'info'">
+      <p class="label">
+        <ion-icon name="mail"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
+        
+
+      </p>
+      <p class="label">
+        <ion-icon name="mail"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
+      </p>
+      <p class="label">
+        <ion-icon name="navigate"></ion-icon> Telephone Numer: <span class="text">{{businessTel}}</span>
+      </p>
+      <p class="label">
+        <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
+      </p>
+      <p class="products">Products</p>
+      <hr>
+      <div class="fuelcontainer">
+        <div class="fuel">
+          <!-- <ion-icon class="gas" name="navigate"></ion-icon> -->
+          <i class="fas fa-gas-pump gas"></i>
+          <p class="label"> Gas </p>
+          <p class="text">R{{gas}}/l</p>
+        </div>
+        <div class="fuel">
+          <!-- <ion-icon class="p95" name="navigate"></ion-icon> -->
+          <i class="fas fa-gas-pump p95"></i>
+          <p class="label"> Petrol(95) </p>
+          <p class="text">R{{p95}}/l</p>
+        </div>
+        <div class="fuel">
+          <!-- <ion-icon class="p93" name="navigate"></ion-icon> -->
+          <i class="fas fa-gas-pump p93"></i>
+          <p class="label"> Petrol(93) </p>
+          <p class="text">R{{p93}}/l</p>
+        </div>
+        <div class="fuel">
+          <!-- <ion-icon class="diesel" name="navigate"></ion-icon> -->
+          <i class="fas fa-gas-pump diesel"></i>
+          <p class="label"> Diesel </p>
+          <p class="text">R{{diesel}}/l</p>
+        </div>
+
+        <!-- <p class="label"><ion-icon name="navigate"></ion-icon> Petrol(93): <span class="text">{{p93}}</span></p>
+          <p class="label"><ion-icon name="navigate"></ion-icon> Petrol(95): <span class="text">{{p95}}</span></p>
+          <p class="label"><ion-icon name="navigate"></ion-icon> Diesel: <span class="text">{{diesel}}</span></p> -->
+      </div>
+
+    </div>
+    <div class="loginContainer" *ngSwitchCase="'gallery'">
+      <div id="cards">
+        <img src="https://lh3.googleusercontent.com/B8GXkvZEfgP99C4IRqGjLsdwpfQNyUPMdIJF2-W12ZvFt9Yg4zW05_snxMzsLjgAIoobB0MG3niK8d4A6p6R6Q=s750"
+          alt="">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Spaza_shop_in_Joe_Slovo_Park.JPG/1024px-Spaza_shop_in_Joe_Slovo_Park.JPG"
+          alt="">
+      </div>
+    </div>
+    <div class="loginContainer" *ngSwitchCase="'comment'">
+
+    </div>
+  </div>
 </ion-content>

@@ -69,7 +69,8 @@ export class MapPage {
       var circle = new google.maps.Circle({
         map: this.map,
         radius: 10000,    // 10 miles in metres
-        fillColor: '#FFC107'
+        fillColor: '#FFC107',
+        strokeColor: 'transparent'      
       });
       circle.bindTo('center', marker, 'position');
 
@@ -115,7 +116,7 @@ export class MapPage {
               position: { lat: this.arry[i].lat, lng: this.arry[i].lng },
               map: this.map,
               icon: {
-                url: `${this.media.fuelpump}`
+                url: `${this.media.shop}`
               }
             });
 

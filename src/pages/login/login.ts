@@ -50,6 +50,7 @@ export class LoginPage {
 
   login(form: NgForm){
     console.log(form);
+    this.navCtrl.push('MapPage');
   }
 
   resetPassword(email:string){
