@@ -1,15 +1,22 @@
 <ion-content>
   <div class="searchcontainer">
+    <div class="combo">
+        <img src="../../assets/imgs/Untitled-1.png" class="image" alt="" />
+         <ion-item class="item2" >
+          <ion-label>Gaming</ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-option value="nes">NES</ion-option>
+            <ion-option value="n64">Nintendo64</ion-option>
+            <ion-option value="ps">PlayStation</ion-option>
+            <ion-option value="genesis">Sega Genesis</ion-option>
+            <ion-option value="saturn">Sega Saturn</ion-option>
+            <ion-option value="snes">SNES</ion-option>
+          </ion-select>
+      </ion-item>
+    </div>
+   
     <div class="barcontainer">
-        <input
-        ngModel
-        name="search"
-        type="text"
-        placeholder="Search Query"
-        required
-    
-        class="input search"
-      />
+       
       <input
       ngModel
       name="search"
@@ -19,9 +26,74 @@
     
       class="input search"
     />
+    <ion-item class = "item1" >
+        <ion-label>Location</ion-label>
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
     </div>
 
   </div>
+
+  <div class="cardcontainer" >
+    <div class="card" >
+      <div class="textholder">
+         <b>Business Name </b>
+         <p>Address</p>
+      </div>
+      <div class="cardiconholder">
+           <!-- <p>{{S.name}}</p> -->
+      </div>
+    </div>
+
+    <div class="card" >
+        <div class="textholder">
+           <b>Business Name </b>
+           <p>Address</p>
+        </div>
+        <div class="cardiconholder">
+             <!-- <p>{{S.name}}</p> -->
+        </div>
+      </div>
+
+      <div class="card" >
+          <div class="textholder">
+             <b>Business Name </b>
+             <p>Address</p>
+          </div>
+          <div class="cardiconholder">
+               <!-- <p>{{S.name}}</p> -->
+          </div>
+        </div>
+
+        <div class="card" >
+            <div class="textholder">
+               <b>Business Name </b>
+               <p>Address</p>
+            </div>
+            <div class="cardiconholder">
+                 <!-- <p>{{S.name}}</p> -->
+            </div>
+          </div>
+
+          <div class="card" >
+              <div class="textholder">
+                 <b>Business Name </b>
+                 <p>Address</p>
+              </div>
+              <div class="cardiconholder">
+                   <!-- <p>{{S.name}}</p> -->
+              </div>
+            </div>
+  </div>
+
+  
   <!-- <div id="floating-panel">
     <b>Start: </b>
     <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
