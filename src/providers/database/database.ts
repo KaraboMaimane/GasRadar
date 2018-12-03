@@ -13,6 +13,8 @@ export class DatabaseProvider {
   data;
   arrInfor = new Array();
   nearByOrg = new Array();
+  newSeachedFarms = new Array();
+  
   constructor( public geolocation: Geolocation) {
     console.log('Hello DatabaseProvider Provider');
     // this.checkUserState();
@@ -279,4 +281,54 @@ export class DatabaseProvider {
   //     console.log(data);
   //   })
   // }
+  getSearchbyFarms(lat , lng){
+    return new Promise((accpt ,rej)=>{
+    this.createPositionRadius(lat , lng).then((data:any)=>{
+      accpt(data)
+    })
+    }).catch((error)=>{
+      console.log('Error getting location', error);
+   
+    })
+   }
+
+
+   
+   getSearchedFarm(lat , lng , radius , org){
+    return new  Promise((accpt , rej)=>{
+      this.getSearchbyFarms(lat , lng).then((resp)=>{
+        var lt =  new String(lat).substr(0,6);
+        var long =  new String(lng).substr(0,5);
+        console.log(lt);
+       
+        console.log(radius);
+        
+        console.log(lt);
+          console.log(long);
+        for (let x = 0; x< org.length; x++) {
+          var orglat = new String(org[x].lat).substr(0,6);
+          var orgLong =  new String(org[x].lng).substr(0,5);
+          
+          console.log(orgLong);
+          console.log(orglat );
+          
+          
+          
+          
+          
+          
+          
+console.log('out');
+          if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)){
+console.log('in');
+            this.newSeachedFarms.push(org[x]);
+             console.log(this.nearByOrg);
+   
+             }
+          
+        }
+        accpt( this.newSeachedFarms)
+      })
+    })
+  }
 }
