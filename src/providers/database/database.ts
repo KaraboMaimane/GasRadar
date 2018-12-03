@@ -41,9 +41,9 @@ export class DatabaseProvider {
     })
   }
 
-  // checkUserState(){
-  //   return firebase.auth().onAuthStateChanged((data)=>{
-  //     console.log(data);
-  //   })
-  // }
+  checkUserState(){
+    return firebase.auth().onAuthStateChanged((data)=>{
+      console.log(data);
+    })
+  }
 }

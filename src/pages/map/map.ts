@@ -36,7 +36,9 @@ export class MapPage{
     public geolocation: Geolocation,
     public database: DatabaseProvider,
     private media: MediaProvider
-  ) { }
+  ) {
+    this.database.checkUserState();
+   }
 
   ionViewDidLoad() {
     this.initMap();

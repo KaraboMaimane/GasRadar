@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 
@@ -19,7 +19,7 @@ export class LoginPage {
 
   action: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private toastCtrl: ToastController, private alertCtrl: AlertController) {
     this.action = 'registration';
   }
 
@@ -63,7 +63,33 @@ export class LoginPage {
   }
 
   resetPassword(email:string){
-
+    const alert =this.alertCtrl.create({
+      title: 'Reset Password',
+      message: "Enter You Email Address So That You Can Recieve Your Password Reset Email",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons:[
+        {
+          text: 'Ok',
+          handler: data =>{
+            console.log(data.email);
+            this.database.resetPassword(data.email).then(data=>{
+              const toast = this.toastCtrl.create({
+                message: `An E-mail Has Been Sent To reset Your Password`,
+                duration: 3000
+              });
+              toast.present();
+            })
+          }
+        }
+      ]
+    });
+    alert.present();
+    
   }
 
 }
