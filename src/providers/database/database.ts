@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import *as firebase from 'firebase/app';
+import *as firebase from 'firebase';
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -15,17 +15,17 @@ export class DatabaseProvider {
     // this.checkUserState();
   }
 
-  // login(email: string, password: string){
-  //   return firebase.auth().signInWithEmailAndPassword(email, password);
-  // }
+  login(email: string, password: string){
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
 
-  // register(name: string, email: string,  password: string){
-  //   return firebase.auth().createUserWithEmailAndPassword(email, password);
-  // }
+  register(name: string, email: string,  password: string){
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
 
-  // resetPassword(email:string){
-  //   return firebase.auth().sendPasswordResetEmail(email);
-  // }
+  resetPassword(email:string){
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
 
   retrieveData(){
     firebase.database().ref('users/').on('value', (snapshot)=>{
