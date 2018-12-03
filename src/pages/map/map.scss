@@ -36,7 +36,7 @@ page-map {
           }
           &:focus{
                outline: none;  
-               box-shadow: 0 1rem 2rem rgba($accent-color, .3);
+               box-shadow: 0 1rem 2rem rgba($accent-color, .3) !important;
                border-bottom: .3rem solid $accent-color;
                transition: .2s ease-in-out all;
           }
