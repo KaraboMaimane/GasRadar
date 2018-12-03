@@ -1,18 +1,118 @@
 page-more-info {
-    // #floating-panel {
-    //     position: absolute;
-    //     top: 10px;
-    //     right: 5px;
-    //     z-index: 5;
-    //     background-color: #fff;
-    //     padding: 5px;
-    //     border: 1px solid #999;
-    //     text-align: center;
-    //     font-family: 'Roboto','sans-serif';
-    //     line-height: 30px;
-    //     padding-left: 10px;
-    //   }
-      #map {
-        height: 80%;
+  .headercontainer{
+      height: 5rem;
+      background: $primary-color;
+      // border-bottom-right-radius:5rem;
+      // border-bottom-left-radius:5rem;
+      box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
+      z-index: 5;
+      position: fixed;
+      width: 100%;
+  }
+
+  .heading{
+    color: $primary-color-text;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  #map {
+    height: 50%;
+  }
+
+  .fab{
+    position: fixed;
+    right: 0;
+    top: 1.7rem;
+    box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
+  }
+
+  .segbtn{
+      border-top: none !important;
+      border-right: none !important;
+      border-left: none !important;
+      border-radius: none !important;
+      color: $primary-color !important;
+      border-bottom: 2px solid $primary-color-light !important;
+      background: $primary-color-text !important;
+      box-shadow: 0 -1rem -2rem rgba($primary-text-color, .5) !important;
+  }     
+  .segbtn.segment-button.segment-activated{
+      border-radius: 0 !important;
+      background: $primary-color !important;
+      color: $primary-color-text !important;
+      border-bottom: 2px solid $accent-color !important;
+  }
+
+  .productcontainer{
+    padding: 1rem;
+  }
+
+  .products{
+    color: $primary-text-color;
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+
+  .label{
+    font-weight: bold;
+  }
+
+  .text{
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+
+  hr {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      width: 70%;
+  }
+
+  .fuelcontainer{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    .fuel{
+      flex: 1 0 0;
+      i{
+        text-align: center !important;
+        display: inline-block !important;
+        margin: 0 auto !important;
+        width: 100%;
+        font-size: 2.5rem;
+        padding: .5rem;
       }
+      p{
+        margin: 0;
+        text-align: center !important;
+      }
+    }
+  }
+
+  .gas{
+    color: red;
+  }
+
+  .p95{
+    color: orangered;
+  }
+
+  .p93{
+    color: gold;
+  }
+
+  .cards{
+    display: flex;
+    width: 80%;
+    margin:0 auto;
+    img{
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
 }

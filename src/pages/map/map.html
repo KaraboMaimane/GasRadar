@@ -1,9 +1,9 @@
 <ion-content>
   <div class="searchcontainer">
     <div class="combo">
-        <img src="../../assets/imgs/Untitled-1.png" class="image" alt="" />
+      <img src="../../assets/imgs/Untitled-1 - Copy.png" class="image" alt="" />
 
-         <!-- <ion-item class="item2" >
+      <!-- <ion-item class="item2" >
           <ion-label>Gaming</ion-label>
           <ion-select [(ngModel)]="gaming">
             <ion-option value="nes">NES</ion-option>
@@ -13,29 +13,29 @@
             <ion-option value="saturn">Sega Saturn</ion-option>
             <ion-option value="snes">SNES</ion-option>
           </ion-select> -->
-          <div class="logo">
-              <i><h1 class="text" >GasRadar</h1></i>
-          </div>
-   
+      <div class="logo">
+        <i>
+          <h1 class="text">GasRadar</h1>
+        </i>
+      </div>
+
     </div>
-   
+
     <div class="barcontainer">
-       
       <input
-      ngModel
-      name="search"
+      #address
+      name="searchs"
       type="text"
       placeholder="Location"
-      required
-    
       class="input search"
-    />
+  
+    /><button (click)="searchinput(address.value)">search</button>
     <ion-item class = "item1" >
         <ion-label>Fuel Type</ion-label>
-        <ion-select [(ngModel)]="gaming">
-            <ion-option value="ps">Gas</ion-option>
-          <ion-option value="nes">Petrol</ion-option>
-          <ion-option value="n64">Deisel</ion-option>
+        <ion-select [(ngModel)]="fuelType"  (ionChange)="input()">
+            <ion-option value="Gas">Gas</ion-option>
+          <ion-option value="Petrol">Petrol</ion-option>
+          <ion-option value="Diesel">Diesel</ion-option>
         </ion-select>
       </ion-item>
     </div>
@@ -43,58 +43,23 @@
   </div>
 
   <div class="cardcontainer" >
-    <div class="card" >
+    <div class="card" *ngFor="let x of arrayinfor;">
       <div class="textholder">
-         <b>Business Name </b>
+         <b>{{x.name}} </b>
          <p>Address</p>
       </div>
       <div class="cardiconholder">
-           <!-- <p>{{S.name}}</p> -->
       </div>
     </div>
 
-    <div class="card" >
-        <div class="textholder">
-           <b>Business Name </b>
-           <p>Address</p>
-        </div>
-        <div class="cardiconholder">
-             <!-- <p>{{S.name}}</p> -->
-        </div>
-      </div>
 
-      <div class="card" >
-          <div class="textholder">
-             <b>Business Name </b>
-             <p>Address</p>
-          </div>
-          <div class="cardiconholder">
-               <!-- <p>{{S.name}}</p> -->
-          </div>
-        </div>
+    
 
-        <div class="card" >
-            <div class="textholder">
-               <b>Business Name </b>
-               <p>Address</p>
-            </div>
-            <div class="cardiconholder">
-                 <!-- <p>{{S.name}}</p> -->
-            </div>
-          </div>
+   
 
-          <div class="card" >
-              <div class="textholder">
-                 <b>Business Name </b>
-                 <p>Address</p>
-              </div>
-              <div class="cardiconholder">
-                   <!-- <p>{{S.name}}</p> -->
-              </div>
-            </div>
+       
   </div>
 
-  
   <!-- <div id="floating-panel">
     <b>Start: </b>
     <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
@@ -127,7 +92,17 @@
       <option value="los angeles, ca">Los Angeles</option>
     </select>
     </div> -->
-    <div #map id="map"></div>
+  <div #map id="map"></div>
+  <div id="slider">
+      <input type="radio" name="slider" id="s1" checked>
+      <input type="radio" name="slider" id="s2">
+      <input type="radio" name="slider" id="s3">
+      <input type="radio" name="slider" id="s4">
+      <input type="radio" name="slider" id="s5">
+      <label for="s1" id="slide1">1</label>
+      <label for="s2" id="slide2">2</label>
+      <label for="s3" id="slide3">3</label>
+      <label for="s4" id="slide4">4</label>
+      <label for="s5" id="slide5">5</label>
+    </div>
 </ion-content>
-
-
