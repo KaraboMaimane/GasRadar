@@ -2,22 +2,17 @@
   <div class="searchcontainer">
     <div class="barcontainer">
         <input
-        ngModel
         name="search"
+       [(ngModel)]="searchs"
         type="text"
         placeholder="Search Query"
-        required
-    
         class="input search"
-      />
+      /><button (click)="search()">search</button>
       <input
-      ngModel
-      name="search"
+      name="searchs"
       type="text"
       placeholder="Search Query"
-      required
-    
-      class="input search"
+    class="input search"
     />
     </div>
 
