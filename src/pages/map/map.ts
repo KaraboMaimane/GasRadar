@@ -7,14 +7,15 @@ import { signUp } from "../../app/GeoArray";
 import geoArr from "../../app/GlobalGeo";
 import { MoreInfoPage } from "../more-info/more-info";
 import { DatabaseProvider } from "../../providers/database/database";
+import { MediaProvider } from "../../providers/media/media";
 declare var google;
 
 @IonicPage()
 @Component({
-  selector: "page-home",
-  templateUrl: "home.html"
+  selector: 'page-map',
+  templateUrl: 'map.html',
 })
-export class HomePage {
+export class MapPage {
   @ViewChild("map") mapElement: ElementRef;
   map: any;
   start = "chicago, il";
@@ -28,11 +29,13 @@ export class HomePage {
   address;
   lat2;
   lng2;
+
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     public geolocation: Geolocation,
-    public database: DatabaseProvider
+    public database: DatabaseProvider,
+    private media: MediaProvider
   ) {}
 
   ionViewDidLoad() {
@@ -49,19 +52,26 @@ export class HomePage {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        zoom: 18,
+        zoom: 12,
         center: { lat: this.lat, lng: this.lng },
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        styles: this.media.mapstyle
       });
       let marker = new google.maps.Marker({
         map: this.map,
-        label: "my location",
         position: { lat: this.lat, lng: this.lng },
-        animation: google.maps.Animation.BOUNCE,
         icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+          url: `${this.media.man}` 
         }
       });
+
+      // Add circle overlay and bind to marker
+      var circle = new google.maps.Circle({
+        map: this.map,
+        radius: 10000,    // 10 miles in metres
+        fillColor: '#FFC107'
+      });
+      circle.bindTo('center', marker, 'position');
 
       loader.dismiss();
       firebase
@@ -100,14 +110,28 @@ export class HomePage {
             //   position: {lat:-26.2651693, lng:27.97542109999995}
             // })
 
+            
             let marker = new google.maps.Marker({
               position: { lat: this.arry[i].lat, lng: this.arry[i].lng },
               map: this.map,
-              label: this.arry[i].name
+              icon: {
+                url: `${this.media.fuelpump}`
+              }
             });
 
+            let contentString =  `    
+            <div class="infowindow">
+              <div class="imagecontainer">
+                <img src="${this.media.fuelpump}" alt="">
+              </div>
+              <div class="textcontainer">
+                <p class="headingtext">${this.arry[i].name}</p>
+                <p class="information">${this.arry[i].lat, this.arry[i].lng}</p>
+              </div>
+            </div>
+            `
             let infowindow = new google.maps.InfoWindow({
-              content: obj.name
+              content: contentString
             });
 
             marker.addListener("click", () => {

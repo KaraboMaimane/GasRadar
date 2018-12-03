@@ -1,0 +1,9 @@
+page-tabs {
+     .tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+          color: $accent-color !important;
+     }
+     
+     .tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
+          color: $accent-color !important;
+     }
+}

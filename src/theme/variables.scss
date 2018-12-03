@@ -24,12 +24,60 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
+  primary:    #2196F3,
+  secondary:  #FFC107,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #FFFFFF,
+  dark:       #212121
 );
+
+$primary-color-dark:   #1976D2;
+$primary-color:        #2196F3;
+$primary-color-light:  #BBDEFB;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FFC107;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+
+.btn{
+  border-radius: 10rem !important;
+  padding: 1rem !important;
+}
+
+.input{
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 10rem;
+  border: 0.2px solid rgba(black, .1);
+  background: rgba(rgb(228, 228, 228), .5);
+  width: 100%;
+  display: block;
+  margin-top: 2.5rem;
+  box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
+  &:focus{
+     outline: none;  
+     box-shadow: 0 1rem 2rem rgba($accent-color, .3);
+     border-bottom: .3rem solid $accent-color;
+     transition: .2s ease-in-out all;
+  }
+
+  &:focus:invalid{
+       border-bottom: .3rem solid rgba(red, .6);
+       box-shadow: 0 1rem 2rem rgba(red, .3);
+  }
+
+  &::-webkit-input-placeholder{
+       color: #757575;
+  }
+  &:last-child{
+       margin-bottom: 2rem;
+  }
+
+}
 
 
 // App iOS Variables

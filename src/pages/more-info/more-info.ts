@@ -18,6 +18,11 @@ declare var google;
   templateUrl: 'more-info.html',
 })
 export class MoreInfoPage implements OnInit{
+  lng1: any;
+  lat1: any;
+  object: any;
+  lng: any;
+  lat: any;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   start = 'chicago, il';
@@ -57,36 +62,42 @@ export class MoreInfoPage implements OnInit{
   }
 
   ngOnInit(){
-   
+    this.object = this.navParams.get('obj');
+    this.lat = this.object.lat;
+    this.lng = this.object.lng;
+    this.lat1 = this.navParams.get('lat');
+    this.lng1 = this.navParams.get('lng');
+    this.calculateAndDisplayRoute(this.lat, this.lng, this.lat1, this.lng1);
+    // this.calculateAndDisplayRoute(this.navParams.get(''))
   }
   initMap() {
     
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 15,
-      center: {lat: 41.85, lng: -87.65}
+      zoom: 8,
+      center: {lat: this.lat, lng: this.lng},
+      disableDefaultUI: true
     });
 
     this.directionsDisplay.setMap(this.map);
 
- 
-
+    
   }
 
 
 
-  // calculateAndDisplayRoute() {
-  //   this.directionsService.route({
-  //     origin: this.start,
-  //     destination: this.end,
-  //     travelMode: 'DRIVING'
-  //   }, (response, status) => {
-  //     if (status === 'OK') {
-  //       this.directionsDisplay.setDirections(response);
-  //     } else {
-  //       window.alert('Directions request failed due to ' + status);
-  //     }
-  //   });
-  // }
+  calculateAndDisplayRoute(lat, lng, lat1, lng1) {
+    this.directionsService.route({
+      origin: `${lat},${lng}`,
+      destination: `${lat1},${lng1}`,
+      travelMode: 'DRIVING'
+    }, (response, status) => {
+      if (status === 'OK') {
+        this.directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
 
   nextPage(page:string){
     this.navCtrl.push(page);

@@ -1,0 +1,85 @@
+<ion-content padding>
+  <img src="../../assets/imgs/Untitled-1.png" class="image" alt="" />
+  <!-- <h1 class="heading">GasRadar</h1> -->
+  <div class="segcontainer">
+    <ion-segment color class="md segment segment-md" [(ngModel)]="action">
+      <ion-segment-button class="segbtn" value="login">
+        Sign Up
+      </ion-segment-button>
+      <ion-segment-button class="segbtn" value="registration">
+        Register
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="action">
+    <div class="registrationContainer" *ngSwitchCase="'registration'">
+      <form #form="ngForm" (ngSubmit)="register(form)">
+        <div class="formcontainer">
+          <input ngModel name="name" type="text" placeholder="Name" required />
+          <input
+            ngModel
+            name="email"
+            type="email"
+            placeholder="E-Mail"
+            required
+          />
+          <input
+            ngModel
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <button
+            ion-button
+            (click)="resetPassword()"
+            class="link"
+            outline
+            color="secondary"
+          >
+            I kinda forgot my password...
+          </button>
+        </div>
+
+        <button ion-button block type="submit" class="btn" color="secondary">
+          Register
+        </button>
+      </form>
+    </div>
+
+    <div class="loginContainer" *ngSwitchCase="'login'">
+      <form>
+        <div class="formcontainer">
+          <input
+            required
+            ngModel
+            name="email"
+            type="email"
+            placeholder="E-Mail"
+          />
+          <input
+            required
+            ngModel
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+
+          <button
+            ion-button
+            class="link"
+            (click)="action = 'registration'"
+            outline
+            color="secondary"
+          >
+            I'm a noob...
+          </button>
+        </div>
+        <button ion-button block type="submit" class="btn" color="secondary">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</ion-content>

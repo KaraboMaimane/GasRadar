@@ -1,0 +1,122 @@
+page-login {
+     ion-content{
+          background: $primary-color !important;
+     }
+     .segbtn{
+          border-top: none !important;
+          border-right: none !important;
+          border-left: none !important;
+          border-radius: none !important;
+          color: white !important;
+          border-bottom: 2px solid $primary-color-light !important;
+     }
+
+     .image{
+          width: 12.5rem;
+          height: 12.5rem;
+          display: block;
+          margin: 0 auto;
+          margin-bottom: 2rem;
+     }
+
+     .link{
+          border: none;
+          text-transform: capitalize;
+          display: block;
+          margin: 1rem auto;
+          border-radius: 10rem;
+     }
+
+     .heading{
+          text-align: center;
+          font-weight: 300;
+          letter-spacing: .3rem;
+          color: $primary-color-text;
+     }
+
+     .segcontainer{
+          width: 50%;
+          z-index: 0;
+          box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
+     }
+
+     .segbtn.segment-button.segment-activated{
+          border-radius: 0 !important;
+          background: $primary-color-text;
+          color: $primary-color !important;
+          border-bottom: 2px solid $accent-color !important;
+     }
+
+     .formcontainer{
+          background: rgba($primary-color-text, 1);
+          padding: 2rem;
+          border-bottom-left-radius: 2rem;
+          border-bottom-right-radius: 2rem;
+          border-top-right-radius: 2rem;
+          z-index: -2;
+          box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
+          animation: scaledown .4s ease ;
+     }
+
+     input{
+          font-size: 1.5rem;
+          font-family: inherit;
+          color: inherit;
+          padding: 1.5rem 2rem;
+          border-radius: 10rem;
+          border: 0.2px solid rgba(black, .1);
+          background: rgba(rgb(228, 228, 228), .5);
+          width: 100%;
+          display: block;
+          margin-top: 2.5rem;
+          box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
+          &:focus{
+             outline: none;  
+             box-shadow: 0 1rem 2rem rgba($accent-color, .3);
+             border-bottom: .3rem solid $accent-color;
+             transition: .2s ease-in-out all;
+          }
+
+          &:focus:invalid{
+               border-bottom: .3rem solid rgba(red, .6);
+               box-shadow: 0 1rem 2rem rgba(red, .3);
+          }
+
+          &::-webkit-input-placeholder{
+               color: #757575;
+          }
+          &:last-child{
+               margin-bottom: 2rem;
+          }
+
+     }
+
+     .btn{
+          position: relative;
+          bottom: 2.25rem;
+          width: 60%;
+          display: block;
+          margin: 0 auto;
+          padding: 2rem !important;
+          box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
+          animation: scaledown .6s ease ;
+     }
+
+     @keyframes scaledown {
+          0%{
+               transform: scaleY(.1);
+               opacity: 0;
+          }
+
+          80%{
+               transform: scaleY(1.1);
+               opacity: 1;
+          }
+
+          100%{
+               transform: scaleY(1);
+               opacity: 1;
+          }
+     }
+
+}
