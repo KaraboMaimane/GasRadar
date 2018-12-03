@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from "@angular/core";
 import { IonicPage } from "ionic-angular";
 import { NavController, LoadingController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
@@ -15,7 +15,7 @@ declare var google;
   selector: 'page-map',
   templateUrl: 'map.html',
 })
-export class MapPage {
+export class MapPage{
   @ViewChild("map") mapElement: ElementRef;
   map: any;
   start = "chicago, il";
@@ -36,7 +36,7 @@ export class MapPage {
     public geolocation: Geolocation,
     public database: DatabaseProvider,
     private media: MediaProvider
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     this.initMap();
@@ -61,7 +61,7 @@ export class MapPage {
         map: this.map,
         position: { lat: this.lat, lng: this.lng },
         icon: {
-          url: `${this.media.man}` 
+          url: `${this.media.man}`
         }
       });
 
@@ -70,7 +70,7 @@ export class MapPage {
         map: this.map,
         radius: 10000,    // 10 miles in metres
         fillColor: '#FFC107',
-        strokeColor: 'transparent'      
+        strokeColor: 'transparent'
       });
       circle.bindTo('center', marker, 'position');
 
@@ -111,7 +111,7 @@ export class MapPage {
             //   position: {lat:-26.2651693, lng:27.97542109999995}
             // })
 
-            
+
             let marker = new google.maps.Marker({
               position: { lat: this.arry[i].lat, lng: this.arry[i].lng },
               map: this.map,
@@ -120,7 +120,7 @@ export class MapPage {
               }
             });
 
-            let contentString =  `    
+            let contentString = `    
             <div class="infowindow">
               <div class="imagecontainer">
                 <img src="${this.media.fuelpump}" alt="">
@@ -141,7 +141,7 @@ export class MapPage {
                 let geocoder = new google.maps.Geocoder();
                 let latLng = new google.maps.LatLng(obj.lat, obj.lng);
                 infowindow.open(this.map, marker);
-                geocoder.geocode({ latLng: latLng }, function(results, status) {
+                geocoder.geocode({ latLng: latLng }, function (results, status) {
                   if (status === google.maps.GeocoderStatus.OK) {
                     let AreaName = results[0].formatted_address;
                     let areaAddress = AreaName.split(",");
@@ -165,12 +165,12 @@ export class MapPage {
 
                   console.log(
                     this.streetName +
-                      " " +
-                      this.areaName +
-                      " " +
-                      this.postCode +
-                      " " +
-                      this.country
+                    " " +
+                    this.areaName +
+                    " " +
+                    this.postCode +
+                    " " +
+                    this.country
                   );
                 });
                 setTimeout(() => {

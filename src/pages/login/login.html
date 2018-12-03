@@ -49,7 +49,7 @@
     </div>
 
     <div class="loginContainer" *ngSwitchCase="'login'">
-      <form>
+      <form #form="ngForm" (ngSubmit)="login(form)">
         <div class="formcontainer">
           <input
             required
@@ -76,7 +76,7 @@
             I'm a noob...
           </button>
         </div>
-        <button ion-button block type="submit" class="btn" color="secondary">
+        <button ion-button block  type="submit" class="btn" color="secondary">
           Login
         </button>
       </form>
