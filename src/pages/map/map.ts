@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from "@angular/core";
 import { IonicPage } from "ionic-angular";
 import { NavController, LoadingController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
@@ -15,7 +15,7 @@ declare var google;
   selector: 'page-map',
   templateUrl: 'map.html',
 })
-export class MapPage {
+export class MapPage{
   @ViewChild("map") mapElement: ElementRef;
   map: any;
   start = "chicago, il";
@@ -41,7 +41,7 @@ filter;
     public geolocation: Geolocation,
     public database: DatabaseProvider,
     private media: MediaProvider
-  ) {}
+  ) { }
 
   ionViewDidEnter() {
    
@@ -92,7 +92,7 @@ filter;
         map: this.map,
         position: { lat: this.lat, lng: this.lng },
         icon: {
-          url: `${this.media.man}` 
+          url: `${this.media.man}`
         }
       });
    
