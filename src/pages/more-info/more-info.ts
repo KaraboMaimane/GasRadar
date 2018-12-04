@@ -46,6 +46,8 @@ export class MoreInfoPage implements OnInit{
   areaLocation2;
   areaName2;
   postCode2;
+  newlat;
+  newlong;
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams, private media: MediaProvider) {
     
   }
@@ -72,17 +74,33 @@ export class MoreInfoPage implements OnInit{
     this.diesel= this.companyInfor.diesel;
     this.p93= this.companyInfor.petrol93;
     this.p95 = this.companyInfor.petrol95;
+    this.gas=this.companyInfor.gas
+    this.newlong= this.companyInfor.newlon;
+    this.newlat= this.companyInfor.newlat
 
+    
 
   
   }
 
   ngOnInit(){
+    this.companyInfor =this.navParams.get("obj");
+    this.newlong= this.companyInfor.newlon;
+    this.newlat= this.companyInfor.newlat
+  
     this.object = this.navParams.get('obj');
     this.lat = this.object.lat;
     this.lng = this.object.lng;
     this.lat1 = this.navParams.get('lat');
     this.lng1 = this.navParams.get('lng');
+    if(this.newlat != undefined && this.newlong != undefined ){
+      this.lat = this.newlat;
+      this.lng = this.newlong;
+      console.log(this.newlong)
+
+    }else{
+      console.log("is undefind");
+    }
     this.calculateAndDisplayRoute(this.lat, this.lng, this.lat1, this.lng1);
     // this.calculateAndDisplayRoute(this.navParams.get(''))
   }
@@ -92,7 +110,10 @@ export class MoreInfoPage implements OnInit{
       zoom: 8,
       center: {lat: this.lat, lng: this.lng},
       disableDefaultUI: true,
-      styles: this.media.mapstyle
+      styles: this.media.mapstyle,
+      icon: {
+        url: `${this.media.man}`
+      }
     });
 
 
