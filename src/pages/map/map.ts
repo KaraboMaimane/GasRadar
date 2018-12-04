@@ -118,7 +118,7 @@ export class MapPage{
               position: { lat: this.arry[i].lat, lng: this.arry[i].lng },
               map: this.map,
               icon: {
-                url: `${this.media.shop}`
+                url: `${this.media.fuelpump}`
               }
             });
 

@@ -58,7 +58,7 @@ export class LoginPage {
       });
       toast.present();
 
-      this.navCtrl.setRoot('MapPage');
+      this.navCtrl.setRoot('TabsPage');
     })
   }
 
