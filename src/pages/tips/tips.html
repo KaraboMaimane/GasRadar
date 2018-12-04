@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title center>FUEL FRIENDLY TIPS</ion-title>
+    <ion-title align="center">FUEL FRIENDLY TIPS</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,8 +11,8 @@
 <button ion-button full block class="accordion">Petrol</button>    
   <ion-list class="title">
   <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
-    <div maxLength="30">
-    <h3 >
+    <div maxLength="30" >
+    <h3  class="listline">
       <b>{{d.title}}</b>
       <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
     </h3>
@@ -50,7 +50,7 @@
 
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   
   <div class="textc">
 <ion-row>
@@ -59,4 +59,4 @@
 </ion-row>
 </div>
 
-</ion-footer>
+</ion-footer> -->
