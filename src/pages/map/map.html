@@ -22,15 +22,19 @@
     </div>
 
     <div class="barcontainer">
+       
       <input
       #address
       name="searchs"
       type="text"
       placeholder="Location"
       class="input search"
+      />
+      <ion-icon name="md-search"  (click)="searchinput(address.value)"></ion-icon>
   
-    /><button (click)="searchinput(address.value)">search</button>
     <ion-item class = "item1" >
+
+
         <ion-label>Fuel Type</ion-label>
         <ion-select [(ngModel)]="fuelType"  (ionChange)="input()">
             <ion-option value="Gas">Gas</ion-option>
@@ -93,7 +97,7 @@
     </select>
     </div> -->
   <div #map id="map"></div>
-  <div id="slider">
+  <!-- <div id="slider">
       <input type="radio" name="slider" id="s1" checked>
       <input type="radio" name="slider" id="s2">
       <input type="radio" name="slider" id="s3">
@@ -104,5 +108,5 @@
       <label for="s3" id="slide3">3</label>
       <label for="s4" id="slide4">4</label>
       <label for="s5" id="slide5">5</label>
-    </div>
+    </div> -->
 </ion-content>
