@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NgForm } from '@angular/forms';
 
 /**
  * Generated class for the AddPage page.
@@ -20,6 +21,10 @@ export class AddPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPage');
+  }
+
+  onAddBusiness(form: NgForm){
+    console.log(form);
   }
 
 }

@@ -1,45 +1,27 @@
-<!--
-  Generated template for the AddPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>add</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
-<ion-content >
-    <input
-    ngModel
-    name="name"
-    type="text"
-    placeholder="Business Name"
-    required
-  />
-  <input
-    ngModel
-    name=""
-    type="email"
-    placeholder="E-Mail"
-    required
-  />
-  <input
-    ngModel
-    name="email"
-    type="email"
-    placeholder="E-Mail"
-    required
-  />
-  <input
-    ngModel
-    name="email"
-    type="email"
-    placeholder="E-Mail"
-    required
-  />
+<ion-content>
+  <div class="imagecontainer">
+      <img src="../../assets/imgs/14222215_1072936816146462_1070273367871041918_n.jpg" alt="" class="image">
+      <input type="file" (change)="insertImage($event)" class="imagefile">
+  </div>
+
+
+  <div class="formcontent">
+    <form #form="ngForm" (ngSubmit)="onAddBusiness(form)">
+      <input ngModel class="input" name="name" type="text" placeholder="Business Name" required />
+      <input ngModel class="input" name="address" type="text" placeholder="Address" required />
+      <input ngModel class="input" name="email" type="email" placeholder="E-Mail" required />
+      <input ngModel class="input" name="telephone" type="tel" placeholder="Telephone" required />
+
+      <select class="select, input" placeholder="business" ngModel name="business">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <button ion-button color="secondary" class="submit">Add Business</button>
+    </form>
+  </div>
+
 </ion-content>

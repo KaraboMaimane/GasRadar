@@ -1,3 +1,72 @@
 page-add {
 
+    .imagecontainer{
+        width: 15rem;
+        // background: red;
+        display: block;
+        margin: 0 auto;
+    }
+    .image{
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+    .imagefile{
+        width: 15rem;
+        height: 15rem;
+        position: fixed;
+        top: 0rem;
+        opacity: 0;
+    }
+
+    .input{
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 10rem;
+        border: 0.2px solid rgba(black, .1);
+        background: rgba(rgb(228, 228, 228), .5);
+        width: 100%;
+        display: block;
+        margin-top: 2.5rem;
+        box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
+        &:focus{
+           outline: none;  
+           box-shadow: 0 1rem 2rem rgba($accent-color, .3);
+           border-bottom: .3rem solid $accent-color;
+           transition: .2s ease-in-out all;
+        }
+
+        &:focus:invalid{
+             border-bottom: .3rem solid rgba(red, .6);
+             box-shadow: 0 1rem 2rem rgba(red, .3);
+        }
+
+        &::-webkit-input-placeholder{
+             color: #757575;
+        }
+        &:last-child{
+             margin-bottom: 2rem;
+        }
+        option{
+            color: black;
+        }
+   }
+
+   ion-select{
+       width:100% !important;
+       background: pink;
+   }
+
+   .submit{
+       border-radius: 10rem;
+       display: block;
+       width: 100%;
+       margin: 0 auto;
+       margin-top: 1rem;
+       box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
+    }
 }
