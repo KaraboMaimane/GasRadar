@@ -28,7 +28,7 @@ export class LoginPage {
   }
 
   register(form: NgForm){
-    this.database.register(form.form.value.name, form.form.value.email, form.form.value.password).then(
+    this.database.registerUser(form.form.value.name, form.form.value.email, form.form.value.password).then(
       (data)=>{
         const toast = this.toastCtrl.create({
           message: 'You Have Successfully Been Registered, Please Log In',
@@ -58,7 +58,7 @@ export class LoginPage {
       });
       toast.present();
 
-      this.navCtrl.setRoot('MapPage');
+      this.navCtrl.setRoot('TabsPage');
     })
   }
 

@@ -2,17 +2,13 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import  *as firebase from 'firebase/app';
+import  *as firebase from 'firebase';
 import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-<<<<<<< HEAD
-  rootPage: string = 'TabsPage';
-=======
-  rootPage: string = "TabsPage";
->>>>>>> 196182762aa90c7dc6a773d106dae89a7e2e6f8a
+  rootPage: string = 'LoginPage';
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     // var config = {
