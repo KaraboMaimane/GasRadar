@@ -3,18 +3,14 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { DatabaseProvider } from '../../providers/database/database';
 import { MoreInfoPage } from '../more-info/more-info';
 
-/**
- * Generated class for the TipsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-tips',
   templateUrl: 'tips.html',
 })
+
+
 export class TipsPage {
   
 username = this.navParams.get('key');
@@ -22,12 +18,13 @@ comments = [];
 comments3 = [];
 newmessage;
 key;
+shownGroup;
 
 
   constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams,private database: DatabaseProvider) {
     this.database.getuser()
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad TipsPage');
     this.comments.length = 0
@@ -66,5 +63,17 @@ key;
   this.newmessage = "";
   this.getComments();
   }
+toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+};
+isGroupShown(group) {
+    return this.shownGroup === group;
+};
 
 }
+
+

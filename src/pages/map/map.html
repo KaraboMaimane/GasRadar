@@ -1,27 +1,70 @@
 <ion-content>
     <button ion-button (click)="nextPage2('LoginPage')">login</button>
   <div class="searchcontainer">
-    <div class="barcontainer">
-        <input
-        ngModel
-        name="search"
-        type="text"
-        placeholder="Search Query"
-        required
-    
-        class="input search"
-      />
-      <input
-      ngModel
-      name="search"
-      type="text"
-      placeholder="Search Query"
-      required
-    
-      class="input search"
-    />
+    <div class="combo">
+      <img src="../../assets/imgs/Untitled-1 - Copy.png" class="image" alt="" />
+
+      <!-- <ion-item class="item2" >
+          <ion-label>Gaming</ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-option value="nes">NES</ion-option>
+            <ion-option value="n64">Nintendo64</ion-option>
+            <ion-option value="ps">PlayStation</ion-option>
+            <ion-option value="genesis">Sega Genesis</ion-option>
+            <ion-option value="saturn">Sega Saturn</ion-option>
+            <ion-option value="snes">SNES</ion-option>
+          </ion-select> -->
+      <div class="logo">
+        <i>
+          <h1 class="text">GasRadar</h1>
+        </i>
+      </div>
+
     </div>
 
+    <div class="barcontainer">
+       
+      <input
+      #address
+      name="searchs"
+      type="text"
+      placeholder="Location"
+      class="input search"
+      />
+      <ion-icon name="md-search"  (click)="searchinput(address.value)"></ion-icon>
+  
+    <ion-item class = "item1" >
+
+
+        <ion-label>Fuel Type</ion-label>
+        <ion-select [(ngModel)]="fuelType"  (ionChange)="input()">
+            <ion-option value="Gas">Gas</ion-option>
+          <ion-option value="Petrol">Petrol</ion-option>
+          <ion-option value="Diesel">Diesel</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <div class="cardcontainer" >
+    <div class="card" *ngFor="let x of arrayinfor;">
+      <div class="textholder">
+         <b>{{x.name}} </b>
+         <p>gas:{{x.gas}} 
+           95:{{x.petrol95}} 93:{{x.petrol93}}
+            Diesel{{x.diesel}}</p>
+      </div>
+      <div class="cardiconholder">
+      </div>
+    </div>
+
+
+    
+
+   
+
+       
   </div>
   
     <div #map id="map">

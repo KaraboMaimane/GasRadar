@@ -9,6 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { DatabaseProvider } from '../providers/database/database';
 import { MediaProvider } from '../providers/media/media';
+// import { StatsPage } from '../pages/stats/stats';
 
 
 @NgModule({

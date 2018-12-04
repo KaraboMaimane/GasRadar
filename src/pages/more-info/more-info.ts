@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import firebase from 'firebase';
 import { signUp} from '../../app/GeoArray';
 import geoArr from '../../app/GlobalGeo';
+import { MediaProvider } from '../../providers/media/media';
 declare var google;
 
 /**
@@ -39,11 +40,14 @@ export class MoreInfoPage implements OnInit{
   p95;
   p93;
   diesel;
-  geoArr;
+  action: string = 'info';
   streetName2;
   areaLocation2;
   areaName2;
   postCode2;
+  newlong;
+  media;
+  newlat;
   displayArr = [];
 
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams) {
@@ -52,6 +56,9 @@ export class MoreInfoPage implements OnInit{
 
   ionViewDidLoad(){
     this.initMap();
+
+ 
+    
     this.companyInfor =this.navParams.get("obj");
     console.log(this.companyInfor);
     let lat = this.companyInfor.lat;
@@ -75,11 +82,23 @@ export class MoreInfoPage implements OnInit{
   }
 
   ngOnInit(){
+    this.companyInfor =this.navParams.get("obj");
+    this.newlong= this.companyInfor.newlon;
+    this.newlat= this.companyInfor.newlat
+  
     this.object = this.navParams.get('obj');
     this.lat = this.object.lat;
     this.lng = this.object.lng;
     this.lat1 = this.navParams.get('lat');
     this.lng1 = this.navParams.get('lng');
+    if(this.newlat != undefined && this.newlong != undefined ){
+      this.lat = this.newlat;
+      this.lng = this.newlong;
+      console.log(this.newlong)
+
+    }else{
+      console.log("is undefind");
+    }
     this.calculateAndDisplayRoute(this.lat, this.lng, this.lat1, this.lng1);
     // this.calculateAndDisplayRoute(this.navParams.get(''))
   }
@@ -88,8 +107,13 @@ export class MoreInfoPage implements OnInit{
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 8,
       center: {lat: this.lat, lng: this.lng},
-      disableDefaultUI: true
+      disableDefaultUI: true,
+      styles: this.media.mapstyle,
+      icon: {
+        url: `${this.media.man}`
+      }
     });
+
 
     this.directionsDisplay.setMap(this.map);
 
@@ -99,17 +123,32 @@ export class MoreInfoPage implements OnInit{
 
 
   calculateAndDisplayRoute(lat, lng, lat1, lng1) {
+
     this.directionsService.route({
       origin: `${lat},${lng}`,
       destination: `${lat1},${lng1}`,
       travelMode: 'DRIVING'
     }, (response, status) => {
       if (status === 'OK') {
+        let location = response.routes[0].legs[0];
+        // makeMarker(location)
+        console.log(location);
         this.directionsDisplay.setDirections(response);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
     });
+
+    // function makeMarker(position){
+    //   new google.maps.Marker({
+    //     position: position,
+    //     map: this.map,
+    //     icon: {
+    //       url: `${this.media.man}`
+    //     },
+    //     title: `You`
+    //    });
+    // }
   }
 
   nextPage(page:string){
