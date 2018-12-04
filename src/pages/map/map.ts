@@ -4,6 +4,7 @@ import { NavController, LoadingController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
 import firebase from "firebase";
 import { signUp } from "../../app/GeoArray";
+import {LoginPage} from "../login/login";
 import geoArr from "../../app/GlobalGeo";
 import { MoreInfoPage } from "../more-info/more-info";
 import { DatabaseProvider } from "../../providers/database/database";
@@ -40,6 +41,17 @@ export class MapPage {
 
   ionViewDidLoad() {
     this.initMap();
+    this.check();
+  }
+  check(){
+    this.database.getUserSatate().then((data)=>{
+      if (data == 1){
+        console.log('user is online')
+      }
+      if (data == 0){
+        console.log('user is offline')
+      }
+    })
   }
 
   initMap() {
@@ -207,5 +219,8 @@ export class MapPage {
 
   nextPage(page: string) {
     this.navCtrl.push(page);
+  }
+  nextPage2(){
+    this.navCtrl.push(LoginPage)
   }
 }

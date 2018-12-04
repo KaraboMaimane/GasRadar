@@ -15,4 +15,18 @@ page-more-info {
       #map {
         height: 80%;
       }
+
+      .tool{
+        height: 10vh;
+    }
+    .send{
+
+      height: 50px;
+      width: 50px;
+      margin-right: 5px;
+      border-radius: 30px;
+      float: right;
+      // margin-bottom: 10px;
+      bottom: 5px;
+      }
 }

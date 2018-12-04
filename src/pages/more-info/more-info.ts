@@ -39,7 +39,12 @@ export class MoreInfoPage implements OnInit{
   p95;
   p93;
   diesel;
-
+  geoArr;
+  streetName2;
+  areaLocation2;
+  areaName2;
+  postCode2;
+  displayArr = [];
 
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams) {
     
@@ -58,6 +63,14 @@ export class MoreInfoPage implements OnInit{
     this.diesel= this.companyInfor.diesel;
     this.p93= this.companyInfor.petrol93;
     this.p95 = this.companyInfor.petrol95;
+
+    this.displayArr = geoArr;
+    console.log(this.displayArr);
+    this.streetName2 = this.displayArr[0].streetName;
+    this.areaLocation2 = this.displayArr[0].areaLocation;
+    this.areaName2 = this.displayArr[0].areaName;
+    this.postCode2 = this.displayArr[0].postCode;
+    console.log(this.streetName2 + " " + this.areaLocation2 + " " + this.areaName2+ " " + this.postCode2 );
   
   }
 
