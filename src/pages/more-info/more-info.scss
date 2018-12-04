@@ -105,13 +105,17 @@ page-more-info {
     color: gold;
   }
 
-  .cards{
+  #cards{
     display: flex;
-    width: 80%;
+    width: 95%;
     margin:0 auto;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin-top: 1rem;
     img{
-      width: 5rem;
-      height: 5rem;
+      width: 12.5rem;
+      height: 12.5rem;
+      box-shadow: 1px 2px  3px rgba(black, .3);
     }
   }
 

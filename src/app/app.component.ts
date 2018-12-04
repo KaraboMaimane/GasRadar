@@ -7,7 +7,7 @@ import  *as firebase from 'firebase/app';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: string = 'TabsPage';
+  rootPage: string = 'LoginPage';
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     // var config = {
