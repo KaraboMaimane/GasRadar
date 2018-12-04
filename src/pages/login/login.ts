@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+=======
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+>>>>>>> c6a2435d670cccd5923976547f237a3d462fde5c
 import { NgForm } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,7 +24,11 @@ export class LoginPage {
 
   action: string;
 
+<<<<<<< HEAD
   constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private toastCtrl: ToastController, private alertCtrl: AlertController) {
+=======
+  constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private toastCtrl: ToastController) {
+>>>>>>> c6a2435d670cccd5923976547f237a3d462fde5c
     this.action = 'registration';
   }
 
@@ -28,7 +37,7 @@ export class LoginPage {
   }
 
   register(form: NgForm){
-    this.database.register(form.form.value.name, form.form.value.email, form.form.value.password).then(
+    this.database.registerUser(form.form.value.name, form.form.value.email, form.form.value.password).then(
       (data)=>{
         const toast = this.toastCtrl.create({
           message: 'You Have Successfully Been Registered, Please Log In',
@@ -44,12 +53,12 @@ export class LoginPage {
           duration: 3000
         });
         toast.present();
-        console.log(error);
       }
     )
   }
 
   login(form: NgForm){
+<<<<<<< HEAD
     console.log(form);
     this.database.login(form.form.value.email, form.form.value.password).then((data)=>{
       const toast = this.toastCtrl.create({
@@ -89,6 +98,30 @@ export class LoginPage {
       ]
     });
     alert.present();
+=======
+    console.log(form)
+    this.database.login(form.form.value.email,form.form.value.password).then(
+      (data)=>{
+        const toast = this.toastCtrl.create({
+          message: 'Welcome',
+          duration: 3000
+        });
+        toast.present();
+        this.action = 'TabsPage'
+      }
+    ).catch(
+      (error)=>{
+        const toast = this.toastCtrl.create({
+          message: 'Uh Oh Something Went Wrong!',
+          duration: 3000
+        });
+        toast.present();
+      }
+    )
+  }
+
+  resetPassword(email:string){
+>>>>>>> c6a2435d670cccd5923976547f237a3d462fde5c
     
   }
 

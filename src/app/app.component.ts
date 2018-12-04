@@ -9,17 +9,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 })
 export class MyApp {
 
-  rootPage: string = "AddPage";
+  rootPage: string = 'LoginPage';
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    // var config = {
-    //   apiKey: "AIzaSyDJdLBi-paptMqqNpIc6c5jHvIM6jOrb6s",
-    //   authDomain: "fuelapp-6050c.firebaseapp.com",
-    //   databaseURL: "https://fuelapp-6050c.firebaseio.com",
-    //   projectId: "fuelapp-6050c",
-    //   storageBucket: "",
-    //   messagingSenderId: "955542967293"
-    // };
+ 
     firebase.initializeApp({
       apiKey: "AIzaSyDJdLBi-paptMqqNpIc6c5jHvIM6jOrb6s",
       authDomain: "fuelapp-6050c.firebaseapp.com",
