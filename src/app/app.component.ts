@@ -7,11 +7,7 @@ import  *as firebase from 'firebase/app';
   templateUrl: 'app.html'
 })
 export class MyApp {
-<<<<<<< HEAD
-  rootPage: string = 'StatsPage';
-=======
-  rootPage: string = 'LoginPage';
->>>>>>> 7a0212a70c41f98ee70a1fb4fbe6671b652c3d3b
+  rootPage: string = 'HomePage';
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     // var config = {
