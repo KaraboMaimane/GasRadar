@@ -195,7 +195,8 @@ export class DatabaseProvider {
             tel: infor[k].tel,
             gas: infor[k].gas,
             petrol93: infor[k].petrol93,
-            petrol95: infor[k].petrol95
+            petrol95: infor[k].petrol95,
+            diesel :infor[k].diesel
           };
           this.arrInfor.push(obj);
         }
@@ -214,13 +215,13 @@ export class DatabaseProvider {
     //get current location
      return new Promise ((accpt, rej) =>{
      this.geolocation.getCurrentPosition().then((resp) => {
-       console.log(resp);
+     //  console.log(resp);
  
  
          accpt(resp);
  
         }).catch((error) => {
-          console.log('Error getting location', error);
+       //   console.log('Error getting location', error);
         });
       })
    }
@@ -234,7 +235,7 @@ export class DatabaseProvider {
          accpt(data);
        })
         }).catch((error) => {
-          console.log('Error getting location', error);
+     //     console.log('Error getting location', error);
         });
       })
    }
@@ -243,14 +244,14 @@ export class DatabaseProvider {
     return new Promise((accpt,rej) =>{
 
       this.getCurrentLocations().then((resp:any) =>{
-        console.log(resp);
+      //  console.log(resp);
  
         var lat =  new String(resp.coords.latitude).substr(0,6);
-        console.log(lat);
-        console.log(resp.coords.latitude)
+     //   console.log(lat);
+     //   console.log(resp.coords.latitude)
        var long = new String(resp.coords.longitude).substr(0,5);
-        console.log(long);
-        console.log(resp.coords.longitude);
+     //   console.log(long);
+     //   console.log(resp.coords.longitude);
         for (var x = 0; x < org.length; x++){
           var orglat = new String(org[x].lat).substr(0,6);
           var orgLong =  new String(org[x].lng).substr(0,5);
@@ -267,7 +268,7 @@ export class DatabaseProvider {
           if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lat && orglat <= radius.down || orglat <= lat && orglat >= radius.up)){
  
          this.nearByOrg.push(org[x]);
-          console.log(this.nearByOrg);
+       //   console.log(this.nearByOrg);
  
           }
         }
@@ -287,7 +288,7 @@ export class DatabaseProvider {
       accpt(data)
     })
     }).catch((error)=>{
-      console.log('Error getting location', error);
+   //   console.log('Error getting location', error);
    
     })
    }
@@ -299,18 +300,18 @@ export class DatabaseProvider {
       this.getSearchbyFarms(lat , lng).then((resp)=>{
         var lt =  new String(lat).substr(0,6);
         var long =  new String(lng).substr(0,5);
-        console.log(lt);
+      //  console.log(lt);
        
-        console.log(radius);
+    //    console.log(radius);
         
-        console.log(lt);
-          console.log(long);
+       // console.log(lt);
+       //   console.log(long);
         for (let x = 0; x< org.length; x++) {
           var orglat = new String(org[x].lat).substr(0,6);
           var orgLong =  new String(org[x].lng).substr(0,5);
           
-          console.log(orgLong);
-          console.log(orglat );
+       //   console.log(orgLong);
+       //   console.log(orglat );
           
           
           
@@ -318,11 +319,11 @@ export class DatabaseProvider {
           
           
           
-console.log('out');
+//console.log('out');
           if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)){
-console.log('in');
+//console.log('in');
             this.newSeachedFarms.push(org[x]);
-             console.log(this.nearByOrg);
+           //  console.log(this.nearByOrg);
    
              }
           

@@ -8,8 +8,15 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+  rootPage: string = 'TabsPage';
+=======
+>>>>>>> 852455cce61456c5371ea069b44d08aa217822d9
   rootPage: string = "TabsPage";
+>>>>>>> 196182762aa90c7dc6a773d106dae89a7e2e6f8a
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

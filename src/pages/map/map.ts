@@ -35,6 +35,7 @@ export class MapPage{
 filter;
     searchs:string;
     fuelType;
+    condition;
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
@@ -71,7 +72,7 @@ filter;
 
   
    
-
+      this.condition=true;
   
 
     const loader = this.loadingCtrl.create({
@@ -141,9 +142,13 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                     phone: this.arrayinfor[x].phone,
                     owner: this.arrayinfor[x].owner,
                     tel: this.arrayinfor[x].tel,
+                    diesel:this.arrayinfor[x].diesel,
                     gas: this.arrayinfor[x].gas,
                     petrol93:this.arrayinfor[x].petrol93,
-                    petrol95:this.arrayinfor[x].petrol95
+                    petrol95:this.arrayinfor[x].petrol95,
+                    newlat :this.latii,
+                    newlon:this.long,
+                    condition:this.condition
                   };
 
           marker.addListener("click", () => {
@@ -346,148 +351,164 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   // }
 
   searchinput(address){
-    
-    let geocoder = new google.maps.Geocoder();
-    let resultsMap;
-    alert(address);
-    geocoder.geocode({'address':address},(results, status)=>{
-      alert("year");
-      if(status == google.maps.GeocoderStatus.OK){
-        this.latii = results[0].geometry.location.lat();
-        this.long = results[0].geometry.location.lng();
+    if(address != undefined)
+    {
+      this.condition= false;
+      let geocoder = new google.maps.Geocoder();
+      let resultsMap;
+  
+      geocoder.geocode({'address':address},(results, status)=>{
 
-
-    
-      }
-      this.map = new google.maps.Map(document.querySelector('#map'), {
-        zoom: 12,
-        center: { lat:  this.latii, lng:this.long  },
-        disableDefaultUI: true
-      });
-      let marker = new google.maps.Marker({
-        map: this.map,
-        position: {lat: this.latii, lng: this.long },
-        
-      });
-      console.log(this.latii, this.long)
-
-
-      this.database.getSearchbyFarms(this.latii,this.long).then((radius:any)=>{
-        console.log(radius);
-        this.database.retrieve().then((data:any)=>{
-          console.log(data);
-          if(data.length==0){
-            alert("true");
-            this.map = new google.maps.Map(document.querySelector('#map'), {
-              zoom: 12,
-              center: { lat:  this.latii, lng:this.long  },
-              disableDefaultUI: true
-            });
-            this.arrayinfor.length=0;
-          }
-
-          this.database.getSearchedFarm(this.latii,this.long,radius,data).then((data:any)=>{
-            console.log(data);
-
-
-            this.arrayinfor= data;
-            if(data.length==0){
-              alert("true");
-              this.arrayinfor.length=0;
-              this.map = new google.maps.Map(document.querySelector('#map'), {
-        zoom: 12,
-        center: { lat:  this.latii, lng:this.long  },
-        disableDefaultUI: true
-      });
-            }
-          })
-          for(var x = 0; x < this.arrayinfor.length;x++){
-
-            console.log("in");
-            
-            console.log( this.arrayinfor);
-            console.log(parseFloat(this.arrayinfor[x].lat));
-            console.log( parseFloat(this.arrayinfor[x].lng));
-            
-            
-            
-          
-            let marker = new google.maps.Marker({
-                      position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
-                      map: this.map,
-                      icon: {
-                        url: `${this.media.fuelpump}`
-                      }
-                    });
-          
-          
-                    let obj = {
-                              name: this.arrayinfor[x].name,
-                              lat: this.arrayinfor[x].lat,
-                              lng: this.arrayinfor[x].lng,
-                              email: this.arrayinfor[x].email,
-                              phone: this.arrayinfor[x].phone,
-                              owner: this.arrayinfor[x].owner,
-                              tel: this.arrayinfor[x].tel,
-                              gas: this.arrayinfor[x].gas,
-                              petrol93:this.arrayinfor[x].petrol93,
-                              petrol95:this.arrayinfor[x].petrol95
-                            };
-          
-                    marker.addListener("click", () => {
-                        console.log(obj.name);
-                        return new Promise(()=>{
-                          geoArr.length = 0
-                          var geocoder = new google.maps.Geocoder;
-                          var latLng = new google.maps.LatLng(obj.lat,obj.lng);
-                       //   infowindow.open(this.map, marker);
-                          geocoder.geocode({ 'latLng': latLng }, function (results, status) {
-                      
-                              if (status === google.maps.GeocoderStatus.OK) {
-                                var AreaName = results[0].formatted_address;
-                                let areaAddress = AreaName.split(",");
-                                this.streetName =areaAddress[0];
-                                this.areaName = areaAddress[1];
-                                this.areaLocation = areaAddress[2];
-                                this.postCode = areaAddress[3];
-                      
-                                console.log(AreaName)
-                                console.log(areaAddress);
-                      
-                                let obj = new signUp(this.streetName,this.areaName,this.areaLocation,this.postCode);
-                                geoArr.push(obj)
-                                console.log(geoArr)
-                                
-                            }
-                            
-                              console.log(this.streetName + " " + this.areaName + " " + this.postCode + " " + this.country)
-                          })
-                          setTimeout(()=>{
-                            const loader = this.loadingCtrl.create({
-                              content: "Please wait...",
-                              duration: 1000
-                            });
-                            loader.present();
-                            this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
-                          },500)
-                          
-                        })
-                    })
-                  
-          
-                  }
-        })
-      })
+        if(status == google.maps.GeocoderStatus.OK){
+          this.latii = results[0].geometry.location.lat();
+          this.long = results[0].geometry.location.lng();
+  
+  
       
-    })
+        }
+        this.map = new google.maps.Map(document.querySelector('#map'), {
+          zoom: 12,
+          center: { lat:  this.latii, lng:this.long  },
+          disableDefaultUI: true,
+          styles: this.media.mapstyle
+        });
+        let marker = new google.maps.Marker({
+          map: this.map,
+          position: {lat: this.latii, lng: this.long },
+          icon: {
+            url: `${this.media.man}`
+          }
+          
+        });
+        console.log(this.latii, this.long)
+  
+  
+        this.database.getSearchbyFarms(this.latii,this.long).then((radius:any)=>{
+      
+        console.log("this radius")
+          console.log(radius);
+  
+          this.database.retrieve().then((data:any)=>{
+         
+            console.log(data);
+  
+            if(data.length==0){
+          
+           
+            
+            }
+  
+            this.database.getSearchedFarm(this.latii,this.long,radius,data).then((data:any)=>{
+              console.log(data);
+              this.arrayinfor= data;
+              if(data.length==0){
+             
+               this.arrayinfor=[];
+             
+            this.map = new google.maps.Map(document.querySelector('#map'), {
+            zoom: 12,
+            center: { lat:  this.latii, lng:this.long  },
+            disableDefaultUI: true,
+            icon: {
+              url: `${this.media.man}`
+            }
+        });
+              }
+            })
+            for(var x = 0; x < this.arrayinfor.length;x++){
+  
+              console.log("in");
+              
+              console.log( this.arrayinfor);
+              console.log(parseFloat(this.arrayinfor[x].lat));
+              console.log( parseFloat(this.arrayinfor[x].lng));
+              
+              
+              
+            
+              let marker = new google.maps.Marker({
+                        position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
+                        map: this.map,
+                        icon: {
+                          url: `${this.media.fuelpump}`
+                        }
+                      });
+            
+            
+                      let obj = {
+                        name: this.arrayinfor[x].name,
+                        lat: this.arrayinfor[x].lat,
+                        lng: this.arrayinfor[x].lng,
+                        email: this.arrayinfor[x].email,
+                        phone: this.arrayinfor[x].phone,
+                        owner: this.arrayinfor[x].owner,
+                        tel: this.arrayinfor[x].tel,
+                        diesel:this.arrayinfor[x].diesel,
+                        gas: this.arrayinfor[x].gas,
+                        petrol93:this.arrayinfor[x].petrol93,
+                        petrol95:this.arrayinfor[x].petrol95,
+                        newlat :this.latii,
+                        newlon:this.long,
+                        condition:this.condition
+                      };
+                      marker.addListener("click", () => {
+                          console.log(obj.name);
+                          return new Promise(()=>{
+                            geoArr.length = 0
+                            var geocoder = new google.maps.Geocoder;
+                            var latLng = new google.maps.LatLng(obj.lat,obj.lng);
+                         //   infowindow.open(this.map, marker);
+                            geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+                        
+                                if (status === google.maps.GeocoderStatus.OK) {
+                                  var AreaName = results[0].formatted_address;
+                                  let areaAddress = AreaName.split(",");
+                                  this.streetName =areaAddress[0];
+                                  this.areaName = areaAddress[1];
+                                  this.areaLocation = areaAddress[2];
+                                  this.postCode = areaAddress[3];
+                        
+                                  console.log(AreaName)
+                                  console.log(areaAddress);
+                        
+                                  let obj = new signUp(this.streetName,this.areaName,this.areaLocation,this.postCode);
+                                  geoArr.push(obj)
+                                  console.log(geoArr)
+                                  
+                              }
+                              
+                                console.log(this.streetName + " " + this.areaName + " " + this.postCode + " " + this.country)
+                            })
+                            setTimeout(()=>{
+                              const loader = this.loadingCtrl.create({
+                                content: "Please wait...",
+                                duration: 1000
+                              });
+                              loader.present();
+                              this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
+                            },500)
+                            
+                          })
+                      })
+                    
+            
+                    }
+          })
+        })
+        
+      })
+     
+  
    
-
- 
-    // this.database.getSearchbyFarms(this.latii,this.long).then((raduis:any)=>{
-    //   console.log(raduis);
-    //   this.database
-    // })
+      // this.database.getSearchbyFarms(this.latii,this.long).then((raduis:any)=>{
+      //   console.log(raduis);
+      //   this.database
+      // })
+     
+    }else{
    
+    }
+  
     }
 
 
