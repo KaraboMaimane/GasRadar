@@ -14,6 +14,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 // import { StatsPage } from '../pages/stats/stats';
 
+
 @NgModule({
   declarations: [
     MyApp,

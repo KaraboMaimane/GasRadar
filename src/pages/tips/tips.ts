@@ -11,7 +11,6 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 
 export class TipsPage {
-
 username = this.navParams.get('key');
 comments = [];
 comments3 = [];

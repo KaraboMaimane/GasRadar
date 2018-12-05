@@ -34,11 +34,15 @@ export class HomePage {
     public navCtrl: NavController,
     public geolocation: Geolocation,
     public database: DatabaseProvider
-  ) {}
+  ) {
+    
+  }
 
   ionViewDidLoad() {
     this.initMap();
   }
+
+ 
 
   initMap() {
     const loader = this.loadingCtrl.create({

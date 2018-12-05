@@ -2,24 +2,18 @@
   <div class="searchcontainer">
       <button ion-button (click)="nextPage2()">login</button>
     <div class="combo">
-      <img src="../../assets/imgs/Untitled-1 - Copy.png" class="image" alt="" />
-
-      <!-- <ion-item class="item2" >
-          <ion-label>Gaming</ion-label>
-          <ion-select [(ngModel)]="gaming">
-            <ion-option value="nes">NES</ion-option>
-            <ion-option value="n64">Nintendo64</ion-option>
-            <ion-option value="ps">PlayStation</ion-option>
-            <ion-option value="genesis">Sega Genesis</ion-option>
-            <ion-option value="saturn">Sega Saturn</ion-option>
-            <ion-option value="snes">SNES</ion-option>
-          </ion-select> -->
+      <img src="assets/imgs/Untitled.png" class="image" alt="" />
       <div class="logo">
         <i>
           <h1 class="text">GasRadar</h1>
         </i>
+        <ion-fab right>
+          <button (click)="nextPage('AddPage')" color="secondary" ion-fab>
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-fab>
+        
       </div>
-
     </div>
 
     <div class="barcontainer">
@@ -31,7 +25,6 @@
       placeholder="Location"
       class="input search"
       />
-      <ion-icon name="md-search"  (click)="searchinput(address.value)"></ion-icon>
   
     <ion-item class = "item1" >
 
@@ -47,7 +40,7 @@
 
   </div>
 
-  <div class="cardcontainer" >
+  <!-- <div class="cardcontainer" >
     <div class="card" *ngFor="let x of arrayinfor;">
       <div class="textholder">
          <b>{{x.name}} </b>
@@ -59,59 +52,10 @@
       </div>
     </div>
 
-
-    
-
-   
-
        
   </div>
-
-  <!-- <div id="floating-panel">
-    <b>Start: </b>
-    <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select><br>
-    <b>End: </b>
-    <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    </div> -->
-  <div #map id="map">
-  </div>
-  
-  <!-- <div id="slider">
-      <input type="radio" name="slider" id="s1" checked>
-      <input type="radio" name="slider" id="s2">
-      <input type="radio" name="slider" id="s3">
-      <input type="radio" name="slider" id="s4">
-      <input type="radio" name="slider" id="s5">
-      <label for="s1" id="slide1">1</label>
-      <label for="s2" id="slide2">2</label>
-      <label for="s3" id="slide3">3</label>
-      <label for="s4" id="slide4">4</label>
-      <label for="s5" id="slide5">5</label>
-    </div> -->
+-->
+    <div #map id="map">
+    </div>
 </ion-content>
+
