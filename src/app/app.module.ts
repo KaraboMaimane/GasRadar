@@ -8,19 +8,29 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { DatabaseProvider } from '../providers/database/database';
 import { MediaProvider } from '../providers/media/media';
+import {LoginPageModule} from '../pages/login/login.module';
+import {TabsPageModule} from '../pages/tabs/tabs.module';
+import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 // import { StatsPage } from '../pages/stats/stats';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    
+    
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    LoginPageModule,
+    TabsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

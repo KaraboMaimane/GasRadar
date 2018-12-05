@@ -2,13 +2,14 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from "@angula
 import { IonicPage } from "ionic-angular";
 import { NavController, LoadingController } from "ionic-angular";
 import { Geolocation } from "@ionic-native/geolocation";
-import firebase from "firebase";
 import { signUp } from "../../app/GeoArray";
 import geoArr from "../../app/GlobalGeo";
 import { MoreInfoPage } from "../more-info/more-info";
 import { DatabaseProvider } from "../../providers/database/database";
 import { MediaProvider } from "../../providers/media/media";
+import { LoginPage } from "../login/login";
 declare var google;
+declare var firebase;
 
 @IonicPage()
 @Component({
@@ -62,19 +63,6 @@ filter;
       this.initMap();
 
     }, 5000)
-  }
-  check(){
-    this.database.getUserSatate().then((data)=>{
-      if (data == 1){
-        console.log('user is online')
-      }
-      if (data == 0){
-        console.log('user is offline')
-      }
-    })
-  }
-  ionViewDidLoad(){
-    this.check();
   }
  
   initMap() {
@@ -403,5 +391,11 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
   nextPage(page: string) {
     this.navCtrl.push(page);
+  }
+
+  nextPage2(){
+    this.database.logout().then(()=>{
+      this.navCtrl.setRoot(LoginPage);
+    })
   }
 }

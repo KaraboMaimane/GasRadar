@@ -1,8 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import *as firebase from 'firebase/app';
 import * as moment from 'moment'
 import { Geolocation } from "@ionic-native/geolocation";
+
+declare var firebase;
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -154,7 +155,7 @@ export class DatabaseProvider {
       })
     }
 
-  getUserSatate(){
+  getUserState(){
     return new Promise ((accpt, rej) =>{ 
       this.authenticate.onAuthStateChanged(user =>{ 
         if (user != null){
