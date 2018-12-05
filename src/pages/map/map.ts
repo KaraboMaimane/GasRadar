@@ -104,13 +104,13 @@ filter;
       });
    
       // Add circle overlay and bind to marker
-      var circle = new google.maps.Circle({
-        map: this.map,
-        radius: 10000,    // 10 miles in metres
-        fillColor: '#FFC107',
-        strokeColor: 'transparent'
-      });
-      circle.bindTo('center', marker, 'position');
+      // var circle = new google.maps.Circle({
+      //   map: this.map,
+      //   radius: 10000,    // 10 miles in metres
+      //   fillColor: '#FFC107',
+      //   strokeColor: 'transparent'
+      // });
+      // circle.bindTo('center', marker, 'position');
 
       loader.dismiss();
       firebase
@@ -369,17 +369,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                this.arrayinfor=[];
                console.log(this.arrayinfor)
              
-<<<<<<< HEAD
-            this.map = new google.maps.Map(document.querySelector('#map'), {
-            zoom: 8,
-            center: { lat:  this.latii, lng:this.long  },
-            disableDefaultUI: true,
-            icon: {
-              url: `${this.media.man}`,
-              // size: {height:10 , width:10}
-            }
-        });
-=======
         //     this.map = new google.maps.Map(document.querySelector('#map'), {
         //     zoom: 12,
         //     center: { lat:  this.latii, lng:this.long  },
@@ -388,7 +377,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
         //       url: `${this.media.man}`
         //     }
         // });
->>>>>>> 6d29239eb125db5061df72f42f139986d951c306
               }
               for(var x = 0; x < this.arrayinfor.length;x++){
   

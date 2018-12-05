@@ -53,11 +53,14 @@ page-map {
           justify-content: space-between;
           margin-top: -40px;
 
-          .item1{
-            // position: relative;
-             margin:0 auto;
-          }
+       
      }
+     .item1{
+      // position: relative;
+      //  margin:0 auto;
+       margin-left: 10px;
+       z-index: 30000000000000;
+    }
      .icon4{
          position:absolute;
          font-weight: bold;

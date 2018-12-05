@@ -46,10 +46,10 @@ export class MoreInfoPage implements OnInit{
   areaName2;
   postCode2;
   newlong;
- 
+
   newlat;
   displayArr = [];
-  mapstyle;
+  mapstyle:any;
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams,  private media: MediaProvider) {
     
     this.mapstyle = this.media.mapstyle;
@@ -71,6 +71,7 @@ export class MoreInfoPage implements OnInit{
     this.diesel= this.companyInfor.diesel;
     this.p93= this.companyInfor.petrol93;
     this.p95 = this.companyInfor.petrol95;
+this.gas = this.companyInfor.gas;
 
     this.displayArr = geoArr;
     console.log(this.displayArr);

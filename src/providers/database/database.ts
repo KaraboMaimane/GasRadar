@@ -394,11 +394,6 @@ export class DatabaseProvider {
         let arry = [];
         let keys = Object.keys(infor);
         console.log(keys);
-<<<<<<< HEAD
-     this.arrInfor.length=0;
-=======
-
->>>>>>> 89267e46644eff2525a07a46e9ea5b820ab1e7e0
         for (let i = 0; i < keys.length; i++) {
           let k = keys[i];
           let obj = {
@@ -500,54 +495,6 @@ export class DatabaseProvider {
   //     console.log(data);
   //   })
   // }
-<<<<<<< HEAD
-  getSearchbyFarms(lat , lng){
-    return new Promise((accpt ,rej)=>{
-    this.createPositionRadius(lat , lng).then((data:any)=>{
-      console.log(data);
-      accpt(data)
-    })
-    }).catch((error)=>{
-   //   console.log('Error getting location', error);
-   
-    })
-   }
-
-
-
-   getSearchedFarm(lat , lng , radius , org){
-    return new  Promise((accpt , rej)=>{
-      this.getSearchbyFarms(lat , lng).then((resp)=>{
-        var lt =  new String(lat).substr(0,6);
-        var long =  new String(lng).substr(0,5);
-      //  console.log(lt);
-       
-    //    console.log(radius);
-        
-       // console.log(lt);
-       //   console.log(long);
-        for (let x = 0; x< org.length/2; x++) {
-          var orglat = new String(org[x].lat).substr(0,6);
-          var orgLong =  new String(org[x].lng).substr(0,5);
-          
-       //   console.log(orgLong);
-       //   console.log(orglat );
-          
-          
-          
-          
-          
-          
-          
-//console.log('out');
-          if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)){
-//console.log('in');
-            this.newSeachedFarms.push(org[x]);
-             console.log(this.nearByOrg);
-   
-             }
-          
-=======
   getSearchbyFarms(lat, lng) {
     return new Promise((accpt, rej) => {
       this.createPositionRadius(lat, lng).then((data: any) => {
@@ -593,7 +540,6 @@ export class DatabaseProvider {
 
           }
 
->>>>>>> 89267e46644eff2525a07a46e9ea5b820ab1e7e0
         }
         accpt(this.newSeachedFarms)
       })
