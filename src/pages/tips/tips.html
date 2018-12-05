@@ -8,7 +8,7 @@
 <br>
 
 <ion-content>
-<button ion-button full block class="accordion">Petrol</button>    
+<!-- <button ion-button full block class="accordion">Petrol</button>    
   <ion-list class="title">
   <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
     <div maxLength="30" >
@@ -45,7 +45,20 @@
     </div>
         <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
+
+    <div>
+        <ion-list no-lines *ngFor="let i of comments3">
+          <ion-item>
+              <h2 capitalize><b>{{i.name}}</b> <span class="datew">{{i.date}}</span></h2>
+          </ion-item>
+          <div class="list2">
+              <div text-wrap >
+                  <p>{{i.comment}}</p>
+                </div>
+          </div>
+        </ion-list> 
+      </div>
 
 <ion-content padding>
 <div>
@@ -63,12 +76,13 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar class="tool">
-      <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-    <ion-textarea textwrap maxlength="80" placeholder="Comment here..." class="comments" [(ngModel)]="newmessage"></ion-textarea>       
-        </ion-col>
+  
+  <div class="textc">
+<ion-row>
+<ion-textarea block text-wrap maxLength="80" placeholder="Add a tip" [(ngModel)]="newmessage" class="text"></ion-textarea>
+<button ion-button color="primary" (click)="placeComment()" class="butts">Add Tip</button>
+</ion-row> 
+</div>
 
         <ion-col col-0>
        <button ion-button color="nav" item-end icon-only class="send" (click)="placeComment()">

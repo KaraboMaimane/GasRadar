@@ -7,7 +7,7 @@ import { signUp } from "../../app/GeoArray";
 import geoArr from "../../app/GlobalGeo";
 import { MoreInfoPage } from "../more-info/more-info";
 import { DatabaseProvider } from "../../providers/database/database";
-import { LoginPage } from "../login/login"
+import { LoginPage } from "../login/login";
 declare var google;
 
 @IonicPage()
@@ -190,7 +190,9 @@ export class HomePage {
     this.navCtrl.push(page);
   }
 
-  nextPage2(page:string){
-    this.navCtrl.push(page)
+  nextPage2(){
+    this.database.logout().then(()=>{
+      this.navCtrl.setRoot(LoginPage)
+    })
   }
 }

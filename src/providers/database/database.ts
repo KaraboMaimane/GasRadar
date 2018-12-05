@@ -1,10 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import *as firebase from 'firebase/app';
 import * as moment from 'moment'
-import { NavController } from 'ionic-angular';
-import { TipsPage } from '../../pages/tips/tips';
 import { Geolocation } from "@ionic-native/geolocation";
+
+declare var firebase;
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -13,27 +12,181 @@ import { Geolocation } from "@ionic-native/geolocation";
 */
 @Injectable()
 export class DatabaseProvider {
+  data;
+  arrInfor = new Array();
+  nearByOrg = new Array();
+  newSeachedFarms = new Array();
   database = firebase.database();
   authenticate = firebase.auth();
   dbRef;
+  state;
   currentUserName;
   username;
+  userKey;
+  currentUserImage;
+  currentUserID;
   img;
   currentUserPath;
-  currentUserImage;
-  userKey;
-  data;
-  comments;
   comments2 = new Array();
-  currentUserID;
-  state;
-  allComments;
-  arrInfor;
-  nearByOrg;
   defaultImages = ['../../assets/imgs/pic.jpg','../../assets/imgs/pic23.jpg','../../assets/imgs/pic24.jpg', '../../assets/imgs/pic22.jpg','../../assets/imgs/pic25.jpg']
-  constructor(public geolocation:Geolocation) {
+  
+  constructor( public geolocation: Geolocation) {
     console.log('Hello DatabaseProvider Provider');
     // this.checkUserState();
+  }
+
+  registerUser(Username,email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.createUserWithEmailAndPassword(email,password).then(()=>{
+        var user = firebase.auth().currentUser;
+        this.dbRef = 'users/' + user.uid;
+        this.database.ref(this.dbRef).push({
+          Username: Username,
+          img : this.defaultImages[Math.floor(Math.random() * 4)],
+          userType: "user"
+        })
+        accpt("user registered")
+      },Error=>{
+        rej(Error.message)
+      })
+    })
+  }
+  getuser(){
+    return new Promise ((accpt,rej)=>{
+      this.username = "";
+      this.img = "";
+      this.database.ref('users').on('value', (data: any) => {
+        var users =  data.val();
+        var user = firebase.auth().currentUser;
+        var  userIDs = Object.keys(users);
+        for (var x = 0; x < userIDs.length; x++){
+          var str1 = new String( userIDs[x]); 
+          var index = str1.indexOf( ":" ); 
+          var currentUserID = userIDs[x].substr(index + 1);
+          if (user.uid == currentUserID){
+            this.storeUsername(userIDs[x].substr(0,index));
+            this.database.ref('users/' + userIDs[x]).on('value', (data: any) => {
+              var Userdetails = data.val(); 
+              this.storeUserID(userIDs[x]);
+              var keys2:any = Object.keys(Userdetails);
+              var user = firebase.auth().currentUser;
+              this.storeCurrentUserImage(Userdetails[keys2[0]].img);
+              this.storeCurrentUsername(Userdetails[keys2[0]].Username);
+              this.storeUserKey(keys2[0])
+              this.storeCurrentUserPath(userIDs[x])
+              accpt(Userdetails[keys2])
+            })
+            break
+          }
+        }
+      })
+    })
+   }
+   storeUsername(username){
+    console.log(username)
+    this.username = username;
+  }
+
+  storeCurrentUserImage(img){
+    this.currentUserImage = img;
+    }
+    
+    storeCurrentUserPath(path){
+    this.currentUserPath = path;
+    }
+ 
+    storeUserKey(key){
+     this.userKey = key
+     console.log(this.userKey);
+    }
+ 
+    storeUserID(uid){
+     this.currentUserID = uid;
+   }
+  storeCurrentUsername(Username){
+    this.currentUserName =  Username;
+    console.log(this.currentUserName)
+    }
+
+    makeComment(key,comment:any){
+      return new Promise ((accpt,rej)=>{
+        var day = moment().format('MMMM Do YYYY, h:mm:ss a');
+        console.log(this.currentUserID)
+        this.database.ref('comments/' + this.currentUserID).push({
+          comment:comment,
+          date : day,
+          username: this.currentUserName
+        })
+        accpt("Comment Added")
+      })  
+    }
+
+    getComments(key){
+      return new Promise((accpt,rej)=>{
+        this.database.ref('comments/').on('value',(data2:any)=>{
+          var details = data2.val();
+          console.log(details)
+          let keys = Object.keys(details)
+          console.log(keys)
+          for(var i = 0; i < keys.length;i++){
+            var k = keys[i];
+            var l = 'comments/' + k;
+            this.database.ref(l).on('value',(data:any)=>{
+              var UserComments = data.val();
+              console.log(UserComments)
+              var keys2 = Object.keys(UserComments);
+              for(var j = 0; j < keys2.length;j++){
+                var k2 = keys2[j];
+                console.log(k2)
+                let obj = {
+                  comment: UserComments[k2].comment,
+                  date: moment(UserComments[k2].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
+                  name: UserComments[k2].username
+                }
+                this.comments2.push(obj);
+              }
+              accpt(this.comments2)
+              console.log(this.comments2)
+             
+            })
+            
+          }
+        })
+      })
+    }
+
+  getUserState(){
+    return new Promise ((accpt, rej) =>{ 
+      this.authenticate.onAuthStateChanged(user =>{ 
+        if (user != null){
+          this.state = 1;
+        }
+        else{
+        this.state = 0;
+        }
+        accpt(this.state);
+       });
+    })
+  }
+
+  logout(){
+    console.log('exit')
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signOut();
+      accpt("log Out Success")
+    })
+  }
+
+  login(email: string, password: string){
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  register(name: string, email: string,  password: string){
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
+  resetPassword(email:string){
+    return firebase.auth().sendPasswordResetEmail(email);
   }
 
   retrieveData(){
@@ -231,18 +384,18 @@ export class DatabaseProvider {
    }
 
 
-  //  getCurrentLocation(){
-  //   //get current location
-  //    return new Promise ((accpt, rej) =>{
-  //    this.geolocation.getCurrentPosition().then((resp) => {
-  //      this.createPositionRadius(resp.coords.latitude, resp.coords.longitude).then((data:any) =>{
-  //        accpt(data);
-  //      })
-  //       }).catch((error) => {
-  //    //     console.log('Error getting location', error);
-  //       });
-  //     })
-  //  }
+   getCurrentLocation(){
+    //get current location
+     return new Promise ((accpt, rej) =>{
+     this.geolocation.getCurrentPosition().then((resp) => {
+       this.createPositionRadius(resp.coords.latitude, resp.coords.longitude).then((data:any) =>{
+         accpt(data);
+       })
+        }).catch((error) => {
+     //     console.log('Error getting location', error);
+        });
+      })
+   }
   getNearByOrganizations(radius,org){
 
     return new Promise((accpt,rej) =>{
@@ -281,168 +434,59 @@ export class DatabaseProvider {
     })
   }
 
-  registerUser(Username,email,password){
-    return new Promise((accpt,rej)=>{
-      this.authenticate.createUserWithEmailAndPassword(email,password).then(()=>{
-        var user = firebase.auth().currentUser;
-        this.dbRef = 'users/' + user.uid;
-        this.database.ref(this.dbRef).push({
-          Username: Username,
-          img : this.defaultImages[Math.floor(Math.random() * 4)],
-          userType: "user"
-        })
-        accpt("user registered")
-      },Error=>{
-        rej(Error.message)
-      })
-    })
-  }
-
-  login(email,password){
-    return new Promise((accpt,rej)=>{
-      this.authenticate.signInWithEmailAndPassword(email,password).then(()=>{
-        accpt("Success")
-      },Error =>{
-        rej(Error.message)
-      })
-    }) 
-  }
-
-  getUserSatate(){
-    return new Promise ((accpt, rej) =>{ 
-      this.authenticate.onAuthStateChanged(user =>{ 
-        if (user != null){
-          this.state = 1;
-        }
-        else{
-        this.state = 0;
-        }
-        accpt(this.state);
-       });
-    })
-  }
-  storeCurrentUsername(Username){
-    this.currentUserName =  Username;
-    console.log(this.currentUserName)
-    }
-
-    getuser(){
-      return new Promise ((accpt,rej)=>{
-        this.username = "";
-        this.img = "";
-        this.database.ref('users').on('value', (data: any) => {
-          var users =  data.val();
-          var user = firebase.auth().currentUser;
-          var  userIDs = Object.keys(users);
-          for (var x = 0; x < userIDs.length; x++){
-            var str1 = new String( userIDs[x]); 
-            var index = str1.indexOf( ":" ); 
-            var currentUserID = userIDs[x].substr(index + 1);
-            if (user.uid == currentUserID){
-              this.storeUsername(userIDs[x].substr(0,index));
-              this.database.ref('users/' + userIDs[x]).on('value', (data: any) => {
-                var Userdetails = data.val(); 
-                this.storeUserID(userIDs[x]);
-                var keys2:any = Object.keys(Userdetails);
-                var user = firebase.auth().currentUser;
-                this.storeCurrentUserImage(Userdetails[keys2[0]].img);
-                this.storeCurrentUsername(Userdetails[keys2[0]].Username);
-                this.storeUserKey(keys2[0])
-                this.storeCurrentUserPath(userIDs[x])
-                accpt(Userdetails[keys2])
-              })
-              break
-            }
-          }
-        })
-      })
-     }
-     storeUsername(username){
-      console.log(username)
-      this.username = username;
-    }
-
-    storeCurrentUserImage(img){
-      this.currentUserImage = img;
-      }
-      
-      storeCurrentUserPath(path){
-      this.currentUserPath = path;
-      }
-   
-      storeUserKey(key){
-       this.userKey = key
-       console.log(this.userKey);
-      }
-   
-      storeUserID(uid){
-       this.currentUserID = uid;
-     }
-
-  makeComment(key,comment:any){
-    return new Promise ((accpt,rej)=>{
-      var day = moment().format('MMMM Do YYYY, h:mm:ss a');
-      console.log(this.currentUserID)
-      this.database.ref('comments/' + this.currentUserID).push({
-        comment:comment,
-        date : day,
-        username: this.currentUserName
-      })
-      accpt("Comment Added")
-    })
-    
-  }
-
-  getComments(key){
-    return new Promise((accpt,rej)=>{
-      this.database.ref('comments/').on('value',(data2:any)=>{
-        var details = data2.val();
-        console.log(details)
-        let keys = Object.keys(details)
-        console.log(keys)
-        for(var i = 0; i < keys.length;i++){
-          var k = keys[i];
-          var l = 'comments/' + k;
-          this.database.ref(l).on('value',(data:any)=>{
-            var UserComments = data.val();
-            console.log(UserComments)
-            var keys2 = Object.keys(UserComments);
-            for(var j = 0; j < keys2.length;j++){
-              var k2 = keys2[j];
-              console.log(k2)
-              let obj = {
-                comment: UserComments[k2].comment,
-                date: moment(UserComments[k2].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
-                name: UserComments[k2].username
-              }
-              this.comments2.push(obj);
-            }
-            accpt(this.comments2)
-            console.log(this.comments2)
-           
-          })
-          
-        }
-      })
-    })
-  }
-  
-
   // checkUserState(){
   //   return firebase.auth().onAuthStateChanged((data)=>{
   //     console.log(data);
   //   })
   // }
+  getSearchbyFarms(lat , lng){
+    return new Promise((accpt ,rej)=>{
+    this.createPositionRadius(lat , lng).then((data:any)=>{
+      accpt(data)
+    })
+    }).catch((error)=>{
+   //   console.log('Error getting location', error);
+   
+    })
+   }
 
-    // login(email: string, password: string){
-  //   return firebase.auth().signInWithEmailAndPassword(email, password);
-  // }
 
-  // register(name: string, email: string,  password: string){
-  //   return firebase.auth().createUserWithEmailAndPassword(email, password);
-  // }
 
-  // resetPassword(email:string){
-  //   return firebase.auth().sendPasswordResetEmail(email);
-  // }
+   getSearchedFarm(lat , lng , radius , org){
+    return new  Promise((accpt , rej)=>{
+      this.getSearchbyFarms(lat , lng).then((resp)=>{
+        var lt =  new String(lat).substr(0,6);
+        var long =  new String(lng).substr(0,5);
+      //  console.log(lt);
+       
+    //    console.log(radius);
+        
+       // console.log(lt);
+       //   console.log(long);
+        for (let x = 0; x< org.length; x++) {
+          var orglat = new String(org[x].lat).substr(0,6);
+          var orgLong =  new String(org[x].lng).substr(0,5);
+          
+       //   console.log(orgLong);
+       //   console.log(orglat );
+          
+          
+          
+          
+          
+          
+          
+//console.log('out');
+          if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)){
+//console.log('in');
+            this.newSeachedFarms.push(org[x]);
+           //  console.log(this.nearByOrg);
+   
+             }
+          
+        }
+        accpt( this.newSeachedFarms)
+      })
+    })
+  }
 }
