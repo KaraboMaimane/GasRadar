@@ -41,6 +41,7 @@ export class MoreInfoPage implements OnInit{
   p93;
   diesel;
   action: string = 'info';
+  addressArr = [];
   streetName2;
   areaLocation2;
   areaName2;
@@ -58,7 +59,13 @@ export class MoreInfoPage implements OnInit{
   ionViewDidLoad(){
     this.initMap();
 
- 
+    this.addressArr = geoArr;
+
+    this.streetName2 = this.addressArr[0].streetname;
+    this.areaLocation2 = this.addressArr[0].areaLocation;
+    this.areaName2 = this.addressArr[0].areaName;
+    this.postCode2 = this.addressArr[0].postCode;
+    console.log(this.areaName2)
     
     this.companyInfor =this.navParams.get("obj");
     console.log(this.companyInfor);
@@ -71,15 +78,16 @@ export class MoreInfoPage implements OnInit{
     this.diesel= this.companyInfor.diesel;
     this.p93= this.companyInfor.petrol93;
     this.p95 = this.companyInfor.petrol95;
+<<<<<<< HEAD
 this.gas = this.companyInfor.gas;
+=======
+    this.gas=this.companyInfor.gas
+    this.newlong= this.companyInfor.newlon;
+    this.newlat= this.companyInfor.newlat
 
-    this.displayArr = geoArr;
-    console.log(this.displayArr);
-    this.streetName2 = this.displayArr[0].streetName;
-    this.areaLocation2 = this.displayArr[0].areaLocation;
-    this.areaName2 = this.displayArr[0].areaName;
-    this.postCode2 = this.displayArr[0].postCode;
-    console.log(this.streetName2 + " " + this.areaLocation2 + " " + this.areaName2+ " " + this.postCode2 );
+    
+>>>>>>> 3252ef8273727bbd2b91d78455fd4b06d2c4c0f8
+
   
   }
 

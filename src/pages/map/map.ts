@@ -48,10 +48,14 @@ filter;
     public navCtrl: NavController,
     public geolocation: Geolocation,
     public database: DatabaseProvider,
-    private media: MediaProvider
+    private media: MediaProvider,
+    
   ) { 
     this.mapstyle = this.media.mapstyle;
+    this.ionViewDidLoad();
+    
   }
+
 
   ionViewDidLoad() {
    
