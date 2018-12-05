@@ -129,7 +129,8 @@ for(var x = 0; x < this.arrayinfor.length;x++){
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
             icon: {
-              url: `${this.media.fuelpump}`
+              url: `${this.media.fuelpump}`,
+              size: {height:100 , width:40}
             }
           });
 
@@ -367,16 +368,19 @@ for(var x = 0; x < this.arrayinfor.length;x++){
       
         }
         this.map = new google.maps.Map(document.querySelector('#map'), {
-          zoom: 12,
+          zoom: 8,
           center: { lat:  this.latii, lng:this.long  },
           disableDefaultUI: true,
           styles: this.media.mapstyle
         });
         let marker = new google.maps.Marker({
           map: this.map,
+          zoom: 8,
           position: {lat: this.latii, lng: this.long },
           icon: {
-            url: `${this.media.man}`
+            url: `${this.media.man}`,
+            // size: {height:31, width:31}
+         
           }
           
         });
@@ -406,11 +410,12 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                this.arrayinfor=[];
              
             this.map = new google.maps.Map(document.querySelector('#map'), {
-            zoom: 12,
+            zoom: 8,
             center: { lat:  this.latii, lng:this.long  },
             disableDefaultUI: true,
             icon: {
-              url: `${this.media.man}`
+              url: `${this.media.man}`,
+              // size: {height:10 , width:10}
             }
         });
               }
