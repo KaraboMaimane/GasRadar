@@ -399,7 +399,6 @@ export class DatabaseProvider {
         let arry = [];
         let keys = Object.keys(infor);
         console.log(keys);
-
         for (let i = 0; i < keys.length; i++) {
           let k = keys[i];
           let obj = {
@@ -415,7 +414,9 @@ export class DatabaseProvider {
             petrol95: infor[k].petrol95,
             diesel: infor[k].diesel
           };
+        
           this.arrInfor.push(obj);
+          console.log(this.arrInfor);
         }
 
         accpt(this.arrInfor);

@@ -46,10 +46,14 @@ export class MoreInfoPage implements OnInit{
   areaLocation2;
   areaName2;
   postCode2;
-  newlat;
   newlong;
-  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams, private media: MediaProvider) {
+ 
+  newlat;
+  displayArr = [];
+  mapstyle;
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams,  private media: MediaProvider) {
     
+    this.mapstyle = this.media.mapstyle;
   }
 
   ionViewDidLoad(){

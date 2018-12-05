@@ -10,6 +10,12 @@ import  *as firebase from 'firebase/app';
   templateUrl: 'app.html'
 })
 export class MyApp {
+<<<<<<< HEAD
+  rootPage: string = 'TabsPage';
+
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    // var config = {
+=======
   @ViewChild(Nav) nav: Nav;
 
   activePage: any;
@@ -18,6 +24,7 @@ export class MyApp {
 
   constructor(private database:DatabaseProvider,public platform: Platform,public statusBar: StatusBar,public splashScreen: SplashScreen) {
     // firebase.initializeApp({
+>>>>>>> 89267e46644eff2525a07a46e9ea5b820ab1e7e0
     //   apiKey: "AIzaSyDJdLBi-paptMqqNpIc6c5jHvIM6jOrb6s",
     //   authDomain: "fuelapp-6050c.firebaseapp.com",
     //   databaseURL: "https://fuelapp-6050c.firebaseio.com",

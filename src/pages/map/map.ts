@@ -37,7 +37,12 @@ filter;
     searchs:string;
     fuelType;
     condition;
-  mapstyle: any;
+    inputs;
+    tags=[
+      "Soweto",
+      "Johannesburg"
+    ]
+    mapstyle:any;
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
@@ -51,19 +56,16 @@ filter;
     
   }
 
-  ionViewDidLoad(){
-    this.database.getuser().then((data)=>{
-      console.log(data)
-    });
-  }
 
-  ionViewDidEnter() {
-
+  ionViewDidLoad() {
+   
    
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
+      
       this.database.getNearByOrganizations(radius ,data).then((data:any)=>{
-      //  console.log(data);
+        console.log("getNearby data");
+        console.log(data);
 
         this.arrayinfor = data ;    
       })
@@ -78,10 +80,9 @@ filter;
   }
  
   initMap() {
+ 
 
-  
-   
-      this.condition=true;
+
   
 
     const loader = this.loadingCtrl.create({
@@ -141,7 +142,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
               url: `${this.media.fuelpump}`
             }
           });
-
 
           let obj = {
                     name: this.arrayinfor[x].name,
@@ -209,20 +209,46 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
   }
   input(){
-    console.log(this.fuelType);
-    if(this.fuelType =="Gas"){
-      this.arrayinfor = this.arrayinfor.filter(x => x.gas!== 0);
-      console.log(this.arrayinfor);
-      this.initMap();
-    }else if(this.fuelType =="Petrol"){
-      this.arrayinfor = this.arrayinfor.filter(x => x.petrol93 && x.petrol95 !== 0);
-      console.log(this.arrayinfor);
-      this.initMap();
-    }else if(this.fuelType =="Diesel"){
-      this.arrayinfor = this.arrayinfor.filter(x => x.diesel !== 0);
-      console.log(this.arrayinfor);
-      this.initMap();
+  
+    // if(this.fuelType =="Gas"){
+
+    //   this.arrayinfor = this.arrayinfor.filter(x => x.gas!= 0)
+      
+    //   console.log(this.arrayinfor);
+     
+    //   this.initMap();
+    // }
+    if(this.arrayinfor.length==0){
+      this.ionViewDidLoad() 
     }
+
+    if(this.fuelType=="Gas"){
+      this.arrayinfor = this.arrayinfor.filter(x => x.gas > 1);
+      this.initMap();
+      console.log(this.fuelType);
+      console.log(this.arrayinfor);
+   
+    }
+      if(this.fuelType=="Petrol"){
+        this.arrayinfor = this.arrayinfor.filter(x => x.petrol93 > 1 && x.petrol93 > 1);
+        this.initMap();
+        console.log(this.fuelType);
+        console.log(this.arrayinfor);
+     
+       
+        
+      }
+      if(this.fuelType=="Diesel"){
+        this.arrayinfor = this.arrayinfor.filter(x => x.diesel > 1);
+        this.initMap();
+        
+        console.log(this.fuelType);
+        console.log(this.arrayinfor);
+
+       
+        
+      }
+
    
   }
 
@@ -262,12 +288,17 @@ for(var x = 0; x < this.arrayinfor.length;x++){
           disableDefaultUI: true,
           styles: this.media.mapstyle
         });
+
+        this.arrayinfor.length=0;
+
         let marker = new google.maps.Marker({
           map: this.map,
           position: {lat: this.latii, lng: this.long },
           icon: {
             url: `${this.media.man}`
           }
+
+          
           
         });
         console.log(this.latii, this.long)
@@ -280,6 +311,9 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   
           this.database.retrieve().then((data:any)=>{
          
+        
+            console.log("getsearchbyfarms");
+           
             console.log(data);
   
             if(data.length==0){
@@ -289,100 +323,141 @@ for(var x = 0; x < this.arrayinfor.length;x++){
             }
   
             this.database.getSearchedFarm(this.latii,this.long,radius,data).then((data:any)=>{
+     
+              console.log("")
               console.log(data);
+              
+              if(data.length==0){
+                this.arrayinfor.length=0;
+                console.log(this.arrayinfor);
+                alert("no data found");
+              }else{
+            
+                this.arrayinfor=data;
+                console.log(this.arrayinfor);
+              }
+          
+            
+
+
+
+
+              let temp = [];
+               temp = data
+               console.log(temp);
+               
+            //  for(let c = 0;c < temp.length/2;c++){
+            //   console.log(temp.indexOf(temp[c].lat));
+            //   console.log(temp.indexOf(temp[c].lng));
+            //    if(temp.indexOf(temp[c].lat) == -1 && temp.indexOf(temp[c].lng)== -1 ){
+            //      console.log("no duplication")
+                 
+            //      this.arrayinfor=data;
+
+            //      console.log(this.arrayinfor);
+            //    }else{
+            //      console.log("duplication")
+            //    }
+
+            //  }
+
+
+
               this.arrayinfor= data;
               if(data.length==0){
              
                this.arrayinfor=[];
+               console.log(this.arrayinfor)
              
-            this.map = new google.maps.Map(document.querySelector('#map'), {
-            zoom: 12,
-            center: { lat:  this.latii, lng:this.long  },
-            disableDefaultUI: true,
-            icon: {
-              url: `${this.media.man}`
-            }
-        });
+        //     this.map = new google.maps.Map(document.querySelector('#map'), {
+        //     zoom: 12,
+        //     center: { lat:  this.latii, lng:this.long  },
+        //     disableDefaultUI: true,
+        //     icon: {
+        //       url: `${this.media.man}`
+        //     }
+        // });
               }
-            })
-            for(var x = 0; x < this.arrayinfor.length;x++){
+              for(var x = 0; x < this.arrayinfor.length;x++){
   
-              console.log("in");
+                console.log("in");
+                
+                console.log( this.arrayinfor);
+                console.log(parseFloat(this.arrayinfor[x].lat));
+                console.log( parseFloat(this.arrayinfor[x].lng));
+                
+                
+                
               
-              console.log( this.arrayinfor);
-              console.log(parseFloat(this.arrayinfor[x].lat));
-              console.log( parseFloat(this.arrayinfor[x].lng));
+                let marker = new google.maps.Marker({
+                          position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
+                          map: this.map,
+                          icon: {
+                            url: `${this.media.fuelpump}`
+                          }
+                        });
               
               
-              
-            
-              let marker = new google.maps.Marker({
-                        position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
-                        map: this.map,
-                        icon: {
-                          url: `${this.media.fuelpump}`
-                        }
-                      });
-            
-            
-                      let obj = {
-                        name: this.arrayinfor[x].name,
-                        lat: this.arrayinfor[x].lat,
-                        lng: this.arrayinfor[x].lng,
-                        email: this.arrayinfor[x].email,
-                        phone: this.arrayinfor[x].phone,
-                        owner: this.arrayinfor[x].owner,
-                        tel: this.arrayinfor[x].tel,
-                        diesel:this.arrayinfor[x].diesel,
-                        gas: this.arrayinfor[x].gas,
-                        petrol93:this.arrayinfor[x].petrol93,
-                        petrol95:this.arrayinfor[x].petrol95,
-                        newlat :this.latii,
-                        newlon:this.long,
-                        condition:this.condition
-                      };
-                      marker.addListener("click", () => {
-                          console.log(obj.name);
-                          return new Promise(()=>{
-                            geoArr.length = 0
-                            var geocoder = new google.maps.Geocoder;
-                            var latLng = new google.maps.LatLng(obj.lat,obj.lng);
-                         //   infowindow.open(this.map, marker);
-                            geocoder.geocode({ 'latLng': latLng }, function (results, status) {
-                        
-                                if (status === google.maps.GeocoderStatus.OK) {
-                                  var AreaName = results[0].formatted_address;
-                                  let areaAddress = AreaName.split(",");
-                                  this.streetName =areaAddress[0];
-                                  this.areaName = areaAddress[1];
-                                  this.areaLocation = areaAddress[2];
-                                  this.postCode = areaAddress[3];
-                        
-                                  console.log(AreaName)
-                                  console.log(areaAddress);
-                        
-                                  let obj = new signUp(this.streetName,this.areaName,this.areaLocation,this.postCode);
-                                  geoArr.push(obj)
-                                  console.log(geoArr)
-                                  
-                              }
+                        let obj = {
+                          name: this.arrayinfor[x].name,
+                          lat: this.arrayinfor[x].lat,
+                          lng: this.arrayinfor[x].lng,
+                          email: this.arrayinfor[x].email,
+                          phone: this.arrayinfor[x].phone,
+                          owner: this.arrayinfor[x].owner,
+                          tel: this.arrayinfor[x].tel,
+                          diesel:this.arrayinfor[x].diesel,
+                          gas: this.arrayinfor[x].gas,
+                          petrol93:this.arrayinfor[x].petrol93,
+                          petrol95:this.arrayinfor[x].petrol95,
+                          newlat :this.latii,
+                          newlon:this.long,
+                          condition:this.condition
+                        };
+                        marker.addListener("click", () => {
+                            console.log(obj.name);
+                            return new Promise(()=>{
+                              geoArr.length = 0
+                              var geocoder = new google.maps.Geocoder;
+                              var latLng = new google.maps.LatLng(obj.lat,obj.lng);
+                           //   infowindow.open(this.map, marker);
+                              geocoder.geocode({ 'latLng': latLng }, function (results, status) {
+                          
+                                  if (status === google.maps.GeocoderStatus.OK) {
+                                    var AreaName = results[0].formatted_address;
+                                    let areaAddress = AreaName.split(",");
+                                    this.streetName =areaAddress[0];
+                                    this.areaName = areaAddress[1];
+                                    this.areaLocation = areaAddress[2];
+                                    this.postCode = areaAddress[3];
+                          
+                                    console.log(AreaName)
+                                    console.log(areaAddress);
+                          
+                                    let obj = new signUp(this.streetName,this.areaName,this.areaLocation,this.postCode);
+                                    geoArr.push(obj)
+                                    console.log(geoArr)
+                                    
+                                }
+                                
+                                  console.log(this.streetName + " " + this.areaName + " " + this.postCode + " " + this.country)
+                              })
+                              setTimeout(()=>{
+                                const loader = this.loadingCtrl.create({
+                                  content: "Please wait...",
+                                  duration: 1000
+                                });
+                                loader.present();
+                                this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
+                              },500)
                               
-                                console.log(this.streetName + " " + this.areaName + " " + this.postCode + " " + this.country)
                             })
-                            setTimeout(()=>{
-                              const loader = this.loadingCtrl.create({
-                                content: "Please wait...",
-                                duration: 1000
-                              });
-                              loader.present();
-                              this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
-                            },500)
-                            
-                          })
-                      })
-                    
-            
-                    }
+                        })
+                      
+              
+                      }
+            })
+           
           })
         })
         
