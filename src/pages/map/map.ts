@@ -37,13 +37,16 @@ filter;
     searchs:string;
     fuelType;
     condition;
+  mapstyle: any;
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     public geolocation: Geolocation,
     public database: DatabaseProvider,
     private media: MediaProvider
-  ) { }
+  ) { 
+    this.mapstyle = this.media.mapstyle;
+  }
 
   ionViewDidEnter() {
    

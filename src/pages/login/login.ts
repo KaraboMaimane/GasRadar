@@ -59,7 +59,7 @@ export class LoginPage {
          duration: 3000
        });
        toast.present();
-       this.action = 'TabsPage'
+       this.navCtrl.setRoot('TabsPage');
      }
    ).catch(
      (error)=>{
