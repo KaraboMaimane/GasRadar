@@ -182,7 +182,7 @@ export class DatabaseProvider {
         let arry = [];
         let keys = Object.keys(infor);
         console.log(keys);
-  
+     this.arrInfor.length=0;
         for (let i = 0; i < keys.length; i++) {
           let k = keys[i];
           let obj = {
@@ -198,7 +198,9 @@ export class DatabaseProvider {
             petrol95: infor[k].petrol95,
             diesel :infor[k].diesel
           };
+        
           this.arrInfor.push(obj);
+          console.log(this.arrInfor);
         }
 
         accpt(this.arrInfor);
@@ -285,6 +287,7 @@ export class DatabaseProvider {
   getSearchbyFarms(lat , lng){
     return new Promise((accpt ,rej)=>{
     this.createPositionRadius(lat , lng).then((data:any)=>{
+      console.log(data);
       accpt(data)
     })
     }).catch((error)=>{
@@ -306,7 +309,7 @@ export class DatabaseProvider {
         
        // console.log(lt);
        //   console.log(long);
-        for (let x = 0; x< org.length; x++) {
+        for (let x = 0; x< org.length/2; x++) {
           var orglat = new String(org[x].lat).substr(0,6);
           var orgLong =  new String(org[x].lng).substr(0,5);
           
@@ -323,7 +326,7 @@ export class DatabaseProvider {
           if ((orgLong  <= long  && orgLong  >= radius.left || orgLong  >= long  && orgLong  <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)){
 //console.log('in');
             this.newSeachedFarms.push(org[x]);
-           //  console.log(this.nearByOrg);
+             console.log(this.nearByOrg);
    
              }
           
