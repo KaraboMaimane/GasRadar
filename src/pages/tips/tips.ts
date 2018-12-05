@@ -16,8 +16,7 @@ comments = [];
 comments3 = [];
 newmessage;
 key;
-
-petrol = [
+ petrol = [
     { title: "Fill your tank in the morning", description: "In the mornings, however, when the temperature is cooler, fuel is denser, irrespective of whether it's in liquid form or gas. These petroleum products expand when they are warm, so due to the expansion you end up with a lesser percentage of fuel for the money you've paid, if you're filling up in the afternoon or during the day."},
     { title: "Do away with aggressive driving.", description: "Aggressive driving such as rapid acceleration, speeding and braking can lower your fuel mileage significantly. So accelerate smoothly, brake softer and earlier, and stay in one lane while it's safe to do so. Not only do these driving techniques save fuel, they can prolong the life of your brakes and tires." },
     { title: "Try not to use aircon.", description: "We know South African summers can be brutal, and even though using an aircon is more fuel efficient than driving with your windows down, it still increases fuel consumption. By using your aircon more judiciously, you can save fuel when driving." },
@@ -40,8 +39,10 @@ petrol = [
 
   shownGroup = null;
 
-  constructor(public toastCtrl: ToastController,private database:DatabaseProvider,public navCtrl: NavController, public navParams: NavParams) {
-    this.database.getuser();
+  constructor(public toastCtrl: ToastController,private database: DatabaseProvider,public navCtrl: NavController, public navParams: NavParams) {
+    this.database.getuser().then((data:any)=>{
+        console.log(data);
+    });
   }
   
   ionViewDidLoad() {
@@ -50,20 +51,18 @@ petrol = [
     this.comments3.length = 0
     this.getComments();
   }
+toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+};
+isGroupShown(group) {
+    return this.shownGroup === group;
+}
 
-  getComments(){
-    this.database.getComments(this.newmessage).then((data:any)=>{
-      this.comments = data;
-      console.log(this.comments)
-      var i = 0;
-      for(var x = this.comments.length - 1; x >= 0;x--){
-        this.comments3[i] = this.comments[x];
-        i++;
-      }
-    })
-  }
-
-  placeComment(newmessage){
+placeComment(newmessage){
     this.database.makeComment(this.username,this.newmessage).then((data)=>{
       const toast = this.toastCtrl.create({
         message: 'Your comment was saved',
@@ -82,16 +81,18 @@ petrol = [
   this.newmessage = "";
   this.getComments();
   }
-toggleGroup(group) {
-    if (this.isGroupShown(group)) {
-        this.shownGroup = null;
-    } else {
-        this.shownGroup = group;
-    }
-};
-isGroupShown(group) {
-    return this.shownGroup === group;
-};
+
+  getComments(){
+    this.database.getComments(this.newmessage).then((data:any)=>{
+      this.comments = data;
+      console.log(this.comments)
+      var i = 0;
+      for(var x = this.comments.length - 1; x >= 0;x--){
+        this.comments3[i] = this.comments[x];
+        i++;
+      }
+    })
+  }
 
 }
 

@@ -64,7 +64,21 @@ filter;
 
     }, 5000)
   }
- 
+
+  ionViewDidLoad(){
+    this.check();
+  }
+
+  check(){
+    this.database.getUserState().then((data)=>{
+      if (data == 1){
+        console.log('user is online')
+      }
+      if (data == 0){
+        console.log('user is offline')
+      }
+    })
+  }
   initMap() {
 
   

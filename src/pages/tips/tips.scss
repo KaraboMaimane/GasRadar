@@ -1,7 +1,64 @@
 page-tips {
+    .text{
+    bottom: 8px;
+    width: 30px;
+    height:40px; 
+    border: 2px solid #FFC107;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-top: 2px;
+    font-size: 13px;
+    
+    }
+.descr{
+    size: 12px;
+}
+    
+    .butts{
+        height: 50px;
+        width: 50px;
+    }
+    .textc{
+        display: flex;
+        flex-direction: column;
+    background-color: white;
+    }.item{
+        margin-bottom: 1vh;
+    }
+    button{
+        bottom: -8px;
+    }
     .list2{
-       
-        // padding:5px;
         margin-bottom: 20px;
     }
+    .datew{
+        font-weight: 30;
+        font-size: 12px;
+        float: right; 
+        margin-bottom: 1px;
+    }
+    .listline{
+        font-size: 2.5vh;
+        padding: 0 0 0 0;
+        // background: red;
+     color: #000;
+     margin-bottom: 4px;
+     .listline-active{
+        background: #FFC107;
+        color:#fff
+    }
+    }
+    .text2{
+        margin-left: 2px;
+        font-size: 16px;
+    }
+    .ava{
+        border-radius: 40px;
+        height: 10px;
+        width: 25px;
+    }
+    .control{
+        margin-bottom: -2px;
+    }
+    
 }

@@ -35,6 +35,32 @@ export class DatabaseProvider {
     // this.checkUserState();
   }
 
+
+
+  logout(){
+    console.log('exit')
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signOut();
+      accpt("log Out Success")
+    })
+  }
+
+ 
+  login(email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signInWithEmailAndPassword(email,password).then(()=>{
+        accpt("Success")
+      },Error =>{
+        rej(Error.message)
+      })
+    }) 
+
+  }
+
+  register(name: string, email: string,  password: string){
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
   registerUser(Username,email,password){
     return new Promise((accpt,rej)=>{
       this.authenticate.createUserWithEmailAndPassword(email,password).then(()=>{
@@ -51,6 +77,72 @@ export class DatabaseProvider {
       })
     })
   }
+  makeComment(key,comment:any){
+    return new Promise ((accpt,rej)=>{
+      var day = moment().format('MMMM Do YYYY, h:mm:ss a');
+      console.log(this.currentUserID)
+      this.database.ref('comments/' + this.currentUserID).push({
+        comment:comment,
+        date : day,
+        username: this.currentUserName
+      })
+      accpt("Comment Added")
+    })
+    
+  }
+
+  getComments(key){
+    this.comments2.length = 0;
+    return new Promise((accpt,rej)=>{
+      this.database.ref('comments/').on('value',(data2:any)=>{
+        var details = data2.val();
+        console.log(details)
+        let keys = Object.keys(details)
+        console.log(keys)
+        for(var i = 0; i < keys.length;i++){
+          var k = keys[i];
+          var l = 'comments/' + k;
+          this.database.ref(l).on('value',(data:any)=>{
+            var UserComments = data.val();
+            console.log(UserComments)
+            var keys2 = Object.keys(UserComments);
+            for(var j = 0; j < keys2.length;j++){
+              var k2 = keys2[j];
+              console.log(k2)
+              let obj = {
+                comment: UserComments[k2].comment,
+                date: moment(UserComments[k2].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
+                name: UserComments[k2].username
+              }
+              this.comments2.push(obj);
+            }
+            accpt(this.comments2)
+            console.log(this.comments2)
+           
+          })
+          
+        }
+      })
+    })
+  }
+
+  resetPassword(email:string){
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+  getUserState(){
+    return new Promise ((accpt, rej) =>{ 
+      this.authenticate.onAuthStateChanged(user =>{ 
+        if (user != null){
+          this.state = 1;
+        }
+        else{
+        this.state = 0;
+        }
+        accpt(this.state);
+       });
+    })
+  }
+
   getuser(){
     return new Promise ((accpt,rej)=>{
       this.username = "";
@@ -103,91 +195,10 @@ export class DatabaseProvider {
     storeUserID(uid){
      this.currentUserID = uid;
    }
-  storeCurrentUsername(Username){
+   storeCurrentUsername(Username){
     this.currentUserName =  Username;
     console.log(this.currentUserName)
     }
-
-    makeComment(key,comment:any){
-      return new Promise ((accpt,rej)=>{
-        var day = moment().format('MMMM Do YYYY, h:mm:ss a');
-        console.log(this.currentUserID)
-        this.database.ref('comments/' + this.currentUserID).push({
-          comment:comment,
-          date : day,
-          username: this.currentUserName
-        })
-        accpt("Comment Added")
-      })  
-    }
-
-    getComments(key){
-      return new Promise((accpt,rej)=>{
-        this.database.ref('comments/').on('value',(data2:any)=>{
-          var details = data2.val();
-          console.log(details)
-          let keys = Object.keys(details)
-          console.log(keys)
-          for(var i = 0; i < keys.length;i++){
-            var k = keys[i];
-            var l = 'comments/' + k;
-            this.database.ref(l).on('value',(data:any)=>{
-              var UserComments = data.val();
-              console.log(UserComments)
-              var keys2 = Object.keys(UserComments);
-              for(var j = 0; j < keys2.length;j++){
-                var k2 = keys2[j];
-                console.log(k2)
-                let obj = {
-                  comment: UserComments[k2].comment,
-                  date: moment(UserComments[k2].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
-                  name: UserComments[k2].username
-                }
-                this.comments2.push(obj);
-              }
-              accpt(this.comments2)
-              console.log(this.comments2)
-             
-            })
-            
-          }
-        })
-      })
-    }
-
-  getUserState(){
-    return new Promise ((accpt, rej) =>{ 
-      this.authenticate.onAuthStateChanged(user =>{ 
-        if (user != null){
-          this.state = 1;
-        }
-        else{
-        this.state = 0;
-        }
-        accpt(this.state);
-       });
-    })
-  }
-
-  logout(){
-    console.log('exit')
-    return new Promise((accpt,rej)=>{
-      this.authenticate.signOut();
-      accpt("log Out Success")
-    })
-  }
-
-  login(email: string, password: string){
-    return firebase.auth().signInWithEmailAndPassword(email, password);
-  }
-
-  register(name: string, email: string,  password: string){
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
-  }
-
-  resetPassword(email:string){
-    return firebase.auth().sendPasswordResetEmail(email);
-  }
 
   retrieveData(){
     firebase.database().ref('users/').on('value', (snapshot)=>{
