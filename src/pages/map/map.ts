@@ -43,14 +43,23 @@ filter;
     public navCtrl: NavController,
     public geolocation: Geolocation,
     public database: DatabaseProvider,
-    private media: MediaProvider
+    private media: MediaProvider,
+    
   ) { 
     this.mapstyle = this.media.mapstyle;
+    this.ionViewDidLoad();
+    
+  }
+
+  ionViewDidLoad(){
+    this.database.getuser().then((data)=>{
+      console.log(data)
+    });
   }
 
   ionViewDidEnter() {
-   
 
+   
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
       this.database.getNearByOrganizations(radius ,data).then((data:any)=>{

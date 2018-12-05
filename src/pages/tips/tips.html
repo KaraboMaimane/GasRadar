@@ -1,18 +1,29 @@
 <ion-header>
-
   <ion-navbar color="primary">
-    <ion-title align="center">FUEL FRIENDLY TIPS</ion-title>
+    <ion-title align="center">FUEL TIPS</ion-title>
   </ion-navbar>
-
 </ion-header>
 <br>
-
 <ion-content>
-<!-- <button ion-button full block class="accordion">Petrol</button>    
-  <ion-list class="title">
+    <div class="segmt">
+        <ion-segment color class="segment-md" [(ngModel)]="action">
+          <ion-segment-button class="segbutt" value="tips">
+            TIPS
+          </ion-segment-button>
+          <ion-segment-button class="ion-segment-button" value="addtip">
+            USERS TIPS
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    
+      <div [ngSwitch]="action">
+          <div class="tipscontainer" *ngSwitchCase="'tips'">
+<button ion-button color="secondary" full block class="accordion">Petrol</button>    
+ <!-- <ion-label align="center"><b>Petrol:</b></ion-label> -->
+<ion-list class="title">
   <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
     <div maxLength="30" >
-    <h3  class="listline">
+    <h3 class="listline">
       <b>{{d.title}}</b>
       <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
     </h3>
@@ -20,12 +31,11 @@
     <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
   </ion-item>
 </ion-list>
-
-<button ion-button full block class="accordion">Gas</button>
+<button ion-button color="secondary" full block class="accordion">Gas</button>
 <ion-list class="title">
     <ion-item *ngFor="let d of gas; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
       <div maxLength="30">
-      <h3 >
+      <h3 class="listline">
         <b>{{d.title}}</b>
         <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
       </h3>
@@ -33,63 +43,61 @@
       <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
     </ion-item>
   </ion-list>
-
-  <button ion-button full block class="accordion">Diesel</button>
+  <button ion-button color="secondary" full block class="accordion">Diesel</button>
   <ion-list class="title">
       <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
         <div maxLength="30">
-        <h3 >
+        <h3 class="listline">
           <b>{{d.title}}</b>
           <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
         </h3>
     </div>
         <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
       </ion-item>
-    </ion-list> -->
-
+    </ion-list>
+</div>
+</div>
+<div [ngSwitch]="action">
+<div class="addtipseg" *ngSwitchCase="'addtip'">
     <div>
-        <ion-list no-lines *ngFor="let i of comments3">
-          <ion-item>
-              <h2 capitalize><b>{{i.name}}</b> <span class="datew">{{i.date}}</span></h2>
-          </ion-item>
-          <div class="list2">
-              <div text-wrap >
+        <ion-list *ngFor="let i of comments3">
+            <div>
+                <ion-item>
+              <ion-thumbnail item-start class="ava">
+                <!-- <img src="{{i.img}}"> -->
+                <img src='../../assets/imgs/pic22.JPG'>
+              </ion-thumbnail>
+              <h1 capitalize class="listline">
+                <b>{{i.name}}</b>
+                
+              </h1>
+              <div text-wrap class="text2" capitalize>
                   <p>{{i.comment}}</p>
                 </div>
-          </div>
-        </ion-list> 
+                 <span class="datew" align="right">{{i.date}}</span>
+                 
+                    
+                
+               </ion-item>
+              </div>
+              </ion-list>
+  
+         </div>
+     
       </div>
-
-<ion-content padding>
-<div>
-  <ion-list no-lines *ngFor="let i of comments3">
-    <ion-item>
-        <h2 capitalize><b>{{i.name}}</b> <span class="datew">{{i.date}}</span></h2>
-    </ion-item>
-    <div class="list2">
-        <div text-wrap class="text">
-            <p>{{i.comment}}</p>
-          </div>
-    </div>
-  </ion-list> 
+  
 </div>
 </ion-content>
-
 <ion-footer>
-  
-  <div class="textc">
-<ion-row>
-<ion-textarea block text-wrap maxLength="80" placeholder="Add a tip" [(ngModel)]="newmessage" class="text"></ion-textarea>
-<button ion-button color="primary" (click)="placeComment()" class="butts">Add Tip</button>
-</ion-row> 
-</div>
-
-        <ion-col col-0>
-       <button ion-button color="nav" item-end icon-only class="send" (click)="placeComment()">
-       <ion-icon name="md-send"></ion-icon>
-      </button>     
-        </ion-col>
-      </ion-row>
-     </ion-grid>
-   </ion-toolbar>
-   </ion-footer>
+  <div [ngSwitch]="action">
+    <div class="addtipseg" *ngSwitchCase="'addtip'">
+      
+    <div class="textc">
+  <ion-row>
+  <ion-textarea block text-wrap maxLength="80" [(ngModel)]="newmessage" placeholder="Add a tip" class="text"></ion-textarea>
+  <button round ion-button color="primary" (click)="placeComment()" class="butts" icon-only><ion-icon name="md-send"></ion-icon></button>
+  </ion-row>
+  </div>
+  </div>
+  </div>
+  </ion-footer>

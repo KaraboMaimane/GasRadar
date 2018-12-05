@@ -40,9 +40,14 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.initMap();
+    this.Load()
   }
 
- 
+  Load(){
+    this.database.getuser().then((data)=>{
+      console.log(data)
+    });
+  }
 
   initMap() {
     const loader = this.loadingCtrl.create({

@@ -126,6 +126,7 @@ export class DatabaseProvider {
               var keys2: any = Object.keys(Userdetails);
               var user = firebase.auth().currentUser;
               this.storeCurrentUserImage(Userdetails[keys2[0]].img);
+              console.log(this.storeCurrentUserImage)
               this.storeCurrentUsername(Userdetails[keys2[0]].Username);
               this.storeUserKey(keys2[0])
               this.storeCurrentUserPath(userIDs[x])
@@ -157,6 +158,7 @@ export class DatabaseProvider {
 
   storeUserID(uid) {
     this.currentUserID = uid;
+    console.log(this.currentUserID)
   }
   storeCurrentUsername(Username) {
     this.currentUserName = Username;
@@ -169,8 +171,10 @@ export class DatabaseProvider {
       console.log(this.currentUserID)
       this.database.ref('comments/' + this.currentUserID).push({
         comment: comment,
+        img: this.currentUserImage,
         date: day,
-        username: this.currentUserName
+        username: this.currentUserName,
+        
       })
       accpt("Comment Added")
     })
@@ -196,7 +200,8 @@ export class DatabaseProvider {
               let obj = {
                 comment: UserComments[k2].comment,
                 date: moment(UserComments[k2].date, 'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
-                name: UserComments[k2].username
+                name: UserComments[k2].username,
+                // img: details[k2].img,
               }
               this.comments2.push(obj);
             }

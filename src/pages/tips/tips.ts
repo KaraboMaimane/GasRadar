@@ -41,7 +41,9 @@ petrol = [
   shownGroup = null;
 
   constructor(public toastCtrl: ToastController,private database:DatabaseProvider,public navCtrl: NavController, public navParams: NavParams) {
-    this.database.getuser();
+    this.database.getuser().then((data)=>{
+      console.log(data);
+    });
   }
   
   ionViewDidLoad() {
@@ -49,6 +51,7 @@ petrol = [
     this.comments.length = 0
     this.comments3.length = 0
     this.getComments();
+    this.database.getuser()
   }
 
   getComments(){

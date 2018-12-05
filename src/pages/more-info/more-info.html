@@ -1,11 +1,11 @@
 <ion-content>
   <div class="headercontainer">
     <div class="heading">{{businessName}}</div>
-    <!-- <ion-fab color="secondary">
+    <ion-fab color="secondary">
       <button ion-fab mini class="fab" color="secondary">
         <ion-icon name="navigate"></ion-icon>
       </button>
-    </ion-fab> -->
+    </ion-fab>
   </div>
   <div #map id="map"></div>
   <!-- {{businessName}}
@@ -32,18 +32,18 @@
   <div [ngSwitch]="action">
     <div class="productcontainer" *ngSwitchCase="'info'">
       <p class="label">
-        <ion-icon name="house"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
+        <ion-icon name="mail"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
         
 
       </p>
       <p class="label">
-        <ion-icon name="home"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
+        <ion-icon name="mail"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
       </p>
       <p class="label">
-        <ion-icon name="call"></ion-icon> Telephone Numer: <span class="text">{{businessTel}}</span>
+        <ion-icon name="navigate"></ion-icon> Telephone Numer: <span class="text">{{businessTel}}</span>
       </p>
       <p class="label">
-        <ion-icon name="person"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
+        <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
       </p>
       <p class="products">Products</p>
       <hr>
