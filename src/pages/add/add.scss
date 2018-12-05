@@ -1,6 +1,11 @@
 page-add {
+    ion-content{
+        background: $primary-color;
+    }
+
     .contents{
-        width: 80% !important;
+        width: 80%;
+        margin: 0 auto;
     }
     .imagecontainer{
         width: 15rem;

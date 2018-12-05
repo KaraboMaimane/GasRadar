@@ -9,7 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 })
 export class MyApp {
 
-  rootPage: string = 'LoginPage';
+  rootPage: string = 'AddPage';
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
  
