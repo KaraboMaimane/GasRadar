@@ -1,7 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import *as firebase from 'firebase/app';
+import * as moment from 'moment'
 import { Geolocation } from "@ionic-native/geolocation";
+
+declare var firebase;
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -14,10 +16,165 @@ export class DatabaseProvider {
   arrInfor = new Array();
   nearByOrg = new Array();
   newSeachedFarms = new Array();
+  database = firebase.database();
+  authenticate = firebase.auth();
+  dbRef;
+  state;
+  currentUserName;
+  username;
+  userKey;
+  currentUserImage;
+  currentUserID;
+  img;
+  currentUserPath;
+  comments2 = new Array();
+  defaultImages = ['../../assets/imgs/pic.jpg','../../assets/imgs/pic23.jpg','../../assets/imgs/pic24.jpg', '../../assets/imgs/pic22.jpg','../../assets/imgs/pic25.jpg']
   
   constructor( public geolocation: Geolocation) {
     console.log('Hello DatabaseProvider Provider');
     // this.checkUserState();
+  }
+
+  registerUser(Username,email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.createUserWithEmailAndPassword(email,password).then(()=>{
+        var user = firebase.auth().currentUser;
+        this.dbRef = 'users/' + user.uid;
+        this.database.ref(this.dbRef).push({
+          Username: Username,
+          img : this.defaultImages[Math.floor(Math.random() * 4)],
+          userType: "user"
+        })
+        accpt("user registered")
+      },Error=>{
+        rej(Error.message)
+      })
+    })
+  }
+  getuser(){
+    return new Promise ((accpt,rej)=>{
+      this.username = "";
+      this.img = "";
+      this.database.ref('users').on('value', (data: any) => {
+        var users =  data.val();
+        var user = firebase.auth().currentUser;
+        var  userIDs = Object.keys(users);
+        for (var x = 0; x < userIDs.length; x++){
+          var str1 = new String( userIDs[x]); 
+          var index = str1.indexOf( ":" ); 
+          var currentUserID = userIDs[x].substr(index + 1);
+          if (user.uid == currentUserID){
+            this.storeUsername(userIDs[x].substr(0,index));
+            this.database.ref('users/' + userIDs[x]).on('value', (data: any) => {
+              var Userdetails = data.val(); 
+              this.storeUserID(userIDs[x]);
+              var keys2:any = Object.keys(Userdetails);
+              var user = firebase.auth().currentUser;
+              this.storeCurrentUserImage(Userdetails[keys2[0]].img);
+              this.storeCurrentUsername(Userdetails[keys2[0]].Username);
+              this.storeUserKey(keys2[0])
+              this.storeCurrentUserPath(userIDs[x])
+              accpt(Userdetails[keys2])
+            })
+            break
+          }
+        }
+      })
+    })
+   }
+   storeUsername(username){
+    console.log(username)
+    this.username = username;
+  }
+
+  storeCurrentUserImage(img){
+    this.currentUserImage = img;
+    }
+    
+    storeCurrentUserPath(path){
+    this.currentUserPath = path;
+    }
+ 
+    storeUserKey(key){
+     this.userKey = key
+     console.log(this.userKey);
+    }
+ 
+    storeUserID(uid){
+     this.currentUserID = uid;
+   }
+  storeCurrentUsername(Username){
+    this.currentUserName =  Username;
+    console.log(this.currentUserName)
+    }
+
+    makeComment(key,comment:any){
+      return new Promise ((accpt,rej)=>{
+        var day = moment().format('MMMM Do YYYY, h:mm:ss a');
+        console.log(this.currentUserID)
+        this.database.ref('comments/' + this.currentUserID).push({
+          comment:comment,
+          date : day,
+          username: this.currentUserName
+        })
+        accpt("Comment Added")
+      })  
+    }
+
+    getComments(key){
+      return new Promise((accpt,rej)=>{
+        this.database.ref('comments/').on('value',(data2:any)=>{
+          var details = data2.val();
+          console.log(details)
+          let keys = Object.keys(details)
+          console.log(keys)
+          for(var i = 0; i < keys.length;i++){
+            var k = keys[i];
+            var l = 'comments/' + k;
+            this.database.ref(l).on('value',(data:any)=>{
+              var UserComments = data.val();
+              console.log(UserComments)
+              var keys2 = Object.keys(UserComments);
+              for(var j = 0; j < keys2.length;j++){
+                var k2 = keys2[j];
+                console.log(k2)
+                let obj = {
+                  comment: UserComments[k2].comment,
+                  date: moment(UserComments[k2].date,'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
+                  name: UserComments[k2].username
+                }
+                this.comments2.push(obj);
+              }
+              accpt(this.comments2)
+              console.log(this.comments2)
+             
+            })
+            
+          }
+        })
+      })
+    }
+
+  getUserState(){
+    return new Promise ((accpt, rej) =>{ 
+      this.authenticate.onAuthStateChanged(user =>{ 
+        if (user != null){
+          this.state = 1;
+        }
+        else{
+        this.state = 0;
+        }
+        accpt(this.state);
+       });
+    })
+  }
+
+  logout(){
+    console.log('exit')
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signOut();
+      accpt("log Out Success")
+    })
   }
 
   login(email: string, password: string){
