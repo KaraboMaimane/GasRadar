@@ -1,7 +1,45 @@
 page-tips {
-    .list2{
+//     .list2{
        
+//         // padding:5px;
+//         margin-bottom: 20px;
+//     }
+
+    .butts{
+border-radius: 50px;
+height: 50px;
+// top: 40px;
+width: 50px;
+    }
+.text{
+    bottom: 8px;
+    width: 30px;
+    height:40px;
+    padding: 0 0 0 15px;
+    }
+    .textc{
+        display: flex;
+        flex-direction: column;
+    background-color: white;
+    }.item{
+        margin-bottom: 1vh;
+    }
+    button{
+        bottom: -8px;
+    }
+    .list2{
+           
         // padding:5px;
         margin-bottom: 20px;
+    }
+    .datew{
+        font-weight: 30;
+        font-size: 12px;
+        float: right; 
+        margin-bottom: 1px;
+    }
+    .listline{
+        font-size: 3.1vh;
+        padding: 0 0 0 0;
     }
 }
