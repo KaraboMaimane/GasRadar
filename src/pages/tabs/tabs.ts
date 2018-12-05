@@ -16,12 +16,12 @@ import { IonicPage } from 'ionic-angular';
 export class TabsPage {
 
   tab3Root: string;
-  // tab2Root: string;
+  tab2Root: string;
   tab1Root: string;
 
   constructor(){
     this.tab1Root = 'MapPage';
-    // this.tab2Root = 'StatsPage';
+    this.tab2Root = 'StatsPage';
     this.tab3Root = 'TipsPage';
   }
 }

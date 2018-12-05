@@ -9,17 +9,11 @@ import { LoginPage } from '../pages/login/login';
   templateUrl: 'app.html'
 })
 export class MyApp {
-<<<<<<< HEAD
-
-  rootPage: string = "TabsPage";
-
-=======
   @ViewChild(Nav) nav: Nav;
 
   activePage: any;
->>>>>>> 09390e0a860d6990f1dd9da03b75554fb9990910
 
-  public rootPage: any;
+  public rootPage: any = 'TabsPage';
 
   constructor(private database:DatabaseProvider,public platform: Platform,public statusBar: StatusBar,public splashScreen: SplashScreen) {
     this.initializeApp();
