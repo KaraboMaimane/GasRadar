@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar color="primary-dark">
+    <ion-title align="center">Add A business</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <div class="contents">
+    <div class="imagecontainer">
+      <img [src]="url" alt="" class="image">
+      <input type="file" (change)="insertImage($event)" class="imagefile">
+      <ion-fab class="fabtn">
+        <button color="secondary" ion-fab mini>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+
+    <div class="formcontent">
+      <form #form="ngForm" (ngSubmit)="onAddBusiness(form)">
+        <input ngModel class="input" name="name" type="text" placeholder="Business Name" required />
+        <input ngModel class="input" name="address" type="text" placeholder="Address" required />
+        <input ngModel class="input" name="email" type="email" placeholder="E-Mail" required />
+        <input ngModel class="input" name="telephone" type="tel" placeholder="Telephone" required />
+
+        <input ngModel class="input" name="diesel" type="text" placeholder="Business Name" required />
+        <input ngModel class="input" name="p95" type="text" placeholder="Address" required />
+        <input ngModel class="input" name="p93" type="email" placeholder="E-Mail" required />
+        <input ngModel class="input" name="gas" type="tel" placeholder="Telephone" required />
+
+        <label class="business" for="business">Shop Type </label>
+        <select class="select, input" value="none" placeholder="business" ngModel name="business">
+
+            <option value="spaza">Spaza</option>
+            <option value="supermarket">Supermarket</option>
+            <option value="garage">Garage</option>
+          </select>
+        
+        <button ion-button color="secondary" class="submit">Add Business</button>
+      </form>
+    </div>
+  </div>
+</ion-content>

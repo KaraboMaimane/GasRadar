@@ -1,11 +1,15 @@
 page-map {
+     .fab{
+          width: 4rem;
+          height: 4rem;;
+     }
      .searchcontainer{
           height: 10rem;
           background: $primary-color;
           // border-bottom-right-radius:5rem;
           // border-bottom-left-radius:5rem;
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
-          z-index: 5;
+          z-index: 1;
           position: fixed;
           width: 100%;
      }
@@ -53,12 +57,20 @@ page-map {
         //       border-radius: 12px;
         //   }
      }
-     .icon{
+     .icon4{
          position:absolute;
          font-weight: bold;
          margin: 90px 0 0 160px;
          color:rgba(grey,0.4);
 
+     }
+     ion-fab{
+          position: fixed !important;
+          top: 3rem;
+          button{
+               width: 5rem;
+               height: 5rem;
+          }
      }
 
      .search{
@@ -171,6 +183,11 @@ page-map {
             padding: 5px 10px 5px 25px;
             text-align: center;
           }
+    }
+
+    .fab{
+         color: white !important;
+         z-index: -100 !important;
     }
 
     body {
