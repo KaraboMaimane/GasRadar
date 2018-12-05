@@ -1,5 +1,7 @@
 page-add {
-
+    .contents{
+        width: 80% !important;
+    }
     .imagecontainer{
         width: 15rem;
         // background: red;
@@ -29,7 +31,7 @@ page-add {
         border-radius: 10rem;
         border: 0.2px solid rgba(black, .1);
         background: rgba(rgb(228, 228, 228), .5);
-        width: 100%;
+        // width: 100%;
         display: block;
         margin-top: 2.5rem;
         box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
