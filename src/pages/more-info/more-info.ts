@@ -78,15 +78,11 @@ export class MoreInfoPage implements OnInit{
     this.diesel= this.companyInfor.diesel;
     this.p93= this.companyInfor.petrol93;
     this.p95 = this.companyInfor.petrol95;
-<<<<<<< HEAD
-this.gas = this.companyInfor.gas;
-=======
     this.gas=this.companyInfor.gas
     this.newlong= this.companyInfor.newlon;
     this.newlat= this.companyInfor.newlat
 
     
->>>>>>> 3252ef8273727bbd2b91d78455fd4b06d2c4c0f8
 
   
   }

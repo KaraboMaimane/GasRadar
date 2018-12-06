@@ -3,23 +3,9 @@
   "integrations": {
     "cordova": {}
   },
-<<<<<<< HEAD
+
 
   "type": "ionic-angular",
   "app_id": ""
-}
 
-=======
-<<<<<<< HEAD
-  "type": "ionic-angular",
-  "app_id": ""
 }
-=======
-  "type": "ionic-angular"
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 89267e46644eff2525a07a46e9ea5b820ab1e7e0
->>>>>>> 6d29239eb125db5061df72f42f139986d951c306
->>>>>>> 3252ef8273727bbd2b91d78455fd4b06d2c4c0f8

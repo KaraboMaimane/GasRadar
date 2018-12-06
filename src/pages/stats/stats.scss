@@ -1,7 +1,7 @@
 page-stats {
 .bar{
     background-color: $primary-color;
-    height: 27rem;
+    height: 20rem;
     // margin-top: -10px;
     bottom: 0;
     box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
@@ -13,7 +13,16 @@ page-stats {
     box-shadow: 2px 4px 8px rgba(rgb(88, 88, 88),0.7);
     width: 90%;
     // border-radius: 10px;
-    margin: 110px auto ;
+    margin: 40px auto ;
+    img{
+        height: 180px;
+    // text-align: center;
+    // box-shadow: inset 0 0 5px rgba(rgb(0, 0, 0), 0.5);
+    // box-shadow: 2px 4px 8px rgba(rgb(88, 88, 88),0.7);
+    width: 100%;
+    // border-radius: 10px;
+    // margin: 40px auto ;  
+    }
 }
 .texts{
     color: #FFC107;
@@ -28,7 +37,7 @@ page-stats {
     display: flex;
     flex-flow: row;
     // justify-content: space-between;
-    margin: 100px auto;
+    margin: 20px auto;
     background-color: white;
     height: 80px;
     box-shadow: 2px 1px 1px 1px  rgba(rgb(88, 88, 88),0.7);
@@ -63,15 +72,17 @@ page-stats {
         text-align: center;
         // padding-top: 30px;
         // background-color: blue;
-        width: 40%;
+        width: 50%;
         h2{
             color: black;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
            margin: 10px 5px 0 5px ;
         }
         img{
 
             height: 40px;
+            // font-size: 1.2rem;
+            width: 45%;
             
             // width: 40px;
         }
@@ -90,9 +101,12 @@ page-stats {
         }
     }
   }
-  
+  .head{
+      text-align: center;
+      color: #FFC107;
+  }
 .list{
-    margin-top: 50px;
+    margin-top: 110px;
     .card{
          display: flex;
          width: 95vw;
