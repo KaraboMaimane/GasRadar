@@ -53,6 +53,7 @@
             <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
           </h3>
       </div>
+<<<<<<< HEAD
           <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
         </ion-item>
       </ion-list>
@@ -109,3 +110,22 @@
 
     
  
+=======
+  
+</div>
+</ion-card-content>
+</ion-content>
+<ion-footer>
+  <div [ngSwitch]="action">
+    <div class="addtipseg" *ngSwitchCase="'addtip'">
+      
+    <div class="textc">
+  <ion-row>
+  <ion-textarea block text-wrap maxLength="80" [(ngModel)]="newmessage" placeholder="Add a tip" class="text"></ion-textarea>
+  <button round ion-button color="primary" (click)="placeComment()" class="butts" icon-only><ion-icon name="md-send"></ion-icon></button>
+  </ion-row>
+  </div>
+  </div>
+  </div>
+  </ion-footer>
+>>>>>>> a121985bc2e98a7096fce3ef324606a7059191d9

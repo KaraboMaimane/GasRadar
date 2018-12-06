@@ -2,22 +2,22 @@
   <div class="searchcontainer">
       <!-- <button ion-button (click)="nextPage2()">login</button> -->
     <div class="combo">
-      <img src="assets/imgs/Untitled.png" class="image" alt="" />
+      <img src="../../assets/imgs/Untitled.png" class="image" alt="" />
       <div class="logo">
         <i>
           <h1 class="text">GasRadar</h1>
         </i>
-        <ion-fab right>
+        <!-- <ion-fab right>
           <button (click)="nextPage('AddPage')" color="secondary" ion-fab>
             <ion-icon name="add"></ion-icon>
           </button>
-        </ion-fab>
+        </ion-fab> -->
         
       </div>
     </div>
 
     <div class="barcontainer">
-       
+  
       <input
       #address
       name="searchs"
@@ -28,18 +28,21 @@
       
       />
   
-    <ion-item class = "item1" >
+    <!-- <ion-item class = "item1" > -->
 
 
-        <ion-label>Fuel Type</ion-label>
+        <!-- <ion-label>Fuel Type</ion-label>
         <ion-select [(ngModel)]="fuelType"  (ionChange)="input()">
             <ion-option value="Gas">Gas</ion-option>
           <ion-option value="Petrol">Petrol</ion-option>
           <ion-option value="Diesel">Diesel</ion-option>
-        </ion-select>
-      </ion-item>
-    </div>
-
+        </ion-select> -->
+        
+ 
+     </div>
+    <!-- <div class="item1">
+        <ion-icon name="search"></ion-icon>
+    </div> -->
   </div>
 
   <!-- <div class="cardcontainer" >
@@ -57,6 +60,7 @@
        
   </div>
 -->
+
     <div #map id="map">
     </div>
 </ion-content>

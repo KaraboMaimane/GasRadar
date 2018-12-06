@@ -122,13 +122,13 @@ filter;
       });
    
       // Add circle overlay and bind to marker
-      var circle = new google.maps.Circle({
-        map: this.map,
-        radius: 10000,    // 10 miles in metres
-        fillColor: '#FFC107',
-        strokeColor: 'transparent'
-      });
-      circle.bindTo('center', marker, 'position');
+      // var circle = new google.maps.Circle({
+      //   map: this.map,
+      //   radius: 10000,    // 10 miles in metres
+      //   fillColor: '#FFC107',
+      //   strokeColor: 'transparent'
+      // });
+      // circle.bindTo('center', marker, 'position');
 
       loader.dismiss();
       firebase
@@ -153,7 +153,8 @@ for(var x = 0; x < this.arrayinfor.length;x++){
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
             icon: {
-              url: `${this.media.fuelpump}`
+              url: `${this.media.fuelpump}`,
+              size: {height:100 , width:40}
             }
           });
 
@@ -297,7 +298,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
       
         }
         this.map = new google.maps.Map(document.querySelector('#map'), {
-          zoom: 12,
+          zoom: 8,
           center: { lat:  this.latii, lng:this.long  },
           disableDefaultUI: true,
           styles: this.media.mapstyle
@@ -307,9 +308,12 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
         let marker = new google.maps.Marker({
           map: this.map,
+          zoom: 8,
           position: {lat: this.latii, lng: this.long },
           icon: {
-            url: `${this.media.man}`
+            url: `${this.media.man}`,
+            // size: {height:31, width:31}
+         
           }
 
           
