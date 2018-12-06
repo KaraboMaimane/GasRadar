@@ -1,8 +1,20 @@
+<ion-header>
+
+  <ion-navbar color="primary-dark">
+    <ion-title align="center">Add A business</ion-title>
+  </ion-navbar>
+
+</ion-header>
 <ion-content>
   <div class="contents">
     <div class="imagecontainer">
-      <img src="../../assets/imgs/14222215_1072936816146462_1070273367871041918_n.jpg" alt="" class="image">
+      <img [src]="url" alt="" class="image">
       <input type="file" (change)="insertImage($event)" class="imagefile">
+      <ion-fab class="fabtn">
+        <button color="secondary" ion-fab mini>
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
     </div>
 
     <div class="formcontent">
@@ -12,13 +24,21 @@
         <input ngModel class="input" name="email" type="email" placeholder="E-Mail" required />
         <input ngModel class="input" name="telephone" type="tel" placeholder="Telephone" required />
 
-        <select class="select, input" placeholder="business" ngModel name="business">
-          <option value="spaza">Spaza</option>
-          <option value="supermarket">Supermarket</option>
-          <option value="garage">Garage</option>
-        </select>
+        <input ngModel class="input" name="diesel" type="number" placeholder="Diesel Price" required />
+        <input ngModel class="input" name="p95" type="number" placeholder="95 Price" required />
+        <input ngModel class="input" name="p93" type="number" placeholder="93 Price" required />
+        <input ngModel class="input" name="gas" type="number" placeholder="Gas Price" required />
+
+        <label class="business" for="business">Shop Type </label>
+        <select class="select, input" value="none" placeholder="business" ngModel name="business">
+
+            <option value="spaza">Spaza</option>
+            <option value="supermarket">Supermarket</option>
+            <option value="garage">Garage</option>
+          </select>
+        
         <button ion-button color="secondary" class="submit">Add Business</button>
       </form>
-    </div> 
+    </div>
   </div>
-</ion-content> 
+</ion-content>

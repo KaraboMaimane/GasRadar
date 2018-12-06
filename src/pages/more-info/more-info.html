@@ -1,11 +1,11 @@
 <ion-content>
   <div class="headercontainer">
     <div class="heading">{{businessName}}</div>
-    <!-- <ion-fab color="secondary">
+    <ion-fab color="secondary">
       <button ion-fab mini class="fab" color="secondary">
         <ion-icon name="navigate"></ion-icon>
       </button>
-    </ion-fab> -->
+    </ion-fab>
   </div>
   <div #map id="map"></div>
   <!-- {{businessName}}
@@ -14,17 +14,6 @@
   {{businessOwner}}
   {{diesel}}
   {{p93}}
-<<<<<<< HEAD
-  {{p95}}
-
-  <!-- physical address -->
-<br><h2>Physical Address</h2>
-  {{streetName2}}
-  {{areaName2}}
-  {{areaLocation2}}
-  {{postCode2}}
-</ion-content>
-=======
   {{p95}} -->
   <div class="segcontainer">
     <ion-segment color class="md segment segment-md" [(ngModel)]="action">
@@ -43,29 +32,28 @@
   <div [ngSwitch]="action">
     <div class="productcontainer" *ngSwitchCase="'info'">
       <p class="label">
-        <ion-icon name="house"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
+        <ion-icon name="mail"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
         
 
       </p>
       <p class="label">
-        <ion-icon name="home"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
+        <ion-icon name="mail"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
       </p>
       <p class="label">
-<<<<<<< HEAD
-        <ion-icon name="call"></ion-icon> Telephone Numer: <span class="text">{{businessTel}}</span>
-=======
+
         <ion-icon name="navigate"></ion-icon> Telephone Number: <span class="text">{{businessTel}}</span>
->>>>>>> tips
+
       </p>
       <p class="label">
-        <ion-icon name="person"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
+        <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
       </p>
       <p class="products">Products</p>
       <hr>
       <div class="fuelcontainer">
         <div class="fuel">
           <!-- <ion-icon class="gas" name="navigate"></ion-icon> -->
-          <i class="fas fa-gas-pump gas"></i>
+          <i class="mdi mdi-gas-cylinder mdi-24px gas"></i>
+          <!-- <i class="fas fa-gas-pump gas"></i> -->
           <p class="label"> Gas </p>
           <p class="text">R{{gas}}/l</p>
         </div>
@@ -107,4 +95,3 @@
     </div>
   </div>
 </ion-content>
->>>>>>> 711e817762814f3fe9791595d44e4f0ae7db1778

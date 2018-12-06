@@ -1,11 +1,28 @@
 page-add {
     ion-content{
-        background: $primary-color;
+        background: $primary-color !important;
+        
+    }
+
+    .addicon{
+        background: $accent-color !important;
+        padding: 1rem;
+        font-size: 2rem;
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+        position: fixed;
+        
     }
 
     .contents{
-        width: 80%;
+        width:90%;
         margin: 0 auto;
+        background: $primary-color-text;
+        padding: 2rem;
+        border-radius: 2rem;
+        box-shadow: 0 1rem 2rem rgba($primary-text-color, .4);
+        margin-top: 1rem;
     }
     .imagecontainer{
         width: 15rem;
@@ -19,13 +36,16 @@ page-add {
         border-radius: 50%;
         margin: 0 auto;
         display: block;
+        box-shadow:  0 1rem 2rem rgba($primary-text-color, .2);
     }
     .imagefile{
         width: 15rem;
         height: 15rem;
-        position: fixed;
-        top: 0rem;
+        position: absolute;
+        top: 3.3rem;
+        z-index: 100;
         opacity: 0;
+        // background: red;
     }
 
     .input{
@@ -73,7 +93,25 @@ page-add {
        display: block;
        width: 100%;
        margin: 0 auto;
-       margin-top: 1rem;
+       margin-top: 2rem;
        box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
     }
+
+    .fabtn{
+        height: 5rem;
+        width: 5rem;
+        position: absolute;
+        transform: translateY(-4.5rem);
+        left: 18rem;
+        z-index: 0;
+    }
+
+    .business{
+    //    transform:  translateY(5rem);s
+    position: relative;
+    top: 2rem;
+    left: 1rem;
+    color: #757575;
+    }
+    
 }

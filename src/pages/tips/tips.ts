@@ -39,9 +39,9 @@ key;
 
   shownGroup = null;
 
-  constructor(public toastCtrl: ToastController,private database: DatabaseProvider,public navCtrl: NavController, public navParams: NavParams) {
-    this.database.getuser().then((data:any)=>{
-        console.log(data);
+  constructor(public toastCtrl: ToastController,private database:DatabaseProvider,public navCtrl: NavController, public navParams: NavParams) {
+    this.database.getuser().then((data)=>{
+      console.log(data);
     });
   }
   
@@ -50,6 +50,7 @@ key;
     this.comments.length = 0
     this.comments3.length = 0
     this.getComments();
+    this.database.getuser()
   }
 toggleGroup(group) {
     if (this.isGroupShown(group)) {
