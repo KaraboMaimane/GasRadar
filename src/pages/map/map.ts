@@ -139,8 +139,9 @@ for(var x = 0; x < this.arrayinfor.length;x++){
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
             icon: {
-              url: `${this.media.fuelpump}`,
-              size: {height:100 , width:40}
+              // url: `${this.media.shop}`,
+              url:this.media.house,
+              // size: {height:200 , width:80}
             }
           });
 
