@@ -39,9 +39,35 @@ export class DatabaseProvider {
     // this.checkUserState();
   }
 
-  registerUser(Username, email, password) {
-    return new Promise((accpt, rej) => {
-      this.authenticate.createUserWithEmailAndPassword(email, password).then(() => {
+
+
+  logout(){
+    console.log('exit')
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signOut();
+      accpt("log Out Success")
+    })
+  }
+
+ 
+  login(email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signInWithEmailAndPassword(email,password).then(()=>{
+        accpt("Success")
+      },Error =>{
+        rej(Error.message)
+      })
+    }) 
+
+  }
+
+  register(name: string, email: string,  password: string){
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+
+  registerUser(Username,email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.createUserWithEmailAndPassword(email,password).then(()=>{
         var user = firebase.auth().currentUser;
         this.dbRef = 'users/' + user.uid;
         this.database.ref(this.dbRef).push({
@@ -229,22 +255,7 @@ export class DatabaseProvider {
     })
   }
 
-  logout() {
-    console.log('exit')
-    return new Promise((accpt, rej) => {
-      this.authenticate.signOut();
-      accpt("log Out Success")
-    })
-  }
-
-  login(email: string, password: string) {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
-  }
-
-  register(name: string, email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
-  }
-
+  
   resetPassword(email: string) {
     return firebase.auth().sendPasswordResetEmail(email);
   }

@@ -73,7 +73,6 @@ export class LoginPage {
  }
 
  resetPassword(email:string){
-
- }
-
-}
+      this.navCtrl.setRoot('TabsPage');
+    }
+  }
