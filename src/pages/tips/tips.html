@@ -1,28 +1,32 @@
 <ion-header>
     <ion-navbar color="primary">
+      <button ion-button (click)="logout()" icon-only><ion-icon name="md-log-out" class="logout"></ion-icon></button>
       <ion-title align="center">FUEL TIPS</ion-title>
     </ion-navbar>
   </ion-header>
   <br>
   <ion-content >
     <ion-card-content>
-      <div class="segmt">
+     
           <ion-segment color class="segment-md" [(ngModel)]="action">
             <ion-segment-button class="segbutt" value="tips">
-              TIPS
+            Gas
             </ion-segment-button>
             <ion-segment-button class="ion-segment-button" value="addtip">
-              USERS TIPS
+             Petrol
             </ion-segment-button>
+            <ion-segment-button class="ion-segment-button" value="addtip">
+                Diesel
+               </ion-segment-button>
           </ion-segment>
-        </div>
       
         <div [ngSwitch]="action">
             <div class="tipscontainer" *ngSwitchCase="'tips'">
-  <button ion-button color="secondary" full block class="accordion">Petrol</button>    
-   <!-- <ion-label align="center"><b>Petrol:</b></ion-label> -->
+     <button ion-button color="secondary" full (click)="dieselview()" block class="accordion">Petrol</button>
+   
   <ion-list class="title">
     <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+  
       <div maxLength="30" >
       <h3 class="listline">
         <b>{{d.title}}</b>
@@ -32,7 +36,7 @@
       <div *ngIf="isGroupShown(i)" align="justify" class="descr">{{d.description}}</div>
     </ion-item>
   </ion-list>
-  <button ion-button color="secondary" full block class="accordion">Gas</button>
+  <button ion-button color="secondary" full (click)="gasview()" block class="accordion">Gas</button>
   <ion-list class="title">
       <ion-item *ngFor="let d of gas; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
         <div maxLength="30">
@@ -44,7 +48,7 @@
         <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
       </ion-item>
     </ion-list>
-    <button ion-button color="secondary" full block class="accordion">Diesel</button>
+    <button ion-button color="secondary" full (click)="dieselview()" block class="accordion">Diesel</button>
     <ion-list class="title">
         <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
           <div maxLength="30">
@@ -53,21 +57,20 @@
             <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
           </h3>
       </div>
-<<<<<<< HEAD
           <div *ngIf="isGroupShown(i)" align="justify">{{d.description}}</div>
         </ion-item>
       </ion-list>
   </div>
   </div>
-  <div [ngSwitch]="action">
+</ion-card-content>
+  <!-- <div [ngSwitch]="action">
   <div class="addtipseg" *ngSwitchCase="'addtip'">
       <div>
           <ion-list *ngFor="let i of comments3">
-              <div>
+              <ion-card class="carding">
                   <ion-item class="control">
                 <ion-thumbnail item-start>
-                  <!-- <img src="{{i.img}}"> -->
-                  <img src='../../assets/imgs/pic22.JPG' class="ava">
+                  <img src='assets/imgs/pic22.JPG' class="ava">
                 </ion-thumbnail>
                 <h1 capitalize class="listline">
                   <b>{{i.name}}</b>
@@ -81,7 +84,7 @@
                       
                   
                  </ion-item>
-                </div>
+              </ion-card>
                 </ion-list>
 
     
@@ -89,8 +92,8 @@
        
         </div>
     
- </div>
-</ion-card-content>
+ </div> -->
+
   </ion-content>
   <ion-footer>
     <div [ngSwitch]="action">
@@ -105,27 +108,3 @@
     </div>
     </div>
     </ion-footer>
-
-
-
-    
- 
-=======
-  
-</div>
-</ion-card-content>
-</ion-content>
-<ion-footer>
-  <div [ngSwitch]="action">
-    <div class="addtipseg" *ngSwitchCase="'addtip'">
-      
-    <div class="textc">
-  <ion-row>
-  <ion-textarea block text-wrap maxLength="80" [(ngModel)]="newmessage" placeholder="Add a tip" class="text"></ion-textarea>
-  <button round ion-button color="primary" (click)="placeComment()" class="butts" icon-only><ion-icon name="md-send"></ion-icon></button>
-  </ion-row>
-  </div>
-  </div>
-  </div>
-  </ion-footer>
->>>>>>> a121985bc2e98a7096fce3ef324606a7059191d9

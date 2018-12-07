@@ -8,6 +8,7 @@ import { MoreInfoPage } from "../more-info/more-info";
 import { DatabaseProvider } from "../../providers/database/database";
 import { MediaProvider } from "../../providers/media/media";
 import { LoginPage } from "../login/login";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 declare var google;
 declare var firebase;
 
@@ -33,6 +34,7 @@ export class MapPage{
   lat2;
   icon;
   lng2;
+ arrys =[]
   arrayinfor = new Array();
 filter;
     searchs:string;
@@ -54,7 +56,7 @@ filter;
   ) { 
     this.mapstyle = this.media.mapstyle;
     this.ionViewDidLoad();
-    
+   
   }
 
 
@@ -67,10 +69,11 @@ filter;
       this.database.getNearByOrganizations(radius ,data).then((data:any)=>{
         console.log("getNearby data");
         console.log(data);
-
-        this.arrayinfor = data ;    
+       
+        this.arrayinfor = data;    
       })
       })
+    
     })
 
    
@@ -83,17 +86,6 @@ filter;
   }
 
  
-
-  check(){
-    this.database.getUserState().then((data)=>{
-      if (data == 1){
-        console.log('user is online')
-      }
-      if (data == 0){
-        console.log('user is offline')
-      }
-    })
-  }
   initMap() {
  
 
@@ -102,7 +94,7 @@ filter;
 
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 3000
+      duration: 1000
     });
     loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
@@ -123,13 +115,13 @@ filter;
       });
    
       // Add circle overlay and bind to marker
-      // var circle = new google.maps.Circle({
-      //   map: this.map,
-      //   radius: 10000,    // 10 miles in metres
-      //   fillColor: '#FFC107',
-      //   strokeColor: 'transparent'
-      // });
-      // circle.bindTo('center', marker, 'position');
+      var circle = new google.maps.Circle({
+        map: this.map,
+        radius: 10000,    // 10 miles in metres
+        fillColor: '#FFC107',
+        strokeColor: 'transparent'
+      });
+      circle.bindTo('center', marker, 'position');
 
       loader.dismiss();
       firebase
@@ -144,26 +136,44 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
 
   console.log("in");
-  
+  console.log(this.arrayinfor[x].icon);
   console.log( this.arrayinfor);
   console.log(parseFloat(this.arrayinfor[x].lat));
   console.log( parseFloat(this.arrayinfor[x].lng));
   
   if(this.arrayinfor[x].icon == "spaza"){
     this.icon = this.media.shop;
-    
+  }else{
+    this.icon = this.media.fuelpump;
   }
+
+  let objj = {
+   icon:this.icon
+  }
+
+
+
+  this.arrys.push(objj);
+  
+  console.log(this.icon);
   
 
   let marker = new google.maps.Marker({
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
             icon: {
-           url: `${this.media.shop}`,
+           url:this.arrys[x].icon,
               //url:this.media.house,
               //  size: {height:200 , width:80}
             }
           });
+          // var infowindow = new google.maps.InfoWindow({
+          //   content:"R"+ this.arrayinfor[x].gas,
+
+
+          // });
+
+          // infowindow.open(this.map, marker);
 
           let obj = {
                     name: this.arrayinfor[x].name,
@@ -412,13 +422,29 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                 console.log( parseFloat(this.arrayinfor[x].lng));
                 
                 
+  if(this.arrayinfor[x].icon == "spaza"){
+    this.icon = this.media.shop;
+  }else{
+    this.icon = this.media.fuelpump;
+  }
+
+  let objj = {
+   icon:this.icon
+  }
+
+
+
+  this.arrys.push(objj);
+  
+  console.log(this.icon);
+                
                 
               
                 let marker = new google.maps.Marker({
                           position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
                           map: this.map,
                           icon: {
-                            url: `${this.media.fuelpump}`
+                            url: this.arrys[x].icon
                           }
                         });
               

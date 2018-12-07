@@ -1,7 +1,7 @@
 page-stats {
 .bar{
     background-color: $primary-color;
-    height: 20rem;
+    height: 10rem;
     // margin-top: -10px;
     bottom: 0;
     box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
@@ -76,7 +76,7 @@ page-stats {
         h2{
             color: black;
             font-size: 1.5rem;
-           margin: 10px 5px 0 5px ;
+           margin: 5px 5px 0 5px ;
         }
         img{
 
@@ -96,8 +96,8 @@ page-stats {
             // margin-left: 100px;
         }
         h2{
-            font-size: 1.5em;
-            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            margin: 5px 0 0 0;
         }
     }
   }
@@ -106,7 +106,7 @@ page-stats {
       color: #FFC107;
   }
 .list{
-    margin-top: 110px;
+    margin-top: 190px;
     .card{
          display: flex;
          width: 95vw;

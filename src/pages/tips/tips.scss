@@ -10,10 +10,18 @@ page-tips {
     font-size: 13px;
     
     }
+    .logout{
+        margin-top: -7px;
+    }
 .descr{
     size: 12px;
 }
-    
+  .carding{
+   margin-top: 1px;
+   margin-bottom: -20px;
+   box-shadow: 0 0 10px grey;
+   border-radius: 5px;
+  }  
     .butts{
         height: 50px;
         width: 50px;
@@ -26,11 +34,9 @@ page-tips {
         margin-bottom: 1vh;
     }
     button{
-
         bottom: -8px;
     }
     .list2{
-
         margin-bottom: 20px;
     }
     .datew{
@@ -64,3 +70,6 @@ page-tips {
     }
     
 }
+
+
+

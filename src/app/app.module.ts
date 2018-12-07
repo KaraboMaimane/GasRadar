@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
+import {HttpClientModule} from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { DatabaseProvider } from '../providers/database/database';
@@ -25,7 +26,7 @@ import { LoginPage } from '../pages/login/login';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LoginPageModule,
-    TabsPageModule
+    TabsPageModule,HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

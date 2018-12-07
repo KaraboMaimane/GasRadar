@@ -13,22 +13,12 @@ export class MyApp {
 
   activePage: any;
 
-  public rootPage: any = 'TabsPage';
+   rootPage: any = 'TabsPage';
 
   constructor(private database:DatabaseProvider,public platform: Platform,public statusBar: StatusBar,public splashScreen: SplashScreen) {
     this.initializeApp();
    
-    if('Log-Out')
-    this.database.getUserState().then(data =>{
-      if(data == 1){
-        this.rootPage = TabsPage
-        console.log('this user is online')
-      }
-      if(data == 0){
-        this.rootPage = LoginPage
-        console.log('this user is offline')
-      }
-    })
+ 
   }
 
   initializeApp() {

@@ -423,7 +423,8 @@ export class DatabaseProvider {
             gas: infor[k].gas,
             petrol93: infor[k].petrol93,
             petrol95: infor[k].petrol95,
-            diesel: infor[k].diesel
+            diesel: infor[k].diesel,
+            icon:infor[k].icon
           };
         
           this.arrInfor.push(obj);
