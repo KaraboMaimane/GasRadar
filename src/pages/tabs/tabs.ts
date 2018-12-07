@@ -42,12 +42,11 @@ export class TabsPage {
       if (data == 1){
         this.database.getuser().then((data)=>{
           console.log(data);
-          this.navCtrl.setRoot(this.tab1Root)
+          
         })
         console.log('user is online')
       }
       if (data == 0){
-        this.navCtrl.setRoot(this.logg)
         console.log('user is offline')
       }
     })

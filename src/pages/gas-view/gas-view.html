@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>GasView</ion-title>
+    <ion-buttons end>
+        <button ion-button color="dark" round (click)="close()"> <ion-icon name="md-close"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div [ngSwitch]="action">
+        <div class="tipscontainer" *ngSwitchCase="'tips'">
+
+
+<ion-list class="title">
+<ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+  <div maxLength="30" >
+  <h3 class="listline">
+    <b>{{d.title}}</b>
+    <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
+  </h3>
+</div>
+  <div *ngIf="isGroupShown(i)" align="justify" class="descr">{{d.description}}</div>
+</ion-item>
+</ion-list>
+</div>
+</div>
+</ion-content>

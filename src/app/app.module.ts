@@ -25,14 +25,12 @@ import { LoginPage } from '../pages/login/login';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    LoginPageModule,
-    TabsPageModule,HttpClientModule
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TabsPage,
-    LoginPage
+    
   ],
   providers: [
     StatusBar,

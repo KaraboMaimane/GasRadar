@@ -20,7 +20,8 @@ comments = [];
 comments3 = [];
 newmessage;
 key;
-action="tips"
+action="gas";
+
 // x = [{ title: "Defrost frozen food", description: "The heat energy that would be needed to bring down the food's temperature to room temperature will be saved."},
   
 // ]
@@ -123,3 +124,5 @@ placeComment(newmessage){
   //   modal.present();
   // }
 }
+
+
