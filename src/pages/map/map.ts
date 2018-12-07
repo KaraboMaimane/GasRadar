@@ -386,12 +386,15 @@ for(var x = 0; x < this.arrayinfor.length;x++){
           icon: {
             url: `${this.media.man}`,
             // size: {height:31, width:31}
-         
           }
-
-          
-          
         });
+        var circle = new google.maps.Circle({
+          map: this.map,
+          radius: 10000,    // 10 miles in metres
+          fillColor: '#FFC107',
+          strokeColor: 'transparent'
+        });
+        circle.bindTo('center', marker, 'position');
         console.log(this.latii, this.long)
   
   
