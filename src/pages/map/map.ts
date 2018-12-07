@@ -31,6 +31,7 @@ export class MapPage{
   pos = {};
   address;
   lat2;
+  icon;
   lng2;
   arrayinfor = new Array();
 filter;
@@ -72,6 +73,8 @@ filter;
       })
       })
     })
+
+   
 
     setTimeout(()=>{
 
@@ -140,21 +143,27 @@ console.log("out");
 console.log(this.arrayinfor);
 for(var x = 0; x < this.arrayinfor.length;x++){
 
+
+
   console.log("in");
   
   console.log( this.arrayinfor);
   console.log(parseFloat(this.arrayinfor[x].lat));
   console.log( parseFloat(this.arrayinfor[x].lng));
   
-  
+  if(this.arrayinfor[x].icon == "spaza"){
+    this.icon = this.media.shop;
+    
+  }
   
 
   let marker = new google.maps.Marker({
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
             icon: {
-              url: `${this.media.fuelpump}`,
-              size: {height:100 , width:40}
+           url: `${this.media.shop}`,
+              //url:this.media.house,
+              //  size: {height:200 , width:80}
             }
           });
 
