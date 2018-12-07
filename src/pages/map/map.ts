@@ -59,7 +59,8 @@ filter;
 
   ionViewDidLoad() {
    
-   
+    this.check();
+  
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
       
@@ -79,9 +80,8 @@ filter;
     }, 5000)
   }
 
-  ionViewDidLoad(){
-    this.check();
-  }
+ 
+    
 
   check(){
     this.database.getUserState().then((data)=>{

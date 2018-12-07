@@ -21,7 +21,7 @@
         Information
       </ion-segment-button>
       <ion-segment-button class="segbtn" value="gallery">
-        Gallery
+        PRICE
       </ion-segment-button>
       <!-- <ion-segment-button class="segbtn" value="comment">
         Comment
@@ -31,7 +31,35 @@
 
   <div [ngSwitch]="action">
     <div class="productcontainer" *ngSwitchCase="'info'">
-      <p class="label">
+      <ion-list>
+        <ion-item>
+            <ion-icon name="at" item-start></ion-icon>
+            {{businessEmail}}
+     
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="mail" item-start></ion-icon>
+            {{streetName2}} <br>
+            {{areaName2}} <br>
+            {{areaLocation2}} <br>
+            {{postCode2}} 
+          
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="call" item-start></ion-icon>
+            {{businessTel}}
+          
+        </ion-item>
+
+        <ion-item>
+            <ion-icon name="person" item-start></ion-icon>
+            {{businessOwner}}
+          
+        </ion-item>
+      </ion-list>
+      <!-- <p class="label">
         <ion-icon name="mail"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
         
 
@@ -46,8 +74,12 @@
       </p>
       <p class="label">
         <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
-      </p>
-      <p class="products">Products</p>
+      </p> -->
+    
+
+    </div>
+    <div class="loginContainer" *ngSwitchCase="'gallery'">
+        <p class="products">Products</p>
       <hr>
       <div class="fuelcontainer">
         <div class="fuel">
@@ -80,15 +112,13 @@
           <p class="label"><ion-icon name="navigate"></ion-icon> Petrol(95): <span class="text">{{p95}}</span></p>
           <p class="label"><ion-icon name="navigate"></ion-icon> Diesel: <span class="text">{{diesel}}</span></p> -->
       </div>
-
-    </div>
-    <div class="loginContainer" *ngSwitchCase="'gallery'">
-      <div id="cards">
+      
+      <!-- <div id="cards">
         <img src="https://lh3.googleusercontent.com/B8GXkvZEfgP99C4IRqGjLsdwpfQNyUPMdIJF2-W12ZvFt9Yg4zW05_snxMzsLjgAIoobB0MG3niK8d4A6p6R6Q=s750"
           alt="">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Spaza_shop_in_Joe_Slovo_Park.JPG/1024px-Spaza_shop_in_Joe_Slovo_Park.JPG"
           alt="">
-      </div>
+      </div> -->
     </div>
     <div class="loginContainer" *ngSwitchCase="'comment'">
 
