@@ -371,7 +371,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
       
         }
         this.map = new google.maps.Map(document.querySelector('#map'), {
-          zoom: 8,
+          zoom: 12,
           center: { lat:  this.latii, lng:this.long  },
           disableDefaultUI: true,
           styles: this.media.mapstyle

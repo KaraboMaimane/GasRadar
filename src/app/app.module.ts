@@ -13,6 +13,7 @@ import {LoginPageModule} from '../pages/login/login.module';
 import {TabsPageModule} from '../pages/tabs/tabs.module';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 // import { StatsPage } from '../pages/stats/stats';
 
 
@@ -37,7 +38,7 @@ import { LoginPage } from '../pages/login/login';
     SplashScreen,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider,
+    DatabaseProvider,LaunchNavigator,
     MediaProvider
   ]
 })

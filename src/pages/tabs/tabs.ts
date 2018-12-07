@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
-import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the TabsPage page.
@@ -33,16 +32,11 @@ export class TabsPage {
     this.check();
   }
 
-  ionViewDidEnter(){
-    this.ionViewDidLoad();
-  }
-
   check(){
     this.database.getUserState().then((data)=>{
       if (data == 1){
         this.database.getuser().then((data)=>{
           console.log(data);
-          
         })
         console.log('user is online')
       }
