@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { signUp} from '../../app/GeoArray';
 import geoArr from '../../app/GlobalGeo';
 import { MediaProvider } from '../../providers/media/media';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 declare var google;
 
 /**
@@ -47,11 +48,11 @@ export class MoreInfoPage implements OnInit{
   areaName2;
   postCode2;
   newlong;
-
+address;
   newlat;
   displayArr = [];
   mapstyle:any;
-  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams,  private media: MediaProvider) {
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public navParams: NavParams,  private media: MediaProvider,private launchNavigator: LaunchNavigator) {
     
     this.mapstyle = this.media.mapstyle;
   }
@@ -82,11 +83,17 @@ export class MoreInfoPage implements OnInit{
     this.newlong= this.companyInfor.newlon;
     this.newlat= this.companyInfor.newlat
 
-    
+    this.address=this.streetName2+","+this.areaName2
 
   
   }
-
+openNav(){
+  this.launchNavigator.navigate(this.address)
+  .then(
+    success => console.log('Launched navigator'),
+    error => console.log('Error launching navigator', error)
+  );
+}
   ngOnInit(){
     this.companyInfor =this.navParams.get("obj");
     this.newlong= this.companyInfor.newlon;

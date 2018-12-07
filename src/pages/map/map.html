@@ -17,8 +17,18 @@
     </div>
 
     <div class="barcontainer">
-  
-      <input
+      <div class="search">
+        <ion-searchbar (ionInput)="getItems($event)"  [(ngModel)] ="searchbar" (input)="test()"></ion-searchbar>
+      </div>
+
+      <div class="suggest">
+        <ion-list class="list" id="hide"  >
+          <ion-item *ngFor="let item of items"(click)="search(item)" >
+            {{ item }}
+          </ion-item>
+        </ion-list>
+      </div>
+      <!-- <input
       #address
       name="searchs"
       type="text"
@@ -26,7 +36,7 @@
       class="input search"
       (change)="searchinput(address.value)"
       
-      />
+      /> -->
   
     <!-- <ion-item class = "item1" > -->
 

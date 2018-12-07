@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the TabsPage page.
@@ -19,15 +20,21 @@ export class TabsPage {
   tab3Root: string;
   tab2Root: string;
   tab1Root: string;
+  logg:string;
 
-  constructor(public database:DatabaseProvider){
+  constructor(public database:DatabaseProvider,public navCtrl: NavController){
     this.tab1Root = 'MapPage';
     this.tab2Root = 'StatsPage';
     this.tab3Root = 'TipsPage';
+    this.logg = 'LoginPage';
   }
 
   ionViewDidLoad(){
     this.check();
+  }
+
+  ionViewDidEnter(){
+    this.ionViewDidLoad();
   }
 
   check(){
@@ -35,10 +42,12 @@ export class TabsPage {
       if (data == 1){
         this.database.getuser().then((data)=>{
           console.log(data);
+          this.navCtrl.setRoot(this.tab1Root)
         })
         console.log('user is online')
       }
       if (data == 0){
+        this.navCtrl.setRoot(this.logg)
         console.log('user is offline')
       }
     })

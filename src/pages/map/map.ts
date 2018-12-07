@@ -46,6 +46,8 @@ filter;
       "Johannesburg"
     ]
     mapstyle:any;
+    items: string[];
+    searchbar :string ;
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
@@ -59,6 +61,26 @@ filter;
    
   }
 
+  initializeItems() {
+
+  
+    this.items = [
+      'Diepkloof',
+      'Pimville',
+      'Johannesburg',
+      'Dube',
+      'Phiri',
+      'Eldorado Park',
+      'Florida',
+      'Protea Glen',
+      'Orlando East',
+      'Orlando West',
+'Pretoria',
+'Midrand',
+'Southgate ',
+
+    ];
+  }
 
   ionViewDidLoad() {
    
@@ -84,7 +106,53 @@ filter;
 
     }, 5000)
   }
+  getItems(ev: any) {
+    // Reset items back to all of the items
+  
+    this.initializeItems();
+  
+   
+    // set val to the value of the searchbar
+    const val = ev.target.value;
 
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+
+      console.log(val);
+
+      if(val==""){
+        this.searchbar=null;
+        console.log("true");
+      }
+
+
+    }
+  }
+
+
+  test(){
+    console.log(this.searchbar);
+    
+    if(this.searchbar==""){
+  
+ console.log("nothing");
+ 
+      document.getElementById("hide").style.display="none";
+
+    }else {
+      console.log("something");
+ 
+      document.getElementById("hide").style.display="block";
+
+     console.log(this.searchbar);
+     
+
+    }
+    console.log(this.searchbar);
+   }
  
   initMap() {
  
@@ -169,8 +237,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
           });
           // var infowindow = new google.maps.InfoWindow({
           //   content:"R"+ this.arrayinfor[x].gas,
-
-
           // });
 
           // infowindow.open(this.map, marker);
@@ -298,8 +364,12 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   //   });
   // }
 
-  searchinput(address){
+  search(address){
+
+   
+  
     if(address != undefined)
+
     {
       this.condition= false;
       let geocoder = new google.maps.Geocoder();
@@ -325,7 +395,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
         let marker = new google.maps.Marker({
           map: this.map,
-          zoom: 8,
+          zoom: 12,
           position: {lat: this.latii, lng: this.long },
           icon: {
             url: `${this.media.man}`,
@@ -365,7 +435,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
               if(data.length==0){
                 this.arrayinfor.length=0;
                 console.log(this.arrayinfor);
-                alert("no data found");
+     
               }else{
             
                 this.arrayinfor=data;
@@ -524,7 +594,8 @@ for(var x = 0; x < this.arrayinfor.length;x++){
     }else{
    
     }
-  
+    document.getElementById("hide").style.display="none" ;
+    this.searchbar = null;
     }
 
   nextPage(page: string) {
