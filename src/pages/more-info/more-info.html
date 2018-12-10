@@ -18,10 +18,10 @@
   <div class="segcontainer">
     <ion-segment color class="md segment segment-md" [(ngModel)]="action">
       <ion-segment-button class="segbtn" value="info">
-        Information
+        DETAILS
       </ion-segment-button>
       <ion-segment-button class="segbtn" value="gallery">
-        PRICE
+        PRICES
       </ion-segment-button>
       <!-- <ion-segment-button class="segbtn" value="comment">
         Comment
@@ -31,7 +31,8 @@
 
   <div [ngSwitch]="action">
     <div class="productcontainer" *ngSwitchCase="'info'">
-      <ion-list>
+      <p class="heading">Details</p>
+      <ion-list no-lines class="content">
         <ion-item>
             <ion-icon name="at" item-start></ion-icon>
            <p> {{businessEmail}}</p>
@@ -39,11 +40,11 @@
         </ion-item>
 
         <ion-item>
-            <ion-icon name="mail" item-start></ion-icon>
-          <p> {{streetName2}}</p>  <br>
-         <p>{{areaName2}} </p>   <br>
-         <p>{{areaLocation2}}</p>    <br>
-          <p>{{postCode2}} </p>  
+            <ion-icon name="pin" item-start></ion-icon>
+          <p> {{streetName2}}</p><p>{{areaName2}} </p>  
+       
+         <p>{{areaLocation2}}</p> <p>{{postCode2}} </p>
+           
           
         </ion-item>
 

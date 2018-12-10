@@ -162,8 +162,10 @@ filter;
       });
       let marker = new google.maps.Marker({
         map: this.map,
+        animation:'DROP',
         position: { lat: this.lat, lng: this.lng },
         icon: {
+          
           url: `${this.media.man}`
         }
       });
@@ -215,7 +217,9 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   let marker = new google.maps.Marker({
             position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
             map: this.map,
+            animation:'DROP',
             icon: {
+              
            url:this.arrys[x].icon,
               //url:this.media.house,
               //  size: {height:200 , width:80}
@@ -382,8 +386,10 @@ for(var x = 0; x < this.arrayinfor.length;x++){
         let marker = new google.maps.Marker({
           map: this.map,
           zoom: 12,
+          animation:'DROP',
           position: {lat: this.latii, lng: this.long },
           icon: {
+           
             url: `${this.media.man}`,
             // size: {height:31, width:31}
           }
@@ -502,7 +508,9 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                 let marker = new google.maps.Marker({
                           position: { lat: parseFloat(this.arrayinfor[x].lat), lng: parseFloat(this.arrayinfor[x].lng) },
                           map: this.map,
+                          animation:'DROP',
                           icon: {
+                           
                             url: this.arrys[x].icon
                           }
                         });

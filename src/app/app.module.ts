@@ -19,7 +19,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
-    MyApp,
+    MyApp,LoginPage
     
     
   ],
@@ -30,7 +30,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp,LoginPage
     
   ],
   providers: [
