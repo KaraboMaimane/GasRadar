@@ -113,6 +113,7 @@ export class TipsPage {
     console.log("ionViewDidLoad TipsPage");
     this.comments.length = 0;
     this.comments3.length = 0;
+    console.log(this.comments3);
     this.getComments();
     this.database.getuser();
   }
@@ -126,6 +127,19 @@ export class TipsPage {
   isGroupShown(group) {
     return this.shownGroup === group;
   }
+  getComments() {
+    this.database.getComments(this.newmessage).then((data: any) => {
+      this.comments = data;
+      
+      var i = 0;
+      for (var x = this.comments.length - 1; x >= 0; x--) {
+        this.comments3[i] = this.comments[x];
+        i++;
+      }
+      console.log(this.comments3);
+    });
+  }
+
 
   placeComment(newmessage) {
     this.database
@@ -147,18 +161,6 @@ export class TipsPage {
     this.comments.length = 0;
     this.newmessage = "";
     this.getComments();
-  }
-
-  getComments() {
-    this.database.getComments(this.newmessage).then((data: any) => {
-      this.comments = data;
-      console.log(this.comments);
-      var i = 0;
-      for (var x = this.comments.length - 1; x >= 0; x--) {
-        this.comments3[i] = this.comments[x];
-        i++;
-      }
-    });
   }
 
   nextPage(page: string, fuel: string){

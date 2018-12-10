@@ -85,7 +85,7 @@
         <p class="products">Products</p>
       <hr>
       <div class="fuelcontainer">
-        <div class="fuel">
+        <div class="fuel" *ngIf="gas !> 0">
           <!-- <ion-icon class="gas" name="navigate"></ion-icon> -->
           <i class="mdi mdi-gas-cylinder mdi-24px gas"></i>
           <!-- <i class="fas fa-gas-pump gas"></i> -->
@@ -93,30 +93,28 @@
           <p class="text">R{{gas}}/l</p>
         </div>
        
-        <div class="fuel">
+        <div class="fuel" *ngIf="p95 !> 0">
           <!-- <ion-icon class="p95" name="navigate"></ion-icon> -->
           <i class="fas fa-gas-pump p95"></i>
           <p class="label"> Petrol(95) </p>
           <p class="text">R{{p95}}/l</p>
         </div>
-        <div class="fuel">
+        <div class="fuel" *ngIf="p93 !> 0">
           <!-- <ion-icon class="p93" name="navigate"></ion-icon> -->
-          <i class="fas fa-gas-pump p93"></i>
+          <i class="fas fa-gas-pump p93" ></i>
           <p class="label"> Petrol(93) </p>
           <p class="text">R{{p93}}/l</p>
         </div>
-        <div class="fuel">
+        <div class="fuel" *ngIf="diesel !> 0">
           <!-- <ion-icon class="diesel" name="navigate"></ion-icon> -->
           <i class="fas fa-gas-pump diesel"></i>
           <p class="label"> Diesel </p>
           <p class="text">R{{diesel}}/l</p>
         </div>
-
         <!-- <p class="label"><ion-icon name="navigate"></ion-icon> Petrol(93): <span class="text">{{p93}}</span></p>
           <p class="label"><ion-icon name="navigate"></ion-icon> Petrol(95): <span class="text">{{p95}}</span></p>
           <p class="label"><ion-icon name="navigate"></ion-icon> Diesel: <span class="text">{{diesel}}</span></p> -->
       </div>
-      
       <!-- <div id="cards">
         <img src="https://lh3.googleusercontent.com/B8GXkvZEfgP99C4IRqGjLsdwpfQNyUPMdIJF2-W12ZvFt9Yg4zW05_snxMzsLjgAIoobB0MG3niK8d4A6p6R6Q=s750"
           alt="">

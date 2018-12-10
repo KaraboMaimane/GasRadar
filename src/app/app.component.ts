@@ -13,7 +13,7 @@ export class MyApp {
 
   activePage: any;
 
-   rootPage: any = 'TabsPage';
+  rootPage: any = LoginPage;
 
   constructor(private database:DatabaseProvider,public platform: Platform,public statusBar: StatusBar,public splashScreen: SplashScreen) {
     this.initializeApp();

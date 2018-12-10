@@ -31,51 +31,40 @@
 
     <div class="users" *ngSwitchCase="'users'">
       <div class="usercardcontainer">
-        <div class="usercard">
+        <div class="usercard" *ngFor="let i of comments3">
           <div class="imagecontainer">
             <img
-              src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg"
+              src="{{i.img}}"
               alt=""
               class="cardimage"
             />
           </div>
 
-          <div class="textcontainer">
+          <div class="textcontainer" >
             <i class="fas fa-quote-left"></i>
-            <p class="name">Karabo Maimane</p>
+            <p class="name">{{i.name}}</p>
             <p class="text">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed
-              saepe excepturi ut libero, dolorum repudiandae, itaque nisi harum
-              nobis totam corrupti voluptate, quod tenetur soluta! Ducimus
-              tempore quam expedita unde?
+                {{i.comment}}
             </p>
-            <button ion-button outline class="rate">
-              <ion-icon name="thumbs-up" color="secondary"></ion-icon> 1 like
-            </button>
-            <button ion-button outline class="rate">
-              <ion-icon name="thumbs-down" color="secondary"></ion-icon> 2 dislikes
-            </button>
+            <span class="datew">{{i.date}}</span>
             <i class="fas fa-quote-right"></i>
           </div>
         </div>
       </div>
 
-      <ion-list>
-          <ion-item>
+      <!-- <ion-list >
+          <ion-item *ngFor="let i of comments3">
             <ion-avatar item-start>
-              <img src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
             </ion-avatar>
-            <h2>Karabo Maimane</h2>
-            <p>Ugh. As if.</p>
+            <h2>{{i.name}}</h2>
+            <p>{{i.comment}}</p>
+            <span class="datew">{{i.date}}</span>
           </ion-item>
-          <ion-item>
-              <ion-avatar item-start>
-                <img src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
-              </ion-avatar>
-              <h2>Karabo Maimane</h2>
-              <p>Ugh. As if.</p>
-            </ion-item>
-        </ion-list>
+        </ion-list> -->
+        <ion-footer class="message">
+            <input placeholder="message" [(ngModel)]="newmessage" type="text" class="input"> <button ion-button (click)="placeComment()"color="secondary"><ion-icon name="send"></ion-icon></button>
+        </ion-footer>
+        
     </div>
   </div>
 </ion-content>

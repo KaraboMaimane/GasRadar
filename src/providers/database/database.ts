@@ -33,6 +33,7 @@ export class DatabaseProvider {
   defaultImages = ['../../assets/imgs/pic.jpg', '../../assets/imgs/pic23.jpg', '../../assets/imgs/pic24.jpg', '../../assets/imgs/pic22.jpg', '../../assets/imgs/pic25.jpg']
   user: firebase.User;
   url: string;
+  profile =  new Array();
 
   constructor(public geolocation: Geolocation, private loadingCtrl: LoadingController) {
     console.log('Hello DatabaseProvider Provider');
@@ -46,6 +47,20 @@ export class DatabaseProvider {
     return new Promise((accpt,rej)=>{
       this.authenticate.signOut();
       accpt("log Out Success")
+    })
+  }
+
+  
+
+  profileUpdate(Username,img){
+    return new Promise ((accpt,rej) =>{
+      var user = firebase.auth().currentUser;
+      var path = 'users/' + this.currentUserID + '/' + this.userKey;
+      this.database.ref(path).update({
+        Username: Username,
+        img: img
+      })
+      accpt('succes!')
     })
   }
 
@@ -171,6 +186,7 @@ export class DatabaseProvider {
 
   storeCurrentUserImage(img) {
     this.currentUserImage = img;
+    console.log(this.currentUserImage)
   }
 
   storeCurrentUserPath(path) {
@@ -205,7 +221,41 @@ export class DatabaseProvider {
       accpt("Comment Added")
     })
   }
+  getProfiles(){
+    return new Promise((accpt, rej) => {
 
+      firebase.database().ref("userdb/"+ this.currentUserID).on("value", data => {
+        let infor = data.val();
+       console.log(infor)
+     
+   
+
+        accpt(this.arrInfor);
+
+
+      })
+
+    })
+  }
+    
+  getProfile(){
+    return new Promise((accpt, rej) => {
+      this.database.ref('users/' + this.currentUserID).on('value', (data: any) => {
+        var details = data.val();
+        console.log(details);
+        var keys = Object.keys(details)
+        var k = keys[0]
+        let obj = {
+          username: details[k].Username,
+          img: details[k].img,
+          key: k
+        }
+        this.profile.push(obj)
+        accpt(this.profile)
+        console.log(this.profile)
+      }) 
+    })
+  }
   getComments(key) {
     return new Promise((accpt, rej) => {
       this.database.ref('comments/').on('value', (data2: any) => {
@@ -227,13 +277,12 @@ export class DatabaseProvider {
                 comment: UserComments[k2].comment,
                 date: moment(UserComments[k2].date, 'MMMM Do YYYY, h:mm:ss a').startOf('minutes').fromNow(),
                 name: UserComments[k2].username,
-                // img: details[k2].img,
+                img: UserComments[k2].img,
               }
               this.comments2.push(obj);
             }
             accpt(this.comments2)
             console.log(this.comments2)
-
           })
 
         }

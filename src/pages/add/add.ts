@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { NgForm } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { MediaProvider } from '../../providers/media/media';
+import { ToastController } from 'ionic-angular';
 declare var firebase;
 declare var google;
 /**
@@ -18,73 +19,32 @@ declare var google;
   templateUrl: 'add.html',
 })
 export class AddPage {
-  url = `../../assets/imgs/pic24.jpg`;
-  constructor(private database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private media: MediaProvider, private loadingCtrl: LoadingController) {
-
+  url;
+  UserName;
+  userProfile = [];
+  userImg;
+  constructor(private toastCtrl: ToastController,private database: DatabaseProvider, public navCtrl: NavController, public navParams: NavParams, private media: MediaProvider, private loadingCtrl: LoadingController) {
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPage');
+    this.database.getProfile().then((data:any)=>{
+      this.userProfile = data;
+      this.UserName = this.userProfile[0].username;
+      this.userImg = this.userProfile[0].img;
+      console.log(this.userProfile)
+      console.log(this.UserName);
+      console.log(this.userImg);
+      this.url= this.userImg
+    })
+
+    // this.database.getProfiles().then((data:any)=>{
+    //   console.log(data)
+    // })
   }
 
-  onAddBusiness(form: NgForm){
-    // this.database.registerBusiness
-    this.database.registerBusiness(form.value);
-    
-     let geocoder = new google.maps.Geocoder();
-      let  userid = firebase.auth().currentUser;
-   let company = form.value.name;
-   let email = form.value.email;
-   let owner = form.value.ownerName;
-   let tel = form.value.telephone;
-   let petrol93 = form.value.p93;
-   let petrol95 = form.value.p95;
-   let gas = form.value.gas;
-   let diesel = form.value.diesel;
-   let icon = form.value.business
 
-  console.log(company,email,owner,tel, petrol93,petrol95,gas, diesel,icon);
-      geocoder.geocode({'address':form.value.address},function(results, status){
- 
-  
-  
-        if(status == google.maps.GeocoderStatus.OK){
-      
-         alert(userid);
-      
-          let lati = results[0].geometry.location.lat();
-         let longi = results[0].geometry.location.lng();
-         console.log(lati +" "+ longi);
-      
-       
-        return firebase.auth().onAuthStateChanged(data=>{
-          if(data){
-            firebase.database().ref('userdb/'+ userid).update({
-              name:company,
-              email:email,
-              owner:owner,
-              tel:tel,
-              lat:lati,
-              lng:longi,
-              petrol93:petrol93,
-              petrol95:petrol95,
-              diesel:diesel,
-              gas:gas,
-              uid:userid,
-              icon:icon
-
-  
-            })
-          }else{
-      
-            alert("login");
-          }
-      })
-        }
-          })
- 
-  }
 
   insertImage(event){
     if (event.target.files && event.target.files[0]) {
@@ -102,7 +62,7 @@ export class AddPage {
       });
       loader.present();
 
-      let storageRef = firebase.storage().ref(`businesses/${filename}`);
+      let storageRef = firebase.storage().ref(`usersDb/${filename}`);
 
       let metadata = { contentType: "image/jpeg", size: 0.75 };
       let uploadTask = storageRef.put(selectedfile, metadata);
@@ -127,6 +87,34 @@ export class AddPage {
       );
 
     }
+  }
+  picInsert(event:any){
+    if(event.target.files && event.target.files[0]){
+      let reader = new FileReader();
+      reader.onload = (event:any) =>{
+        this.url = event.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+ 
+  }
+
+  onAddBusiness(form:NgForm){
+    this.database.profileUpdate(form.form.value.UserName,this.url).then((data:any)=>{
+      console.log(data)
+      console.log(form)
+      let toast = this.toastCtrl.create({
+        message: 'Information Updated Successfully',
+        duration: 2000,
+        position: 'bottom'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+    })
   }
 
 }

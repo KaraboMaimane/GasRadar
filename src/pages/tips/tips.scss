@@ -39,7 +39,7 @@ page-tips {
         
     }
     .users{
-        animation: scaledown .3s ease;
+        // animation: scaledown .3s ease;
     }
     .cardcontainer{
         
@@ -92,11 +92,11 @@ page-tips {
             justify-content: center;
             height: 3rem;
             .cardimage{ 
-                width: 10rem;
-                height: 10rem;
+                width: 7rem;
+                height: 7rem;
                 border-radius: 50%;
                 position: relative;
-                bottom: 5rem;
+                bottom: 2.5rem;
             }
         }
         .textcontainer{
@@ -126,18 +126,18 @@ page-tips {
 
         .fa-quote-left{
             position: absolute;
-            font-size: 5rem;
+            font-size: 3rem;
             margin: 0;
-            transform: translateY(-8rem);
+            transform: translateY(-7rem);
             text-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
         }
 
         .fa-quote-right{
             position: absolute;
-            font-size: 5rem;
+            font-size: 3rem;
             margin: 0;
             right: 0;
-            transform: translateY(2.2rem) translateX(-2rem);
+            transform: translateY(.5rem) translateX(-2rem);
             // transform: translateY(-8rem);
             text-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
         }
@@ -153,5 +153,33 @@ page-tips {
     }
 
 
+    .input{
+        // position: fixed;
+        // bottom: 0;
+        background: white;
+    }
 
+    .message{
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        flex: 0 0 100%;
+        background: $primary-color;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        padding-left: .5rem;
+        input{
+            justify-self: auto;
+            margin-bottom: 1rem;
+            display: block;
+            margin: 0;
+            flex: 4 0 0;
+        }
+
+        button{
+            flex: auto 0 0;
+            display: block;
+            border-radius: 50% !important;
+        }
+    }
 }

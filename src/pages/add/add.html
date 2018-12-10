@@ -9,7 +9,7 @@
   <div class="contents">
     <div class="imagecontainer">
       <img [src]="url" alt="" class="image">
-      <input type="file" (change)="insertImage($event)" class="imagefile">
+      <input type="file" (change)="picInsert($event)" class="imagefile">
       <ion-fab class="fabtn">
         <button color="secondary" ion-fab mini>
           <ion-icon name="add"></ion-icon>
@@ -19,25 +19,9 @@
 
     <div class="formcontent">
       <form #form="ngForm" (ngSubmit)="onAddBusiness(form)">
-        <input ngModel class="input" name="name" type="text" placeholder="Business Name" required />
-        <input ngModel class="input" name="address" type="text" placeholder="Address" required />
-        <input ngModel class="input" name="email" type="email" placeholder="E-Mail" required />
-        <input ngModel class="input" name="telephone" type="tel" placeholder="Telephone" required />
-
-        <input ngModel class="input" name="diesel" type="number" placeholder="Diesel Price" required />
-        <input ngModel class="input" name="p95" type="number" placeholder="95 Price" required />
-        <input ngModel class="input" name="p93" type="number" placeholder="93 Price" required />
-        <input ngModel class="input" name="gas" type="number" placeholder="Gas Price" required />
-
-        <label class="business" for="business">Shop Type </label>
-        <select class="select, input" value="none" placeholder="business" ngModel name="business">
-
-            <option value="spaza">Spaza</option>
-            <option value="supermarket">Supermarket</option>
-            <option value="garage">Garage</option>
-          </select>
+        <input [(ngModel)]="UserName" class="input" name="UserName" type="text" placeholder="UserName" required />
         
-        <button ion-button color="secondary" class="submit">Add Business</button>
+        <button ion-button color="secondary" class="submit">Submit</button>
       </form>
     </div>
   </div>
