@@ -1,0 +1,19 @@
+accordion {
+    .card-header{
+        background: map-get($colors, primary);
+        color: $primary-color-text;
+        text-transform: 1rem;
+    }
+
+    .card-content{
+        padding: 0rem 1.6rem;
+        max-height: 0rem;
+        transition: ease all .3s;
+    }
+
+    .heading{
+        font-weight: bold;
+        font-size: 1.6rem;
+        text-transform: capitalize;
+    }
+}

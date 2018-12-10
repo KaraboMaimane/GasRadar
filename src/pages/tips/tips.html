@@ -1,84 +1,81 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button (click)="logout()"icon-only>
-      <ion-icon name="md-log-out" class="logout"></ion-icon>
-    </button>
-    <ion-title align="center">FUEL TIPS</ion-title>
-  </ion-navbar>
-</ion-header>
-<br>
 <ion-content>
-  <ion-card-content>
-    <div class="segmt">
-      <ion-segment color class="segment-md" [(ngModel)]="action">
-        <ion-segment-button class="segbutt segbtn" value="gas">
-          GAS
-        </ion-segment-button>
-        <ion-segment-button class="ion-segment-button segbtn" value="petrol">
-          PETROL
-        </ion-segment-button>
-        <ion-segment-button class="ion-segment-button segbtn" value="diesel">
-          DIESEL
-        </ion-segment-button>
-      </ion-segment>
-    </div>
+  <div class="headercontainer"><p class="heading">Fuel Friendly Tips</p></div>
+  <ion-segment color [(ngModel)]="action">
+    <ion-segment-button class="segbtn" value="fuel">
+      Fuel Smarts
+    </ion-segment-button>
+    <ion-segment-button class="segbtn" value="users">
+      Community Says
+    </ion-segment-button>
+  </ion-segment>
 
-    <div [ngSwitch]="action">
-      <div class="tipscontainer" *ngSwitchCase="'gas'">
-        <ion-list class="title">
-          <ion-item *ngFor="let d of gas; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
-
-            <div maxLength="30">
-              <h3 class="listline">
-                <b>{{d.title}}</b>
-                <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
-              </h3>
-            </div>
-            <div *ngIf="isGroupShown(i)" class="tipsdrop" align="justify" class="descr">{{d.description}}</div>
-          </ion-item>
-        </ion-list>
-      </div>
-    </div>
-
-    <div [ngSwitch]="action">
-      <div class="tipscontainer" *ngSwitchCase="'diesel'">
-
-        <ion-list class="title">
-          <ion-item *ngFor="let d of diesel; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
-
-            <div maxLength="30">
-              <h3 class="listline">
-                <b>{{d.title}}</b>
-                <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
-              </h3>
-            </div>
-            <div *ngIf="isGroupShown(i)" class="tipsdrop" align="justify" class="descr">{{d.description}}</div>
-          </ion-item>
-        </ion-list>
-
-      </div>
-    </div>
-
-    <div [ngSwitch]="action">
-      <div class="addtipseg" *ngSwitchCase="'petrol'">
-        <div>
-          <ion-list class="title">
-            <ion-item *ngFor="let d of petrol; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
-              <div  maxLength="30">
-                <h3 class="listline">
-                  <b>{{d.title}}</b>
-                  <ion-icon color="dark" item-right [name]="isGroupShown(i) ? 'md-arrow-dropdown-circle' : 'md-arrow-dropright-circle'"></ion-icon>
-                </h3>
-              </div>
-              <div *ngIf="isGroupShown(i)" class="tipsdrop" align="justify">{{d.description}}</div>
-            </ion-item>
-          </ion-list>
-
-
+  <div [ngSwitch]="action">
+    <div class="fuel" *ngSwitchCase="'fuel'">
+      <div class="cardcontainer" >
+        <div class="card" (click)="nextPage('ViewTipsPage', 'Gas')">
+          <p class="cardtext">
+            <i class="mdi mdi-gas-cylinder mdi-24px gas"></i>
+          </p>
+          <p class="cardtext">Gas Saving</p>
         </div>
+        <div class="card" (click)="nextPage('ViewTipsPage', 'Petrol')">
+          <p class="cardtext"><i class="fas fa-gas-pump p95"></i></p>
+          <p class="cardtext">Petrol</p>
+        </div>
+        <div class="card" (click)="nextPage('ViewTipsPage', 'Diesel')">
+          <p class="cardtext"><i class="fas fa-gas-pump diesel"></i></p>
+          <p class="cardtext">Diesel</p>
+        </div>
+      </div>
+    </div>
 
+    <div class="users" *ngSwitchCase="'users'">
+      <div class="usercardcontainer">
+        <div class="usercard">
+          <div class="imagecontainer">
+            <img
+              src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg"
+              alt=""
+              class="cardimage"
+            />
+          </div>
+
+          <div class="textcontainer">
+            <i class="fas fa-quote-left"></i>
+            <p class="name">Karabo Maimane</p>
+            <p class="text">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed
+              saepe excepturi ut libero, dolorum repudiandae, itaque nisi harum
+              nobis totam corrupti voluptate, quod tenetur soluta! Ducimus
+              tempore quam expedita unde?
+            </p>
+            <button ion-button outline class="rate">
+              <ion-icon name="thumbs-up" color="secondary"></ion-icon> 1 like
+            </button>
+            <button ion-button outline class="rate">
+              <ion-icon name="thumbs-down" color="secondary"></ion-icon> 2 dislikes
+            </button>
+            <i class="fas fa-quote-right"></i>
+          </div>
+        </div>
       </div>
 
+      <ion-list>
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
+            </ion-avatar>
+            <h2>Karabo Maimane</h2>
+            <p>Ugh. As if.</p>
+          </ion-item>
+          <ion-item>
+              <ion-avatar item-start>
+                <img src="../../assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
+              </ion-avatar>
+              <h2>Karabo Maimane</h2>
+              <p>Ugh. As if.</p>
+            </ion-item>
+        </ion-list>
     </div>
-  </ion-card-content>
+  </div>
 </ion-content>

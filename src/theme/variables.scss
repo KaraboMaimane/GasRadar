@@ -22,14 +22,15 @@ $font-path: "../assets/fonts";
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-
 $colors: (
-  primary:    #2196F3,
-  primary-dark: #1976D2,
-  secondary:  #FFC107,
-  danger:     #f53d3d,
-  light:      #FFFFFF,
-  dark:       #212121
+ primary:    #2196F3,
+ primary-dark: #1976D2,
+ secondary:  #FFC107,
+ danger:     #f53d3d,
+ light:      #FFFFFF,
+ dark:       #212121,
+ petrol: #FF8456,
+ dark2: #565656
 );
 
 $primary-color-dark:   #1976D2;
@@ -43,64 +44,42 @@ $divider-color:        #BDBDBD;
 
 
 .btn{
-  border-radius: 10rem !important;
-  padding: 1rem !important;
+ border-radius: 10rem !important;
+ padding: 1rem !important;
 }
 
 .input{
-  font-size: 1.5rem;
-  font-family: inherit;
-  color: inherit;
-  padding: 1.5rem 2rem;
-  border-radius: 10rem;
-  border: 0.2px solid rgba(black, .1);
-  background: rgba(rgb(228, 228, 228), .5);
-  width: 100%;
-  display: block;
-  margin-top: 2.5rem;
-  box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
-  &:focus{
-     outline: none;  
-     box-shadow: 0 1rem 2rem rgba($accent-color, .3);
-     border-bottom: .3rem solid $accent-color;
-     transition: .2s ease-in-out all;
-  }
+ font-size: 1.5rem;
+ font-family: inherit;
+ color: inherit;
+ padding: 1.5rem 2rem;
+ border-radius: 10rem;
+ border: 0.2px solid rgba(black, .1);
+ background: rgba(rgb(228, 228, 228), .5);
+ width: 100%;
+ display: block;
+ margin-top: 2.5rem;
+ box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
+ &:focus{
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba($accent-color, .3);
+    border-bottom: .3rem solid $accent-color;
+    transition: .2s ease-in-out all;
+ }
 
-  &:focus:invalid{
-       border-bottom: .3rem solid rgba(red, .6);
-       box-shadow: 0 1rem 2rem rgba(red, .3);
-  }
+ &:focus:invalid{
+      border-bottom: .3rem solid rgba(red, .6);
+      box-shadow: 0 1rem 2rem rgba(red, .3);
+ }
 
-  &::-webkit-input-placeholder{
-       color: #757575;
-  }
-  &:last-child{
-       margin-bottom: 2rem;
-  }
+ &::-webkit-input-placeholder{
+      color: #757575;
+ }
+ &:last-child{
+      margin-bottom: 2rem;
+ }
 
 }
-
-
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
-
-
-
-
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
