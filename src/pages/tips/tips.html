@@ -34,7 +34,11 @@
         <div class="usercard" *ngFor="let i of comments3">
           <div class="imagecontainer">
             <img
+<<<<<<< Updated upstream
               src="{{i.img}}"
+=======
+              src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg"
+>>>>>>> Stashed changes
               alt=""
               class="cardimage"
             />
@@ -55,17 +59,20 @@
       <!-- <ion-list >
           <ion-item *ngFor="let i of comments3">
             <ion-avatar item-start>
+              <img src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
             </ion-avatar>
             <h2>{{i.name}}</h2>
             <p>{{i.comment}}</p>
             <span class="datew">{{i.date}}</span>
           </ion-item>
-        </ion-list> -->
-        <div class="block">&nbsp;</div>
-        <div class="footer">
-            <input placeholder="message" [(ngModel)]="newmessage" type="text" class="input"> <button ion-button (click)="placeComment()"color="secondary"><ion-icon name="send"></ion-icon></button>
-        </div>
-            
+          <ion-item>
+              <ion-avatar item-start>
+                <img src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
+              </ion-avatar>
+              <h2>Karabo Maimane</h2>
+              <p>Ugh. As if.</p>
+            </ion-item>
+        </ion-list>
     </div>
   </div>
 </ion-content>

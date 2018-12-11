@@ -203,10 +203,6 @@ page-map {
           }
     }
 //
-    .fab{
-         color: white !important;
-         z-index: -100 !important;
-    }
 
     body {
      padding: 20px;
@@ -278,15 +274,68 @@ page-map {
    #slide4 { background: #FFC107 }
    #slide5 { background: #FF5722 }
 
-   .fabbtn{
-     height: 5rem;
-     width: 5rem;
-     position: fixed;
-     bottom: 6rem;
-     right: 1rem;
-      border-radius: 50%;
-      font-size: 2rem;
-      box-shadow: .2rem .3rem .6rem rgba(black, .5);
-     
+   .fabbtn, .checkbox{
+        border-radius: 50%;
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 100;
    }
+
+   .checkbox{
+        width: 5rem;
+        height: 5rem;
+        z-index: 1500;
+        opacity: 0;
+   }
+
+   .background{
+        z-index: 1000;
+        height: 5rem;
+        width: 5rem;
+        border-radius: 50%;
+        background-image: radial-gradient($primary-color, $primary-color-dark);
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        transition: 1s .3s all;
+   }
+
+     .checkbox:checked ~ .background {
+          transform: scale(80);
+     }
+
+     .checkbox:checked ~ .nav {
+          opacity: 1;
+          width: 100%;
+     }
+
+     .nav{
+          color: $accent-color;
+          position: fixed;
+          z-index: 2000;
+          transform: translate(-50%, -50%);
+          left: 45%;
+          top: 30%;
+          opacity: 0;
+          width: 0;
+          transition: all 1s .2s ease;
+          .list{
+               list-style-type: none;
+               text-align: center;
+
+               .listitem{
+                    font-size: 3rem;
+               }
+          }
+     }
+
+     .icon{
+          color: white;
+          position: fixed;
+          font-size: 3rem;
+          bottom: 2rem;
+          right: 2.5rem;
+          z-index: 2000;
+     }
 }
