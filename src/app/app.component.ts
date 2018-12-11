@@ -2,9 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { Platform,Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { TabsPage } from '../pages/tabs/tabs';
 import { DatabaseProvider } from '../providers/database/database';
-import { LoginPage } from '../pages/login/login';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -13,16 +12,32 @@ export class MyApp {
 
   activePage: any;
 
-  rootPage: any = LoginPage;
+  public rootPage: string;
 
   constructor(private database:DatabaseProvider,public platform: Platform,public statusBar: StatusBar,public splashScreen: SplashScreen) {
     this.initializeApp();
-   
- 
   }
 
+  check(){
+    if('Log-out'){
+      this.database.getUserState().then((data)=>{
+        if (data == 1){
+            this.rootPage = 'TabsPage'
+            console.log(data);
+          console.log('user is online')
+        }
+        if (data == 0){
+          this.rootPage = 'LoginPage';
+          console.log('user is offline')
+        }
+      })
+    }
+   
+  }
   initializeApp() {
+    this.check();
     this.platform.ready().then(() => {
+   
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

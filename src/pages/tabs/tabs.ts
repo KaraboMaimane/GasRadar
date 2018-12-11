@@ -29,20 +29,5 @@ export class TabsPage {
   }
 
   ionViewDidLoad(){
-    this.check();
-  }
-
-  check(){
-    this.database.getUserState().then((data)=>{
-      if (data == 1){
-        this.database.getuser().then((data)=>{
-          console.log(data);
-        })
-        console.log('user is online')
-      }
-      if (data == 0){
-        console.log('user is offline')
-      }
-    })
   }
 }

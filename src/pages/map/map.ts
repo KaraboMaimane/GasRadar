@@ -9,6 +9,7 @@ import { DatabaseProvider } from "../../providers/database/database";
 import { MediaProvider } from "../../providers/media/media";
 import { LoginPage } from "../login/login";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { CachedResourceLoader } from "@angular/platform-browser-dynamic/src/resource_loader/resource_loader_cache";
 declare var google;
 declare var firebase;
 
@@ -83,6 +84,12 @@ filter;
   }
 
   ionViewDidLoad() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 1100
+    });
+       
+    loader.present();
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
       
@@ -96,8 +103,12 @@ filter;
     
     })
     setTimeout(()=>{
+      
+
       this.initMap();
-    }, 1000)
+    loader.dismiss();
+    }, 5000)
+  
   }
 
   getItems(ev: any) {
@@ -146,11 +157,11 @@ filter;
 
   
 
-    const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 1000
-    });
-    loader.present();
+    // const loader = this.loadingCtrl.create({
+    //   content: "Please wait..c.",
+    //   //duration: 1000
+    // });
+    // loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -179,7 +190,7 @@ filter;
       });
       circle.bindTo('center', marker, 'position');
 
-      loader.dismiss();
+     
       firebase
         .database()
         .ref("userdb/")
@@ -225,6 +236,8 @@ for(var x = 0; x < this.arrayinfor.length;x++){
               //  size: {height:200 , width:80}
             }
           });
+             
+     
           // var infowindow = new google.maps.InfoWindow({
           //   content:"R"+ this.arrayinfor[x].gas,
           // });
@@ -284,11 +297,14 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                   loader.present();
                   this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
                 },500)
+
+
+            
                 
               })
+             
           })
-        
-
+     
         }
     });
   }

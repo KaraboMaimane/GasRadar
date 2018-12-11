@@ -1,0 +1,31 @@
+chatbox {
+    .footer{
+        z-index: 2;
+        transform: translateY(-5.5rem);
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        width: 100%;
+        flex: 0 0 100%;
+        background: $primary-color;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        padding-left: .5rem;
+
+        input{
+            justify-self: auto;
+            margin-bottom: 1rem;
+            display: block;
+            margin: 0;
+            flex: 4 0 0;
+        }
+
+        button{
+            flex: auto 0 0;
+            display: block;
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50% !important;
+        }
+    }
+}

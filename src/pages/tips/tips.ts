@@ -14,6 +14,8 @@ import { DatabaseProvider } from "../../providers/database/database";
 })
 export class TipsPage {
   action: string = 'fuel';
+  buttonstate = 'not';
+
   username = this.navParams.get("key");
   comments = [];
   comments3 = [];
@@ -185,5 +187,11 @@ export class TipsPage {
       default: console.log('no way');
       break;
     }
+  }
+
+  onMessageAdded(event){
+    // console.log(event);
+    this.placeComment(event);
+    this.buttonstate= 'not';
   }
 }

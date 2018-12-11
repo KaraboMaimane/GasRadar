@@ -12,26 +12,14 @@
       </ion-segment-button>
     </ion-segment>
   </div>
-
+ 
   <div [ngSwitch]="action">
     <div class="registrationContainer" *ngSwitchCase="'registration'">
       <form #form="ngForm" (ngSubmit)="register(form)">
         <div class="formcontainer">
           <input ngModel name="name" type="text" placeholder="Name" required />
-          <input
-            ngModel
-            name="email"
-            type="email"
-            placeholder="E-Mail"
-            required
-          />
-          <input
-            ngModel
-            name="password"
-            type="password"
-            placeholder="Password"
-            required
-          />
+          <input ngModel name="email" type="email" placeholder="E-Mail" required />
+          <input ngModel name="password" type="password" placeholder="Password" required />
           <!-- <button
             ion-button
             (click)="resetPassword()"
@@ -42,45 +30,28 @@
             I kinda forgot my password...
           </button> -->
         </div>
-
+ 
         <button ion-button block type="submit" class="btn" color="secondary">
           Register
         </button>
       </form>
     </div>
-
+ 
     <div class="loginContainer" *ngSwitchCase="'login'">
       <form #form="ngForm" (ngSubmit)="login(form)">
         <div class="formcontainer">
-          <input
-            required
-            ngModel
-            name="email"
-            type="email"
-            placeholder="E-Mail"
-          />
-          <input
-            required
-            ngModel
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-
-          <button
-            ion-button
-            class="link"
-            (click)="action = 'registration'"
-            outline
-            color="secondary"
-          >
-            Dont have an account?<u><b>Click me</b></u>
-          </button>
+          <input required ngModel name="email" type="email" placeholder="E-Mail" />
+          <input required ngModel name="password" type="password" placeholder="Password" />
+          <div class="linkcontainer">
+            <a class="link" (click)="action = 'registration'">I Kinda Forgot My Password?
+            </a>
+          </div>
+ 
         </div>
-        <button ion-button block  type="submit" class="btn" color="secondary">
+        <button ion-button block type="submit" class="btn" color="secondary">
           Login
         </button>
       </form>
     </div>
   </div>
-</ion-content>
+ </ion-content>

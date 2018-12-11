@@ -38,6 +38,7 @@ export class AddPage {
       console.log(this.UserName);
       console.log(this.userImg);
       this.url= this.userImg
+      this.userProfile.length = 0;
     })
 
     // this.database.getProfiles().then((data:any)=>{
@@ -120,7 +121,7 @@ export class AddPage {
 
   logout(){
     this.database.logout().then(()=>{
-     this.navCtrl.push(LoginPage)
+     this.navCtrl.push('LoginPage');
     })
   }
 }

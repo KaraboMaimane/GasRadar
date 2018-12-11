@@ -10,16 +10,17 @@ page-more-info {
       width: 100%;
   }
   .dash2{
-    display: flex;
-    flex-flow: row;
-    // justify-content: space-between;
-    margin: 20px auto;
-    background-color: white;
-    height: 80px;
-    width: 90%;
-    box-shadow: 2px 1px 1px 1px  rgba(rgb(88, 88, 88),0.7);
-    border-radius: 5px;
-    overflow: hidden;
+    
+      display: flex;
+      flex-flow: row;
+      // justify-content: space-between;
+      margin: 20px auto;
+      background-color: white;
+      height: 80px;
+      width: 90%;
+      box-shadow: 2px 1px 1px 1px  rgba(rgb(88, 88, 88),0.7);
+      border-radius: 5px;
+      overflow: hidden;
     .rate{
         // background-color: white;
         width: 40%;
@@ -119,10 +120,11 @@ page-more-info {
    
     .icon{
       border-radius: 30px;
-      width: 50px;
-      height: 50px;
-      padding: .4em;
-      box-shadow: 0 .3rem 1.5rem rgba($primary-text-color, .5);
+      width: 30px;
+      height: 30px;
+      color: rgba(0, 0, 0, 0.671);
+      // padding: .1em;
+      box-shadow: 0 .1rem 1.2rem rgba($primary-text-color, .5);
     }
     // padding: 10px;
     .heading{
@@ -184,15 +186,17 @@ page-more-info {
     .fuel{
       // flex: 1 0 0;
       box-shadow: 1px 1px 12px rgba(black, .3);
-      margin: 0 5px 5px 5px;
+      margin: 0 0 10px 10px;
       padding: 20px;
+      width: 90%;
       border-radius: 12px;
+      
       i{
         text-align: center !important;
         display: inline-block !important;
         margin: 0 auto !important;
         width: 100%;
-        font-size: 2.5rem;
+        font-size: 3.5rem;
         padding: .5rem;
       }
       p{
@@ -230,12 +234,22 @@ page-more-info {
   }
 
   .fabbtn{
+    height: 5rem;
+    width: 5rem;
     position: fixed;
-    top: 0;
+    bottom: 6rem;
+    right: 1rem;
+     border-radius: 50%;
+     font-size: 2rem;
+     box-shadow: .2rem .3rem .6rem rgba(black, .5);
+    .icon{
+         color: white;
+    }
   }
 
   .block{
     height: 5rem;
   }
 
-  }
+}
+

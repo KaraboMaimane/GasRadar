@@ -52,6 +52,10 @@ export class DatabaseProvider {
     })
   }
 
+  forgotUserPassword(email:any){
+    return this.authenticate.sendPasswordResetEmail(email);
+  }
+
   
 
   profileUpdate(Username,img){

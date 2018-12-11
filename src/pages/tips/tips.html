@@ -62,10 +62,11 @@
           </ion-item>
         </ion-list> -->
         <div class="block">&nbsp;</div>
-        <div class="footer">
-            <input placeholder="message" [(ngModel)]="newmessage" type="text" class="input"> <button ion-button (click)="placeComment()"color="secondary"><ion-icon name="send"></ion-icon></button>
-        </div>
-            
+        <chatbox (messageCreate)="onMessageAdded($event)" *ngIf="buttonstate === 'sending'"></chatbox>      
+
+          <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="buttonstate = 'sending'" ion-fab color="primary">
+            <ion-icon name="send" ></ion-icon>
+          </button>  
     </div>
   </div>
 </ion-content>

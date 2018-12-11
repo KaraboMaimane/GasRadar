@@ -10,7 +10,7 @@ page-login {
           color: white !important;
           border-bottom: 2px solid $primary-color-light !important;
      }
-
+ 
      .image{
           width: 12.5rem;
           height: 12.5rem;
@@ -18,35 +18,42 @@ page-login {
           margin: 0 auto;
           margin-bottom: 2rem;
      }
-
-     .link{
-          border: none;
-          text-transform: capitalize;
+ 
+     a.link{
+          color: $accent-color;
+          font-size: 1.5rem;
+          margin-top: 5rem;
+          margin-bottom: 5rem;
+          text-align: center;
           display: block;
-          margin: 1rem auto;
-          border-radius: 10rem;
+          margin: 0 auto;
      }
-
+ 
+     .linkcontainer{
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+     }
+ 
      .heading{
           text-align: center;
           font-weight: 300;
           letter-spacing: .3rem;
           color: $primary-color-text;
      }
-
+ 
      .segcontainer{
           width: 50%;
           z-index: 0;
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
      }
-
+ 
      .segbtn.segment-button.segment-activated{
           border-radius: 0 !important;
           background: $primary-color-text;
           color: $primary-color !important;
           border-bottom: 2px solid $accent-color !important;
      }
-
+ 
      .formcontainer{
           background: rgba($primary-color-text, 1);
           padding: 2rem;
@@ -57,7 +64,7 @@ page-login {
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
           animation: scaledown .4s ease ;
      }
-
+ 
      input{
           font-size: 1.5rem;
           font-family: inherit;
@@ -71,26 +78,26 @@ page-login {
           margin-top: 2.5rem;
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .1);
           &:focus{
-             outline: none;  
+             outline: none;
              box-shadow: 0 1rem 2rem rgba($accent-color, .3);
              border-bottom: .3rem solid $accent-color;
              transition: .2s ease-in-out all;
           }
-
+ 
           &:focus:invalid{
                border-bottom: .3rem solid rgba(red, .6);
                box-shadow: 0 1rem 2rem rgba(red, .3);
           }
-
+ 
           &::-webkit-input-placeholder{
                color: #757575;
           }
           &:last-child{
                margin-bottom: 2rem;
           }
-
+ 
      }
-
+ 
      .btn{
           position: relative;
           bottom: 2.25rem;
@@ -101,31 +108,31 @@ page-login {
           box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
           animation: scaledown .6s ease ;
      }
-
+ 
      @keyframes scaledown {
           0%{
                transform: scaleY(.1);
                opacity: 0;
           }
-
+ 
           80%{
                transform: scaleY(1.1);
                opacity: 1;
           }
-
+ 
           100%{
                transform: scaleY(1);
                opacity: 1;
           }
      }
-
+ 
      .text{
           color: $accent-color;
-          text-shadow: 0 10px 15px rgba(black, 0.5); 
+          text-shadow: 0 10px 15px rgba(black, 0.5);
           font-size: 4rem;
           font-family: 'Lobster', cursive;
           text-align: center;
           margin-bottom: 2rem;
       }
-
-}
+ 
+ }
