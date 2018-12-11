@@ -97,7 +97,7 @@ filter;
     })
     setTimeout(()=>{
       this.initMap();
-    }, 5000)
+    }, 1000)
   }
 
   getItems(ev: any) {
@@ -279,7 +279,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                 setTimeout(()=>{
                   const loader = this.loadingCtrl.create({
                     content: "Please wait...",
-                    duration: 1000
+                    duration: 500
                   });
                   loader.present();
                   this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { DatabaseProvider } from '../../providers/database/database';
 import { MediaProvider } from '../../providers/media/media';
 import { ToastController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 declare var firebase;
 declare var google;
 /**
@@ -117,4 +118,9 @@ export class AddPage {
     })
   }
 
+  logout(){
+    this.database.logout().then(()=>{
+     this.navCtrl.push(LoginPage)
+    })
+  }
 }

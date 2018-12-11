@@ -15,7 +15,7 @@
 
 <ion-content>
   <div class="imagecontainer">
-      <img src="../../assets/imgs/gas cooking.jpg" alt="">
+      <img [src]="picture" alt="">
   </div>
   <accordion [tip]="fuel.title" [color]="color" [code]="code" [description]="fuel.description" *ngFor="let fuel of fuels"></accordion>
 </ion-content>

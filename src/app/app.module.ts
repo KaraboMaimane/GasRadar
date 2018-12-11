@@ -39,7 +39,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,LaunchNavigator,
-    MediaProvider
+    MediaProvider,
   ]
 })
 export class AppModule {}

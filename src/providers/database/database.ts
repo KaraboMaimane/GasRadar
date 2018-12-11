@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment'
 import { Geolocation } from "@ionic-native/geolocation";
 // import *as firebase from 'firebase';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, NavController } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
 
 declare var firebase;
 /*
@@ -30,7 +31,7 @@ export class DatabaseProvider {
   img;
   currentUserPath;
   comments2 = new Array();
-  defaultImages = ['../../assets/imgs/pic.jpg', '../../assets/imgs/pic23.jpg', '../../assets/imgs/pic24.jpg', '../../assets/imgs/pic22.jpg', '../../assets/imgs/pic25.jpg']
+  defaultImages = ['assets/imgs/pic.jpg', 'assets/imgs/pic23.jpg', 'assets/imgs/pic24.jpg', 'assets/imgs/pic22.jpg', 'assets/imgs/pic25.jpg']
   user: firebase.User;
   url: string;
   profile =  new Array();
@@ -45,7 +46,8 @@ export class DatabaseProvider {
   logout(){
     console.log('exit')
     return new Promise((accpt,rej)=>{
-      this.authenticate.signOut();
+      this.authenticate.signOut().then(()=>{
+      })
       accpt("log Out Success")
     })
   }

@@ -176,11 +176,11 @@ export class TipsPage {
     // }
 
     switch(fuel){
-      case 'Gas': this.navCtrl.push(page, {name: fuel, fuel: this.gas, color: 'danger', code: '#f53d3d'});
+      case 'Gas': this.navCtrl.push(page, {name: fuel, fuel: this.gas, color: 'danger', code: '#f53d3d', picture: 'assets/imgs/gas cooking.jpg'});
       break;
-      case 'Diesel': this.navCtrl.push(page, {name: fuel, fuel: this.diesel, color: 'dark2', code: '#565656'});
+      case 'Diesel': this.navCtrl.push(page, {name: fuel, fuel: this.diesel, color: 'dark2', code: '#565656', picture: 'assets/imgs/2018-jeep-wrangler-first-drive.jpg'});
       break;
-      case 'Petrol': this.navCtrl.push(page, {name: fuel, fuel: this.petrol, color: 'petrol', code: '#FF8456'});
+      case 'Petrol': this.navCtrl.push(page, {name: fuel, fuel: this.petrol, color: 'petrol', code: '#FF8456', picture: 'assets/imgs/caltex01.jpg'});
       break;
       default: console.log('no way');
       break;

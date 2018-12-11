@@ -1,28 +1,35 @@
 page-add {
     ion-content{
+        // height: 95vh !important;
         background: $primary-color !important;
-        
+        display: flex !important;
+        align-items: center !important;
     }
 
-    .addicon{
-        background: $accent-color !important;
-        padding: 1rem;
+    button.icon{
+        color: white;
         font-size: 2rem;
+    }
+
+    .icon{
+        background: none !important;
+    }
+
+    .addfab{
+        position: absolute;
+        transform: translateY(-4rem) translateX(9rem);
         border-radius: 50%;
-        width: 5rem;
-        height: 5rem;
-        position: fixed;
-        
     }
 
     .contents{
+
         width:90%;
         margin: 0 auto;
         background: $primary-color-text;
         padding: 2rem;
         border-radius: 2rem;
         box-shadow: 0 1rem 2rem rgba($primary-text-color, .4);
-        margin-top: 1rem;
+        margin-top: 15vh;
     }
     .imagecontainer{
         width: 15rem;
@@ -42,7 +49,7 @@ page-add {
         width: 15rem;
         height: 15rem;
         position: absolute;
-        top: 3.3rem;
+        top: 11rem;
         z-index: 100;
         opacity: 0;
         // background: red;

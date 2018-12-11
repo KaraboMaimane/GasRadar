@@ -32,21 +32,21 @@
   <div [ngSwitch]="action">
     <div class="productcontainer" *ngSwitchCase="'info'">
       <!-- <p class="heading">Details</p> -->
-      <p class="heading">Products</p>
+      <p class="heading">Details</p>
       <hr>
       <ion-list no-lines class="content">
         <ion-item>
-            <ion-icon name="at" item-start></ion-icon>
-           <p> {{businessEmail}}</p>
-     
+          <ion-icon name="person" item-start></ion-icon>
+        
+            <p>{{businessOwner}}</p>
         </ion-item>
 
-        <ion-item>
+        <ion-item class="loc">
             <ion-icon name="pin" item-start></ion-icon>
-          <p> {{streetName2}}</p><p>{{areaName2}} </p>  
+        
+            <p> {{streetName2}}</p><p>{{areaName2}} </p>  
        
-         <p>{{areaLocation2}}</p> <p>{{postCode2}} </p>
-           
+            <p>{{areaLocation2}}</p> <p>{{postCode2}} </p>
           
         </ion-item>
 
@@ -57,8 +57,8 @@
         </ion-item>
 
         <ion-item>
-            <ion-icon name="person" item-start></ion-icon>
-          <p>{{businessOwner}}</p>
+            <ion-icon name="at" item-start></ion-icon>
+            <p> {{businessEmail}}</p>
           
         </ion-item>
       </ion-list>
@@ -79,7 +79,7 @@
         <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
       </p> -->
     
-
+      <div class="block">&nbsp;</div>
     </div>
     <div class="loginContainer" *ngSwitchCase="'gallery'">
         <p class="products">Products</p>

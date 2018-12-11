@@ -19,11 +19,11 @@
           <p class="cardtext">Gas Saving</p>
         </div>
         <div class="card" (click)="nextPage('ViewTipsPage', 'Petrol')">
-          <p class="cardtext"><i class="fas fa-gas-pump p95"></i></p>
+          <p class="cardtext"><i id="icons" class="fas fa-gas-pump p95"></i></p>
           <p class="cardtext">Petrol</p>
         </div>
         <div class="card" (click)="nextPage('ViewTipsPage', 'Diesel')">
-          <p class="cardtext"><i class="fas fa-gas-pump diesel"></i></p>
+          <p class="cardtext"><i id="icons" class="fas fa-gas-pump diesel"></i></p>
           <p class="cardtext">Diesel</p>
         </div>
       </div>
@@ -61,10 +61,11 @@
             <span class="datew">{{i.date}}</span>
           </ion-item>
         </ion-list> -->
-        <ion-footer class="message">
+        <div class="block">&nbsp;</div>
+        <div class="footer">
             <input placeholder="message" [(ngModel)]="newmessage" type="text" class="input"> <button ion-button (click)="placeComment()"color="secondary"><ion-icon name="send"></ion-icon></button>
-        </ion-footer>
-        
+        </div>
+            
     </div>
   </div>
 </ion-content>

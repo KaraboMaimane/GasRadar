@@ -95,13 +95,16 @@ page-map {
 
           .searchbar{
             border-radius: 10rem;
-            background-color: white;
+          //   background-color: white;
           }
      }
      .item2{
          margin: 0 0 0 0 auto;
      }
 
+     .searchbar-input{
+          border-radius: 10rem !important;
+     }
     //  .item1{
     //     width: 47.5%;
     //     height: 5rem;
@@ -129,7 +132,7 @@ page-map {
      }
 
      #map{
-          height: 100%;
+          height: 82.5%;
           z-index: 0;
           margin-top: 10rem;
      }
@@ -276,11 +279,14 @@ page-map {
    #slide5 { background: #FF5722 }
 
    .fabbtn{
+     height: 5rem;
+     width: 5rem;
      position: fixed;
-     bottom: 1rem;
+     bottom: 6rem;
      right: 1rem;
       border-radius: 50%;
       font-size: 2rem;
       box-shadow: .2rem .3rem .6rem rgba(black, .5);
+     
    }
 }

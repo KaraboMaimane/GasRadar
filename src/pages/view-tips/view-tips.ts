@@ -19,6 +19,7 @@ export class ViewTipsPage implements OnInit{
   fuels;
   name;
   code;
+  picture: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -28,6 +29,7 @@ export class ViewTipsPage implements OnInit{
     this.fuels = this.navParams.get('fuel');
     this.color = this.navParams.get('color');
     this.code = this.navParams.get('code');
+    this.picture  = this.navParams.get('picture');
   }
 
 }

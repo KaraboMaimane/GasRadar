@@ -21,7 +21,7 @@ export class LoginPage {
  action: string;
 
  constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private toastCtrl: ToastController) {
-   this.action = 'registration';
+   this.action = 'login';
  }
 
  ionViewDidLoad() {
@@ -71,6 +71,14 @@ export class LoginPage {
      }
    )
  }
+ ngAfterViewInit() {
+  let tabs = document.querySelectorAll('.show-tabbar');
+  if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+          tabs[key].style.display = 'none';
+      });
+  }
+}
 
  resetPassword(email:string){
       this.navCtrl.setRoot('TabsPage');
