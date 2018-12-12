@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment'
 import { Geolocation } from "@ionic-native/geolocation";
 // import *as firebase from 'firebase';
-import { LoadingController, NavController } from 'ionic-angular';
+import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 
 declare var firebase;
@@ -36,7 +36,7 @@ export class DatabaseProvider {
   url: string;
   profile =  new Array();
 
-  constructor(public geolocation: Geolocation, private loadingCtrl: LoadingController) {
+  constructor(public alertCtrl: AlertController,public geolocation: Geolocation, private loadingCtrl: LoadingController) {
     console.log('Hello DatabaseProvider Provider');
     // this.checkUserState();
   }
@@ -71,16 +71,7 @@ export class DatabaseProvider {
   }
 
  
-  login(email,password){
-    return new Promise((accpt,rej)=>{
-      this.authenticate.signInWithEmailAndPassword(email,password).then(()=>{
-        accpt("Success")
-      },Error =>{
-        rej(Error.message)
-      })
-    }) 
-
-  }
+ 
 
   register(name: string, email: string,  password: string){
     return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -98,9 +89,31 @@ export class DatabaseProvider {
         })
         accpt("user registered")
       }, Error => {
-        rej(Error.message)
+        let alert = this.alertCtrl.create({
+          title: 'Cridentials Error',
+          message: Error.message,
+          buttons: ['Dismiss']
+        });
+        alert.present();
+        // rej(Error.message)
       })
     })
+  }
+  login(email,password){
+    return new Promise((accpt,rej)=>{
+      this.authenticate.signInWithEmailAndPassword(email,password).then(()=>{
+        accpt("Success")
+      },Error =>{
+        let alert = this.alertCtrl.create({
+          title: 'Cridentials Error',
+          message: Error.message,
+          buttons: ['Dismiss']
+        });
+        alert.present();
+        // rej(Error.message)
+      })
+    }) 
+
   }
 
   insertImage(event: any, url) {
@@ -233,11 +246,7 @@ export class DatabaseProvider {
       firebase.database().ref("userdb/"+ this.currentUserID).on("value", data => {
         let infor = data.val();
        console.log(infor)
-     
-   
-
         accpt(this.arrInfor);
-
 
       })
 

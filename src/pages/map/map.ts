@@ -86,10 +86,13 @@ filter;
   ionViewDidLoad() {
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1100
+      
+      duration: 11000
     });
        
     loader.present();
+    //  this.initMap();
+    
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
       
@@ -103,11 +106,9 @@ filter;
     
     })
     setTimeout(()=>{
-      
-
       this.initMap();
-    loader.dismiss();
-    }, 5000)
+     
+    }, 8000)
   
   }
 
@@ -136,17 +137,11 @@ filter;
     if(this.searchbar==""){
   
  console.log("nothing");
- 
       document.getElementById("hide").style.display="none";
-
     }else {
       console.log("something");
- 
       document.getElementById("hide").style.display="block";
-
      console.log(this.searchbar);
-     
-
     }
     console.log(this.searchbar);
    }
@@ -154,19 +149,16 @@ filter;
   initMap() {
  
 
-
-  
-
     // const loader = this.loadingCtrl.create({
-    //   content: "Please wait..c.",
-    //   //duration: 1000
+    //   content: "Please wait... sec",
+    //   duration: 1000
     // });
     // loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        zoom: 12,
+        zoom: 10.9,
         center: { lat: this.lat, lng: this.lng },
         disableDefaultUI: true,
         styles: this.media.mapstyle
@@ -180,7 +172,7 @@ filter;
           url: `${this.media.man}`
         }
       });
-   
+      // loader.dismiss();
       // Add circle overlay and bind to marker
       var circle = new google.maps.Circle({
         map: this.map,
@@ -217,8 +209,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   let objj = {
    icon:this.icon
   }
-
-
 
   this.arrys.push(objj);
   
@@ -579,7 +569,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                               setTimeout(()=>{
                                 const loader = this.loadingCtrl.create({
                                   content: "Please wait...",
-                                  duration: 1000
+                               
                                 });
                                 loader.present();
                                 this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });

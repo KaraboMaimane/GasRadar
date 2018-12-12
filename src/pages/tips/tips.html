@@ -61,12 +61,22 @@
             <span class="datew">{{i.date}}</span>
           </ion-item>
         </ion-list> -->
+
+        <!-- <div class="textc">
+            <ion-row>
+            <ion-textarea block text-wrap maxLength="80" [(ngModel)]="newmessage" placeholder="Add a tip" class="text"></ion-textarea>
+            <button round ion-button color="primary" (click)="placeComment()" class="butts" icon-only><ion-icon name="md-send"></ion-icon></button>
+            </ion-row>
+            </div> -->
         <div class="block">&nbsp;</div>
         <chatbox (messageCreate)="onMessageAdded($event)" *ngIf="buttonstate === 'sending'"></chatbox>      
 
-          <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="buttonstate = 'sending'" ion-fab color="primary">
+          <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="Sending()" ion-fab >
             <ion-icon name="send" ></ion-icon>
-          </button>  
+          </button> 
+          <!-- <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="buttonstate = 'sending'" ion-fab color="primary">
+            <ion-icon name="send" ></ion-icon>
+          </button>  -->
     </div>
   </div>
 </ion-content>

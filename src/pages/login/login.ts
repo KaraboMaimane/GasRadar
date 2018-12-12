@@ -30,42 +30,40 @@ export class LoginPage {
 
  register(form: NgForm) {
   const loading = this.loading.create({
-    content: `Registering ${form.form.value.email}`
+    content: `Registering...`
   });
-  loading.present();
   this.database.registerUser(form.form.value.name, form.form.value.email, form.form.value.password).then(
-    (data) => {
-      loading.dismiss();
+    () => {
       this.navCtrl.push('TabsPage');
+      loading.dismiss();
     }
-  ).catch(
-    (error) => {
-      const alert = this.alert.create({
-        message: 'There was an error registering you. Please enter correct credentials',
-        buttons: ['OK']
-      })
-      alert.present();
-    }
-  )
+  ).catch(Error =>{
+    const alert = this.alert.create({
+      message: Error.message,
+      buttons: ['OK']
+    })
+    alert.present();
+    loading.dismiss();
+  })
 }
 
 login(form: NgForm) {
   const loading = this.loading.create({
-    content: `Registering ${form.form.value.email}`
+    content: `Please Wait...Logging in`
   });
-  loading.present();
+  
   this.database.login(form.form.value.email, form.form.value.password).then(
     (data) => {
-      loading.dismiss();
       this.navCtrl.setRoot('TabsPage');
     }
   ).catch(
-    (error) => {
+    (Error) => {
       const alert = this.alert.create({
-        message: 'There was an error logging you in. Please enter correct credentials',
+        message: Error.message,
         buttons: ['OK']
       })
       alert.present();
+      loading.dismiss();
     }
   )
 }

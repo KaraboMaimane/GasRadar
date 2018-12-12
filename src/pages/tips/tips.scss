@@ -36,15 +36,16 @@ page-tips {
         border-right: none !important;
         border-left: none !important;
         border-radius: none !important;
-        color: $primary-color !important;
+       color: $primary-color-text !important;
+        background: $primary-color !important;
         border-bottom: 2px solid $primary-color-light !important;
-        background: $primary-color-text !important;
+    
         box-shadow: 0 1rem 2rem rgba($primary-text-color, .2) !important;
     }     
     .segbtn.segment-button.segment-activated{
         border-radius: 0 !important;
-        background: $primary-color !important;
-        color: $primary-color-text !important;
+        background: $primary-color-text !important;
+        color: $primary-color !important;
         border-bottom: 2px solid $accent-color !important;
         
     }
@@ -100,11 +101,12 @@ page-tips {
         box-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
         backface-visibility: hidden;
         .imagecontainer{
-            z-index: 1;
             display: flex;
             justify-content: center;
             height: 3rem;
             .cardimage{ 
+            // z-index: 1;
+
                 width: 7rem;
                 height: 7rem;
                 border-radius: 50%;
@@ -151,12 +153,12 @@ page-tips {
             font-size: 3rem;
             margin: 0;
             transform: translateY(-7rem);
-            z-index: 1;
+            // z-index: 1;
             text-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
         }
 
         .fa-quote-right{
-            z-index: 1;
+            // z-index: 1;
             position: absolute;
             font-size: 3rem;
             margin: 0;
@@ -215,6 +217,7 @@ page-tips {
         position: fixed;
         right: 1rem;
         bottom: 6rem;
-        z-index: 2;
+        color: white;
+        // z-index: 2;
     }
 }

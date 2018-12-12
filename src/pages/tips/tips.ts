@@ -3,7 +3,8 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ToastController
+  ToastController,
+  AlertController
 } from "ionic-angular";
 import { DatabaseProvider } from "../../providers/database/database";
 
@@ -104,7 +105,8 @@ export class TipsPage {
     public toastCtrl: ToastController,
     private database: DatabaseProvider,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public alertCtrl: AlertController
   ) {
     this.database.getuser().then(data => {
       console.log(data);
@@ -132,7 +134,7 @@ export class TipsPage {
   getComments() {
     this.database.getComments(this.newmessage).then((data: any) => {
       this.comments = data;
-      
+
       var i = 0;
       for (var x = this.comments.length - 1; x >= 0; x--) {
         this.comments3[i] = this.comments[x];
@@ -142,33 +144,46 @@ export class TipsPage {
     });
   }
 
-
-  placeComment(newmessage) {
-    this.database
-      .makeComment(this.username, this.newmessage)
-      .then(data => {
-        const toast = this.toastCtrl.create({
-          message: "Your comment was saved",
-          duration: 3000
-        });
-        toast.present();
-      })
-      .catch(error => {
-        const toast = this.toastCtrl.create({
-          message: "Uh Oh Something Went Wrong!",
-          duration: 3000
-        });
-        toast.present();
+  onMessageAdded(event: string) {
+    let message = event;
+    console.log(`message: ${message}`);
+    console.log(`message type: ${typeof message}`)
+    this.placeComment(message);
+    this.buttonstate = 'not';
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.display = '';
       });
-    this.comments.length = 0;
-    this.newmessage = "";
-    this.getComments();
+    }
   }
 
-  nextPage(page: string, fuel: string){
+  placeComment(newmessage: string) {
+    console.log(newmessage);
+    if (newmessage.length > 0) {
+      this.database
+        .makeComment(this.username, newmessage)
+        .then(data => {
+          const toast = this.toastCtrl.create({
+            message: "Your comment was saved",
+            duration: 3000
+          });
+          toast.present();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.comments.length = 0;
+      newmessage = "";
+      this.getComments();
+    }
+
+  }
+
+  nextPage(page: string, fuel: string) {
     console.log(page, fuel);
     // if(fuel = 'gas'){
-      
+
     // }else if(fuel = 'petrol'){
     //   this.navCtrl.push(page, {name: fuel, fuel: this.petrol});
     // }else if(fuel = 'diesel'){
@@ -177,21 +192,28 @@ export class TipsPage {
     //   console.log('invalid');
     // }
 
-    switch(fuel){
-      case 'Gas': this.navCtrl.push(page, {name: fuel, fuel: this.gas, color: 'danger', code: '#f53d3d', picture: 'assets/imgs/gas cooking.jpg'});
-      break;
-      case 'Diesel': this.navCtrl.push(page, {name: fuel, fuel: this.diesel, color: 'dark2', code: '#565656', picture: 'assets/imgs/2018-jeep-wrangler-first-drive.jpg'});
-      break;
-      case 'Petrol': this.navCtrl.push(page, {name: fuel, fuel: this.petrol, color: 'petrol', code: '#FF8456', picture: 'assets/imgs/caltex01.jpg'});
-      break;
+    switch (fuel) {
+      case 'Gas': this.navCtrl.push(page, { name: fuel, fuel: this.gas, color: 'danger', code: '#f53d3d', picture: 'assets/imgs/gas cooking.jpg' });
+        break;
+      case 'Diesel': this.navCtrl.push(page, { name: fuel, fuel: this.diesel, color: 'dark2', code: '#565656', picture: 'assets/imgs/2018-jeep-wrangler-first-drive.jpg' });
+        break;
+      case 'Petrol': this.navCtrl.push(page, { name: fuel, fuel: this.petrol, color: 'petrol', code: '#FF8456', picture: 'assets/imgs/caltex01.jpg' });
+        break;
       default: console.log('no way');
-      break;
+        break;
     }
   }
 
-  onMessageAdded(event){
-    // console.log(event);
-    this.placeComment(event);
-    this.buttonstate= 'not';
+
+
+  Sending() {
+
+    this.buttonstate = 'sending';
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+      Object.keys(tabs).map((key) => {
+        tabs[key].style.display = 'none';
+      });
+    }
   }
 }

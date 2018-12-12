@@ -12,7 +12,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class ChatboxComponent {
 
-  @Output() messageCreate = new EventEmitter<any>();
+  @Output() messageCreate = new EventEmitter<string>();
 
   constructor() {
     console.log('Hello ChatboxComponent Component');

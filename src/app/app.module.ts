@@ -19,7 +19,6 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
   declarations: [
     MyApp,
     
-    
   ],
   imports: [
     BrowserModule,
