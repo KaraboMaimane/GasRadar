@@ -91,7 +91,7 @@ filter;
     });
        
     loader.present();
-    //  this.initMap();
+     this.initMap();
     
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
@@ -108,7 +108,7 @@ filter;
     setTimeout(()=>{
       this.initMap();
      
-    }, 8000)
+    }, 7000)
   
   }
 
@@ -148,12 +148,10 @@ filter;
  
   initMap() {
  
-
-    // const loader = this.loadingCtrl.create({
-    //   content: "Please wait... sec",
-    //   duration: 1000
-    // });
-    // loader.present();
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -172,7 +170,7 @@ filter;
           url: `${this.media.man}`
         }
       });
-      // loader.dismiss();
+      loader.dismiss();
       // Add circle overlay and bind to marker
       var circle = new google.maps.Circle({
         map: this.map,
