@@ -27,9 +27,12 @@ export class TabsPage {
     this.tab3Root = 'TipsPage';
     this.logg = 'LoginPage';
 
+<<<<<<< HEAD
     
   }
 
+=======
+>>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
   ionViewDidLoad(){
   }
 }

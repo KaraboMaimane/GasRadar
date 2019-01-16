@@ -121,7 +121,11 @@ export class AddPage {
 
   logout(){
     this.database.logout().then(()=>{
+<<<<<<< HEAD
      this.navCtrl.setRoot('LoginPage');
+=======
+     this.navCtrl.push('LoginPage');
+>>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
     })
   }
 }

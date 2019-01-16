@@ -1,9 +1,16 @@
 chatbox {
     .footer{
+<<<<<<< HEAD
         // z-index: 9999999999999999999999999999999999999999999999999999999999;
         // transform: translateY(6.6rem);
         position: absolute;
         bottom: 0;
+=======
+        z-index: 2;
+        transform: translateY(-5.5rem);
+        position: fixed;
+        bottom: -5.5rem;
+>>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
         display: flex;
         width: 100%;
         flex: 0 0 100%;

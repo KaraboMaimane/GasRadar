@@ -29,13 +29,13 @@ export class LoginPage {
  }
 
  register(form: NgForm) {
-  // const loading = this.loading.create({
-  //   content: `Registering...`
-  // });
+  const loading = this.loading.create({
+    content: `Registering...`
+  });
   this.database.registerUser(form.form.value.name, form.form.value.email, form.form.value.password).then(
     () => {
-      this.navCtrl.setRoot('TabsPage');
-      // loading.dismiss();
+      this.navCtrl.push('TabsPage');
+      loading.dismiss();
     }
   ).catch(Error =>{
     const alert = this.alert.create({
@@ -43,7 +43,7 @@ export class LoginPage {
       buttons: ['OK']
     })
     alert.present();
-    // loading.dismiss();
+    loading.dismiss();
   })
 }
 
