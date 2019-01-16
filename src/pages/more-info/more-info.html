@@ -1,9 +1,9 @@
-<ion-content>
+<ion-content class="bg">
   <div class="headercontainer">
     <div class="heading">{{businessName}}</div>
-    <ion-fab color="secondary">
-      <button ion-fab mini class="fab" color="secondary">
-        <ion-icon name="navigate" (click)="openNav()"></ion-icon>
+    <ion-fab color="secondary"  (click)="openNav()">
+      <button  ion-fab mini class="fab" color="secondary">
+        <ion-icon name="navigate"></ion-icon>
       </button>
     </ion-fab>
   </div>
@@ -23,9 +23,7 @@
       <ion-segment-button class="segbtn" value="gallery">
         PRICES
       </ion-segment-button>
-      <!-- <ion-segment-button class="segbtn" value="comment">
-        Comment
-      </ion-segment-button> -->
+    
     </ion-segment>
   </div>
 
@@ -35,7 +33,7 @@
       <p class="heading">Details</p>
       <hr>
       <ion-list no-lines class="content">
-        <ion-item>
+        <!-- <ion-item>
           <ion-icon name="person" item-start></ion-icon>
         
             <p>{{businessOwner}}</p>
@@ -60,24 +58,43 @@
             <ion-icon name="at" item-start></ion-icon>
             <p> {{businessEmail}}</p>
           
-        </ion-item>
-      </ion-list>
-      <!-- <p class="label">
-        <ion-icon name="mail"></ion-icon> Business Address: <span class="text" style="text-transform: none">{{streetName2}}{{areaName2}}{{areaLocation2}}{{postCode2}}</span>
+        </ion-item> -->
+        <div class="more">
+            <ion-item>
+                <ion-thumbnail class="thumb" item-start>
+                  <ion-icon class="ic" name="md-person"></ion-icon>
+                </ion-thumbnail>
+                <p>Owner's Name</p>
+                <h2>{{businessOwner}}</h2>
+              </ion-item>
         
+        
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <ion-icon class="ic" name="md-pin"></ion-icon>
+                </ion-thumbnail>
+                <p>Address</p>
+                <h2>{{streetName2}} {{areaName2}}, {{areaLocation2}}, {{postCode2}}</h2>
+              </ion-item>
+        
+        
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <ion-icon class="ic" name="md-call"></ion-icon>
+                </ion-thumbnail>
+                <p>Tel</p>
+                <h2>{{businessTel}}</h2>
+              </ion-item>
 
-      </p>
-      <p class="label">
-        <ion-icon name="mail"></ion-icon> Email Address: <span class="text" style="text-transform: none">{{businessEmail}}</span>
-      </p>
-      <p class="label">
-
-        <ion-icon name="navigate"></ion-icon> Telephone Number: <span class="text">{{businessTel}}</span>
-
-      </p>
-      <p class="label">
-        <ion-icon name="navigate"></ion-icon> Owner: <span class="text">{{businessOwner}}</span>
-      </p> -->
+              <ion-item>
+                  <ion-thumbnail item-start>
+                    <ion-icon class="ic" name="md-at"></ion-icon>
+                  </ion-thumbnail>
+                  <p>E-mail</p>
+                  <h2>{{businessEmail}}</h2>
+                </ion-item>
+        </div>
+      </ion-list>
     
       <div class="block">&nbsp;</div>
     </div>

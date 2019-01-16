@@ -9,9 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MyApp } from './app.component';
 import { DatabaseProvider } from '../providers/database/database';
 import { MediaProvider } from '../providers/media/media';
-import {LoginPageModule} from '../pages/login/login.module';
 import {TabsPageModule} from '../pages/tabs/tabs.module';
-import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 // import { StatsPage } from '../pages/stats/stats';
@@ -19,8 +17,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
-    MyApp,LoginPage
-    
+    MyApp,
     
   ],
   imports: [
@@ -30,9 +27,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,LoginPage
-    
-  ],
+    MyApp,  ],
   providers: [
     StatusBar,
     SplashScreen,

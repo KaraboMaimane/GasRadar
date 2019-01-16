@@ -1,5 +1,15 @@
 <ion-content>
-  <div class="headercontainer"><p class="heading">Fuel Friendly Tips</p></div>
+  <div class="headercontainer">
+    <div class="headingcon">
+        <p class="heading">Fuel Friendly Tips</p>
+    </div>
+    <div class="butoncon" *ngIf="action === 'users'">
+      <button (click)="sendMessage()" class="buton" ion-button icon-only>
+        <ion-icon name="chatbubbles"></ion-icon>
+      </button>
+    </div>
+
+  </div>
   <ion-segment color [(ngModel)]="action">
     <ion-segment-button class="segbtn" value="fuel">
       Fuel Smarts
@@ -9,9 +19,9 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div [ngSwitch]="action">
+  <div [ngSwitch]="action" class="contents">
     <div class="fuel" *ngSwitchCase="'fuel'">
-      <div class="cardcontainer" >
+      <div class="cardcontainer">
         <div class="card" (click)="nextPage('ViewTipsPage', 'Gas')">
           <p class="cardtext">
             <i class="mdi mdi-gas-cylinder mdi-24px gas"></i>
@@ -29,50 +39,57 @@
       </div>
     </div>
 
+
     <div class="users" *ngSwitchCase="'users'">
       <div class="usercardcontainer">
         <div class="usercard" *ngFor="let i of comments3">
           <div class="imagecontainer">
-            <img
-<<<<<<< Updated upstream
-              src="{{i.img}}"
-=======
-              src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg"
->>>>>>> Stashed changes
-              alt=""
-              class="cardimage"
-            />
+            <img src="{{i.img}}" alt="" class="cardimage" />
           </div>
 
-          <div class="textcontainer" >
+          <div class="textcontainer">
             <i class="fas fa-quote-left"></i>
             <p class="name">{{i.name}}</p>
             <p class="text">
-                {{i.comment}}
+              {{i.comment}}
             </p>
             <span class="datew">{{i.date}}</span>
             <i class="fas fa-quote-right"></i>
           </div>
         </div>
       </div>
-
+      <div class="block">&nbsp;</div>
       <!-- <ion-list >
           <ion-item *ngFor="let i of comments3">
             <ion-avatar item-start>
-              <img src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
             </ion-avatar>
             <h2>{{i.name}}</h2>
             <p>{{i.comment}}</p>
             <span class="datew">{{i.date}}</span>
           </ion-item>
-          <ion-item>
-              <ion-avatar item-start>
-                <img src="assets/imgs/27540814_10215734287658365_2735885339560353644_n.jpg">
-              </ion-avatar>
-              <h2>Karabo Maimane</h2>
-              <p>Ugh. As if.</p>
-            </ion-item>
-        </ion-list>
+        </ion-list> -->
+
+      <!-- <div class="textc">
+            <ion-row>
+            <ion-textarea block text-wrap maxLength="80" [(ngModel)]="newmessage" placeholder="Add a tip" class="text"></ion-textarea>
+            <button round ion-button color="primary" (click)="placeComment()" class="butts" icon-only><ion-icon name="md-send"></ion-icon></button>
+            </ion-row>
+            </div> -->
+
+        <!-- <div class="block">&nbsp;</div>
+              <chatbox (messageCreate)="onMessageAdded($event)" *ngIf="buttonstate === 'sending'"></chatbox>       -->
+
+        <!-- <button ion-button class="send" color="secondary" (click)="sendMessage()" >
+                  <ion-icon name="send" ></ion-icon>
+                </button>  -->
+
+        <!-- <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="Sending()" ion-fab >
+                    <ion-icon name="send" ></ion-icon>
+                  </button>  -->
+
+      <!-- <button class="send" color="secondary" *ngIf="buttonstate ==='not'" (click)="buttonstate = 'sending'" ion-fab color="primary">
+            <ion-icon name="send" ></ion-icon>
+          </button>  -->
     </div>
   </div>
 </ion-content>

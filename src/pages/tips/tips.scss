@@ -1,8 +1,17 @@
 page-tips {
-    .cardtext{
+    ion-content{
+        // font-size: 62.5%;
+        height: 100vh !important;
 
     }
+    .contents{
+        overflow: scroll;
+        height:100%;
+    }
 
+    .block{
+        height:7.5rem;
+    }
     .mdi, #icons{
         zoom: 2;
     }
@@ -17,11 +26,26 @@ page-tips {
         box-shadow: 0 1rem 2rem rgba($primary-text-color, .5);
         // z-index: 5;
         // position: fixed;
-        width: 100%;
+        flex: 0 0 100%;
         margin: 0;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-content: center;
+        // position: fixed;
+        .headingcon{
+            flex: 4 0 0;
+        }
+
+        .butoncon{
+            flex: 0 1 0;
+            // margin-top: .2rem;
+            
+            animation: sizeup .5s ease;
+            button{
+                box-shadow: none;
+                color: $accent-color !important;
+            }
+        }
     }
   
     .heading{
@@ -36,15 +60,16 @@ page-tips {
         border-right: none !important;
         border-left: none !important;
         border-radius: none !important;
-        color: $primary-color !important;
+       color: $primary-color-text !important;
+        background: $primary-color !important;
         border-bottom: 2px solid $primary-color-light !important;
-        background: $primary-color-text !important;
+    
         box-shadow: 0 1rem 2rem rgba($primary-text-color, .2) !important;
     }     
     .segbtn.segment-button.segment-activated{
         border-radius: 0 !important;
-        background: $primary-color !important;
-        color: $primary-color-text !important;
+        background: $primary-color-text !important;
+        color: $primary-color !important;
         border-bottom: 2px solid $accent-color !important;
         
     }
@@ -93,7 +118,7 @@ page-tips {
         animation: scaledown .3s ease;
         background: $primary-color;
         margin: 1rem;
-        margin-top: 7.5rem;
+        margin-top: 5.5rem;
         margin-bottom: 3rem;
         border-radius: 2rem;
         padding: 0 1rem .5rem 1rem;
@@ -104,6 +129,8 @@ page-tips {
             justify-content: center;
             height: 3rem;
             .cardimage{ 
+            // z-index: 1;
+
                 width: 7rem;
                 height: 7rem;
                 border-radius: 50%;
@@ -112,13 +139,12 @@ page-tips {
             }
         }
         .textcontainer{
-            margin-top: 2.5rem;
+            // margin-top: 2.5rem;
             color: $primary-color-text;
             
             .quote1{
                 font-size: 5rem;
                 margin: 0;
-                
             }
             .name{
                 font-weight: 400;
@@ -126,6 +152,7 @@ page-tips {
                 text-transform: capitalize;
                 letter-spacing: .2rem;
                 margin-bottom: .5rem;
+                margin-top: 0;
                 color: $accent-color;
             }
 
@@ -146,21 +173,25 @@ page-tips {
         }
 
         .fa-quote-left{
-            position: absolute;
+            position: relative;
             font-size: 3rem;
             margin: 0;
-            transform: translateY(-7rem);
+            bottom:4.5rem;
+            // transform: translateY(-7rem);
             text-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
+            display: inline-block;
         }
 
         .fa-quote-right{
-            position: absolute;
+            position: relative;
             font-size: 3rem;
-            margin: 0;
-            right: 0;
-            transform: translateY(.5rem) translateX(-2rem);
-            // transform: translateY(-8rem);
+            transform: translateY(.7rem);
+            // transform: translateX(22rem);
+            // top: 2rem;
+            float: right;
+            // transform: translateY(.5rem) translateX(-2rem);
             text-shadow: 0 .6rem 1rem rgba($primary-text-color, .3) !important;
+            display: inline-block;
         }
         
     }
@@ -204,36 +235,46 @@ page-tips {
         }
     }
 
-    .block{
-        height: 5rem;
+    // .block{
+    //     height: 5rem;
+    // }
+
+    .usercardcontainer{
+        // overflow: scroll;
+        height: 100%;
+    }
+    ion-fab{
+        position: fixed !important;
+        // right: .5rem;
+        bottom: 0 !important;
+        color: white;
+        z-index: 99999;
+        margin-left: 80%;
     }
 
-    .footer{
-        transform: translateY(-5.5rem);
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        width: 100%;
-        flex: 0 0 100%;
+    footer{
+        position: fixed !important;
+        bottom: 0 !important;
+    }
+
+    @keyframes sizeup {
+        0%{
+            transform: scale(.5);
+            opacity: 0;
+        }
+
+        100%{
+            transform: scale(1);
+            opacity: 1; 
+        }
+    }
+
+    ion-alert {
         background: $primary-color;
-        padding-top: .5rem;
-        padding-bottom: .5rem;
-        padding-left: .5rem;
+        
+    }
 
-        input{
-            justify-self: auto;
-            margin-bottom: 1rem;
-            display: block;
-            margin: 0;
-            flex: 4 0 0;
-        }
-
-        button{
-            flex: auto 0 0;
-            display: block;
-            height: 5rem;
-            width: 5rem;
-            border-radius: 50% !important;
-        }
+    .alert-wrapper{
+        background: $primary-color !important;
     }
 }

@@ -9,6 +9,7 @@ import { DatabaseProvider } from "../../providers/database/database";
 import { MediaProvider } from "../../providers/media/media";
 import { LoginPage } from "../login/login";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { CachedResourceLoader } from "@angular/platform-browser-dynamic/src/resource_loader/resource_loader_cache";
 declare var google;
 declare var firebase;
 
@@ -83,6 +84,15 @@ filter;
   }
 
   ionViewDidLoad() {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      
+      duration: 12600
+    });
+       
+    loader.present();
+     this.initMap();
+    
     this.database.getCurrentLocation().then((radius)=>{
       this.database.retrieve().then((data)=>{
       
@@ -97,7 +107,9 @@ filter;
     })
     setTimeout(()=>{
       this.initMap();
-    }, 1000)
+     
+    }, 7000)
+  
   }
 
   getItems(ev: any) {
@@ -125,37 +137,26 @@ filter;
     if(this.searchbar==""){
   
  console.log("nothing");
- 
       document.getElementById("hide").style.display="none";
-
     }else {
       console.log("something");
- 
       document.getElementById("hide").style.display="block";
-
      console.log(this.searchbar);
-     
-
     }
     console.log(this.searchbar);
    }
  
   initMap() {
  
-
-
-  
-
     const loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 1000
+      content: "Please wait...2",
     });
-    loader.present();
+    // loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
       this.map = new google.maps.Map(this.mapElement.nativeElement, {
-        zoom: 12,
+        zoom: 10.9,
         center: { lat: this.lat, lng: this.lng },
         disableDefaultUI: true,
         styles: this.media.mapstyle
@@ -169,7 +170,7 @@ filter;
           url: `${this.media.man}`
         }
       });
-   
+      loader.dismiss();
       // Add circle overlay and bind to marker
       var circle = new google.maps.Circle({
         map: this.map,
@@ -179,7 +180,7 @@ filter;
       });
       circle.bindTo('center', marker, 'position');
 
-      loader.dismiss();
+     
       firebase
         .database()
         .ref("userdb/")
@@ -207,8 +208,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
    icon:this.icon
   }
 
-
-
   this.arrys.push(objj);
   
   console.log(this.icon);
@@ -225,6 +224,8 @@ for(var x = 0; x < this.arrayinfor.length;x++){
               //  size: {height:200 , width:80}
             }
           });
+             
+     
           // var infowindow = new google.maps.InfoWindow({
           //   content:"R"+ this.arrayinfor[x].gas,
           // });
@@ -284,11 +285,14 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                   loader.present();
                   this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
                 },500)
+
+
+            
                 
               })
+             
           })
-        
-
+     
         }
     });
   }
@@ -563,7 +567,7 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                               setTimeout(()=>{
                                 const loader = this.loadingCtrl.create({
                                   content: "Please wait...",
-                                  duration: 1000
+                               
                                 });
                                 loader.present();
                                 this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });

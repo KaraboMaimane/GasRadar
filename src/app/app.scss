@@ -14,3 +14,71 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.alertCustomCss {
+    // text color for basic alerts
+    color: white; 
+
+
+    button {
+        color: #6AC045 !important; // button text color
+        background-color: #191919!important;
+            //button bg color
+    }
+
+    input{
+        background: rgba($primary-color-text, .7) !important;
+        color: #222 !important;
+        border-radius: 10rem !important;
+        padding: 1rem .5rem !important;
+    }
+    .alert-title{
+         color: $accent-color;
+         text-align: center;
+    }
+    .alert-sub-title{
+         color: rgb(202, 202, 202);
+    }
+    .alert-message {
+        color: white; // text color for confirm alerts
+        text-align: center;
+    }
+
+    .alert-wrapper {
+        border-radius: 1rem;
+        background-color: $primary-color; // bg color of alert content
+    }
+
+    .alert-input{
+        //  color: $primary-color-text !important;
+    }
+
+    .alert-radio-label{
+        //  color: #6ac045;
+    }
+
+    .alert-button-group{
+        display: flex !important;
+        flex: 0 0 100% !important;
+        justify-content: space-between !important;
+        
+        button{
+            // flex: 1 0 0 !important;
+            // width: 10rem !important;
+            // padding-right: 0 !important;
+            display: block !important;
+        }
+    }
+
+    .alert-ios[aria-checked=true].alert-radio-label{
+         color: white !important;
+    }
+
+    .alert-md[aria-checked=true].alert-radio-label{
+         color: white !important;
+    }
+
+    button{
+        background: $accent-color !important;
+        color: $primary-color-text !important;
+    }
+  }
