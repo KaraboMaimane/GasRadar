@@ -91,26 +91,43 @@ filter;
     });
        
     loader.present();
-     this.initMap();
     
     this.database.getCurrentLocation().then((radius)=>{
-      this.database.retrieve().then((data)=>{
+      console.log(radius)
+      this.geolocation.getCurrentPosition().then((resp)=>{
+        this.asiignPostion(resp);
+        this.database.getOrganisations().then((data)=>{
       
-      this.database.getNearByOrganizations(radius ,data).then((data:any)=>{
-        console.log("getNearby data");
-        console.log(data);
-       
-        this.arrayinfor = data;    
+          this.database.getNearByOrganizations(radius ,data).then((data:any)=>{
+            console.log("getNearby data");
+            console.log(data);
+            this.arrayinfor = data; 
+            this.asignLocationState(true); 
+          })
+          })
+      },Error =>{
+        this.asignLocationState(false)
       })
-      })
-    
     })
     setTimeout(()=>{
       this.initMap();
      
     }, 7000)
+    this.initMap();
   
   }
+  asignLocationState(value){
+    this.locationState =  value;
+  }
+
+  asiignPostion(resp){
+    this.location =  resp;
+  }
+
+  location;
+  latt;
+  longt;
+  locationState = false;
 
   getItems(ev: any) {
     // Reset items back to all of the items
@@ -150,6 +167,7 @@ filter;
  
     const loader = this.loadingCtrl.create({
       content: "Please wait...2",
+      duration: 12600
     });
     // loader.present();
     this.geolocation.getCurrentPosition().then(resp => {

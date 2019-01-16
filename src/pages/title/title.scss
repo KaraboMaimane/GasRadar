@@ -1,13 +1,18 @@
 page-title {
     ion-content{
-        background: #2196F3 !important;
-        height: 100vh !important;
-        // width: 100%;
-        display: flex !important;
-        align-content: center !important;
-        .image{
+        // background: #2196F3 !important;
+        // // height: 100vh !important;
+        // // width: 100%;
+        // display: flex !important;
+        // align-content: center !important;
+         .image{
             width: 10rem !important;
             height: 10rem !important;
-        }
+         }
+        #map{
+            height: 92.5%;
+            z-index: 0;
+            margin-top: 10rem;
+       }
     }
 }

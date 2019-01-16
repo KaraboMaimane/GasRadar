@@ -35,6 +35,7 @@ export class DatabaseProvider {
   user: firebase.User;
   url: string;
   profile =  new Array();
+  gasOrg = new Array();
 
   constructor(public alertCtrl: AlertController,public geolocation: Geolocation, private loadingCtrl: LoadingController) {
     console.log('Hello DatabaseProvider Provider');
@@ -252,6 +253,35 @@ export class DatabaseProvider {
 
     })
   }
+  getOrganisations(){
+    return new Promise((accpt,rej)=>{
+      this.database.ref('userdb/').on('value',(data:any)=>{
+        if(data.val() !== null || data.val() !== undefined){
+          let GasStations = data.val();
+          console.log(GasStations)
+          let keys = Object.keys(GasStations);
+          for (var x = 0;x < keys.length;x++){
+            let gasStationKey = keys[x];
+            let GasStationsObject = {
+              diesel: GasStations[gasStationKey].diesel,
+              email: GasStations[gasStationKey].email,
+              icon: GasStations[gasStationKey].icon,
+              lat: GasStations[gasStationKey].lat,
+              lng: GasStations[gasStationKey].lng,
+              name: GasStations[gasStationKey].name,
+              owner: GasStations[gasStationKey].owner,
+              petrol93: GasStations[gasStationKey].petrol93,
+              petrol95: GasStations[gasStationKey].petrol95,
+              tel: GasStations[gasStationKey].tel,
+            }
+            this.gasOrg.push(GasStationsObject)
+          }
+          accpt(this.gasOrg)
+          console.log(this.gasOrg)
+        }
+      })
+    })
+  }
     
   getProfile(){
     return new Promise((accpt, rej) => {
@@ -337,6 +367,8 @@ export class DatabaseProvider {
       return dataArray;
     })
   }
+
+
   createPositionRadius(latitude, longitude) {
     var leftposition, rightposition, downposition, uposititon;
     return new Promise((accpt, rej) => {
@@ -533,42 +565,70 @@ export class DatabaseProvider {
       });
     })
   }
+
+  listenForLocation() {
+    //listen for current location
+    return new Promise((accpt, rej) => {
+      let watch = this.geolocation.watchPosition();
+      watch.subscribe((data) => {
+        accpt(data)
+        // data can be a set of coordinates, or an error (if an error occurred).
+        // data.coords.latitude
+        // data.coords.longitude
+      });
+    })
+  }
+
+  
   getNearByOrganizations(radius, org) {
 
-    return new Promise((accpt, rej) => {
-
-      this.getCurrentLocations().then((resp: any) => {
-        //  console.log(resp);
-
+    return new Promise((accpt,rej)=>{
+      this.listenForLocation().then((resp:any)=>{
         var lat = new String(resp.coords.latitude).substr(0, 6);
-        //   console.log(lat);
-        //   console.log(resp.coords.latitude)
         var long = new String(resp.coords.longitude).substr(0, 5);
-        //   console.log(long);
-        //   console.log(resp.coords.longitude);
         for (var x = 0; x < org.length; x++) {
-          var orglat = new String(org[x].lat).substr(0, 6);
-          var orgLong = new String(org[x].lng).substr(0, 5);
-
-          // console.log('out');
-          // console.log(orglat);
-          // console.log(orgLong);
-          // console.log( radius.left);
-          // console.log(radius.right);
-          // console.log(radius.down);
-          // console.log(radius.up);
-
-
+          var orglat = new String(org[x].orgLat).substr(0, 6);
+          var orgLong = new String(org[x].orgLong).substr(0, 5);
           if ((orgLong <= long && orgLong >= radius.left || orgLong >= long && orgLong <= radius.right) && (orglat >= lat && orglat <= radius.down || orglat <= lat && orglat >= radius.up)) {
-
             this.nearByOrg.push(org[x]);
-            //   console.log(this.nearByOrg);
-
           }
         }
         accpt(this.nearByOrg)
       })
     })
+
+    // return new Promise((accpt, rej) => {
+    //   this.getCurrentLocations().then((resp: any) => {
+    //     //  console.log(resp);
+    //     var lat = new String(resp.coords.latitude).substr(0, 6);
+    //     //   console.log(lat);
+    //     //   console.log(resp.coords.latitude)
+    //     var long = new String(resp.coords.longitude).substr(0, 5);
+    //     //   console.log(long);
+    //     //   console.log(resp.coords.longitude);
+    //     for (var x = 0; x < org.length; x++) {
+    //       var orglat = new String(org[x].lat).substr(0, 6);
+    //       var orgLong = new String(org[x].lng).substr(0, 5);
+
+    //       // console.log('out');
+    //       // console.log(orglat);
+    //       // console.log(orgLong);
+    //       // console.log( radius.left);
+    //       // console.log(radius.right);
+    //       // console.log(radius.down);
+    //       // console.log(radius.up);
+
+
+    //       if ((orgLong <= long && orgLong >= radius.left || orgLong >= long && orgLong <= radius.right) && (orglat >= lat && orglat <= radius.down || orglat <= lat && orglat >= radius.up)) {
+
+    //         this.nearByOrg.push(org[x]);
+    //         //   console.log(this.nearByOrg);
+
+    //       }
+    //     }
+    //     accpt(this.nearByOrg)
+    //   })
+    // })
   }
 
   // checkUserState(){
@@ -605,14 +665,7 @@ export class DatabaseProvider {
           var orgLong = new String(org[x].lng).substr(0, 5);
 
           //   console.log(orgLong);
-          //   console.log(orglat );
-
-
-
-
-
-
-
+          //   console.log(orglat )
           //console.log('out');
           if ((orgLong <= long && orgLong >= radius.left || orgLong >= long && orgLong <= radius.right) && (orglat >= lt && orglat <= radius.down || orglat <= lt && orglat >= radius.up)) {
             //console.log('in');

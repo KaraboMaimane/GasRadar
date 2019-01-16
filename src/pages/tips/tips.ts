@@ -4,13 +4,9 @@ import {
   NavController,
   NavParams,
   ToastController,
-<<<<<<< HEAD
   AlertController,
   Tabs,
   Button
-=======
-  AlertController
->>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
 } from "ionic-angular";
 import { DatabaseProvider } from "../../providers/database/database";
 
@@ -167,10 +163,6 @@ export class TipsPage {
       });
     }
   }
-<<<<<<< HEAD
-
- 
-
   sendMessage() {
     const alert = this.alertCtrl.create({
       title: 'Comment',
@@ -198,19 +190,13 @@ export class TipsPage {
     alert.present();
   }
 
-=======
-
->>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
   placeComment(newmessage: string) {
     console.log(newmessage);
     if (newmessage.length > 0) {
       this.database
         .makeComment(this.username, newmessage)
         .then(data => {
-<<<<<<< HEAD
           console.log(data)
-=======
->>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
           const toast = this.toastCtrl.create({
             message: "Your comment was saved",
             duration: 3000
@@ -248,22 +234,6 @@ export class TipsPage {
         break;
       default: console.log('no way');
         break;
-<<<<<<< HEAD
-=======
-    }
-  }
-
-
-
-  Sending() {
-
-    this.buttonstate = 'sending';
-    let tabs = document.querySelectorAll('.show-tabbar');
-    if (tabs !== null) {
-      Object.keys(tabs).map((key) => {
-        tabs[key].style.display = 'none';
-      });
->>>>>>> 4d1b3da886996de30ba9522a8c71b0df1fc96502
     }
   }
 
