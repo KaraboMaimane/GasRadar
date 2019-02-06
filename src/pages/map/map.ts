@@ -87,7 +87,7 @@ filter;
     const loader = this.loadingCtrl.create({
       content: "Please wait...",
       
-      duration: 11000
+      duration: 12600
     });
        
     loader.present();
@@ -130,7 +130,6 @@ filter;
     }
   }
 
-
   test(){
     console.log(this.searchbar);
     
@@ -149,9 +148,9 @@ filter;
   initMap() {
  
     const loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: "Please wait...2",
     });
-    loader.present();
+    // loader.present();
     this.geolocation.getCurrentPosition().then(resp => {
       this.lat = resp.coords.latitude;
       this.lng = resp.coords.longitude;
@@ -189,7 +188,6 @@ filter;
 console.log("out");
 console.log(this.arrayinfor);
 for(var x = 0; x < this.arrayinfor.length;x++){
-
 
 
   console.log("in");
@@ -285,7 +283,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
                   loader.present();
                   this.navCtrl.push("MoreInfoPage", { obj: obj, lat: this.lat, lng: this.lng });
                 },500)
-
 
             
                 
@@ -445,7 +442,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
 
 
 
-
               let temp = [];
                temp = data
                console.log(temp);
@@ -464,7 +460,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
             //    }
 
             //  }
-
 
 
               this.arrayinfor= data;
@@ -500,7 +495,6 @@ for(var x = 0; x < this.arrayinfor.length;x++){
   let objj = {
    icon:this.icon
   }
-
 
 
   this.arrys.push(objj);
