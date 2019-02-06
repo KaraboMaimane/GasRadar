@@ -16,6 +16,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class TabsPage {
 
+  tab4Root:string
   tab3Root: string;
   tab2Root: string;
   tab1Root: string;
@@ -25,6 +26,7 @@ export class TabsPage {
     this.tab1Root = 'MapPage';
     this.tab2Root = 'StatsPage';
     this.tab3Root = 'TipsPage';
+    this.tab4Root = 'TitlePage'
     this.logg = 'LoginPage';
   }
 

@@ -1,10 +1,12 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import {
   IonicPage,
   NavController,
   NavParams,
   ToastController,
-  AlertController
+  AlertController,
+  Tabs,
+  Button
 } from "ionic-angular";
 import { DatabaseProvider } from "../../providers/database/database";
 
@@ -100,7 +102,8 @@ export class TipsPage {
   ];
 
   shownGroup = null;
-
+  tabBar: any;
+  @ViewChild('tabslist') tabs: Tabs;
   constructor(
     public toastCtrl: ToastController,
     private database: DatabaseProvider,
@@ -111,6 +114,9 @@ export class TipsPage {
     this.database.getuser().then(data => {
       console.log(data);
     });
+
+    this.tabBar = <HTMLElement>document.querySelector('.tabbar');
+
   }
 
   ionViewDidLoad() {
@@ -157,6 +163,32 @@ export class TipsPage {
       });
     }
   }
+  sendMessage() {
+    const alert = this.alertCtrl.create({
+      title: 'Comment',
+      message: 'Place you comment to the community',
+      inputs: [
+        {
+          name: 'message',
+          placeholder: '',
+        },
+      ],
+      cssClass: 'alertCustomCss',
+      buttons:[
+        {
+          text:'Cancel',
+          handler: ()=>{}
+        }
+        ,{
+        text: 'Send',
+        handler: (data)=>{
+          console.log(data.message)
+          this.placeComment(data.message);
+        }
+      }]
+    });
+    alert.present();
+  }
 
   placeComment(newmessage: string) {
     console.log(newmessage);
@@ -164,6 +196,7 @@ export class TipsPage {
       this.database
         .makeComment(this.username, newmessage)
         .then(data => {
+          console.log(data)
           const toast = this.toastCtrl.create({
             message: "Your comment was saved",
             duration: 3000
@@ -207,13 +240,17 @@ export class TipsPage {
 
 
   Sending() {
+    this.tabBar.style.display = 'none';
 
+    // this.tabBar.style.height = 0;
+    // this.tabBar.style.width = 0;
     this.buttonstate = 'sending';
-    let tabs = document.querySelectorAll('.show-tabbar');
+    let tabs = <HTMLElement>document.querySelector('.show-tabbar');
     if (tabs !== null) {
       Object.keys(tabs).map((key) => {
         tabs[key].style.display = 'none';
       });
     }
   }
+
 }

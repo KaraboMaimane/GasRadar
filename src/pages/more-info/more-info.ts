@@ -96,6 +96,7 @@ openNav(){
 }
   ngOnInit(){
     this.companyInfor =this.navParams.get("obj");
+    console.log(this.companyInfor)
     this.newlong= this.companyInfor.newlon;
     this.newlat= this.companyInfor.newlat
   
