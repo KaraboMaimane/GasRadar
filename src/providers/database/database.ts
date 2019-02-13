@@ -5,8 +5,10 @@ import { Geolocation } from "@ionic-native/geolocation";
 // import *as firebase from 'firebase';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
-
+// import Swal from 'sweetalert2.js'
+import swal from 'sweetalert2';
 declare var firebase;
+// declare var Swal; 
 /*
   Generated class for the DatabaseProvider provider.
 
@@ -40,6 +42,9 @@ export class DatabaseProvider {
   constructor(public alertCtrl: AlertController,public geolocation: Geolocation, private loadingCtrl: LoadingController) {
     console.log('Hello DatabaseProvider Provider');
     // this.checkUserState();
+
+    
+   
   }
 
 
@@ -679,4 +684,47 @@ export class DatabaseProvider {
       })
     })
   }
+
+  success() {
+    swal.fire({
+      position: 'center',
+      type: 'success',
+      title: 'Your data has been saved',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  }
+  
+  emailSent() {
+    swal.fire({
+      position: 'center',
+      type: 'success',
+      title: 'An email has been sent, please check your emails',
+      showConfirmButton: false,
+      timer: 3500
+    })
+  }
+
+
+  confirmation() {
+    // swal.fire({
+    //   position: 'center',
+    //   type: 'information',
+    //   title: 'Please verify your email address ',
+    //   showConfirmButton: false,
+    //   timer: 3000
+    // })
+  }
+
+  fail() {
+    swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      footer: '<a href>Some fields are invalid or empty</a>'
+    })
+  }
+
+
+
 }

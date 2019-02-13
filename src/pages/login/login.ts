@@ -19,6 +19,7 @@ import { TabsPage } from '../tabs/tabs';
 export class LoginPage {
 
  action: string;
+ error: string;
 
  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private loading: LoadingController, private alert: AlertController) {
   this.action = 'login';

@@ -54,4 +54,25 @@
       </form>
     </div>
   </div>
+
+
+
+  <div class="errmodal"  *ngIf="error == 'true'" >
+    <div class="icon">
+      <i class="fas fa-exclamation-circle"></i>
+    </div>
+    <div class="textconainer">
+      <p class="message">A Field Is Empty</p>
+    </div>
+  </div>
+
+
+  <div class="modal"  *ngIf="error == 'true'">
+  <div class="icon">
+      <i class="fas fa-info-circle"></i>
+  </div>
+  <div class="textconainer">
+    <p class="message">Your data was successfully submitted</p>
+  </div>
+</div>
  </ion-content>

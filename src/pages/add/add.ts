@@ -5,8 +5,11 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { MediaProvider } from '../../providers/media/media';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import swal from 'sweetalert2';
+// import { SweetAlertService } from 'ng2-sweetalert2';
 declare var firebase;
 declare var google;
+// declare var Swal;
 /**
  * Generated class for the AddPage page.
  *
@@ -105,17 +108,25 @@ export class AddPage {
     this.database.profileUpdate(form.form.value.UserName,this.url).then((data:any)=>{
       console.log(data)
       console.log(form)
-      let toast = this.toastCtrl.create({
-        message: 'Information Updated Successfully',
-        duration: 2000,
-        position: 'bottom'
-      });
+      
+      swal.fire({
+        position: 'center',
+        type: 'success',
+        title: 'Your Profile has been Updated',
+        showConfirmButton: false,
+        timer: 2500
+      })
+      // let toast = this.toastCtrl.create({
+      //   message: 'Information Updated Successfully',
+      //   duration: 2000,
+      //   position: 'bottom'
+      // });
     
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
+      // toast.onDidDismiss(() => {
+      //   console.log('Dismissed toast');
+      // });
     
-      toast.present();
+      // toast.present();
     })
   }
 
