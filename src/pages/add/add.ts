@@ -6,6 +6,7 @@ import { MediaProvider } from '../../providers/media/media';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import swal from 'sweetalert2';
+// import 'sweetalert2/src/sweetalert2.scss';
 // import { SweetAlertService } from 'ng2-sweetalert2';
 declare var firebase;
 declare var google;

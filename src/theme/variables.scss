@@ -80,7 +80,7 @@ $divider-color:        #BDBDBD;
  }
 
 }
-
+$swal-font-size: 1.2rem;
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
@@ -90,6 +90,8 @@ $divider-color:        #BDBDBD;
 
 @import "ionic.theme.default";
 
+
+// @import './node_modules/sweetalert2/src/sweetalert2.scss';
 
 // Ionicons
 // --------------------------------------------------
